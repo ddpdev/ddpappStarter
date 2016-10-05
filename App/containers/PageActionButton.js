@@ -10,7 +10,7 @@ import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 
- class PageTwo extends Component {
+ class PageActionButton extends Component {
   render() {
     return (
       <View style={{flex:1, backgroundColor: '#f3f3f3'}}>
@@ -39,4 +39,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect()(PageTwo);
+export default connect()(PageActionButton);

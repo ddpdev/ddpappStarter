@@ -133,6 +133,7 @@ dependencies {
     compile project(':react-native-fetch-blob')
     compile project(':react-native-maps')
     compile project(':react-native-device-info')
+    compile project(':react-native-uploader')
     // stetho
     compile 'com.facebook.stetho:stetho:1.4.1'
     compile 'com.facebook.stetho:stetho-okhttp3:1.4.1'

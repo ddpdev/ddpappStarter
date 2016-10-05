@@ -11,8 +11,27 @@ import {
     TouchableOpacity,
     Dimensions
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
 import Picker     from '../../components/ImagePickerMulti';
 import RNUploader from 'react-native-uploader';
+
+
+const initState = {
+    isUploaded: false,
+    isUploading: false,
+    error: null,
+    imageRefs: [{
+        name: 'firstImage',
+        image: null
+    }, {
+        name: 'secondImage',
+        image: null
+    }, {
+        name: 'lastImage',
+        image: null
+    }]
+}
 
 class PageImageUploader extends Component {
     constructor(props) {
@@ -125,21 +144,6 @@ class PageImageUploader extends Component {
     }
 }
 
-const initState = {
-    isUploaded: false,
-    isUploading: false,
-    error: null,
-    imageRefs: [{
-        name: 'firstImage',
-        image: null
-    }, {
-        name: 'secondImage',
-        image: null
-    }, {
-        name: 'lastImage',
-        image: null
-    }]
-}
 
 const styles = StyleSheet.create({
     container: {
@@ -185,4 +189,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default PageImageUploader
+export default connect()(PageImageUploader);

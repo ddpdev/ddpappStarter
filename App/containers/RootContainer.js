@@ -20,7 +20,7 @@ import PageProductDetail from './product/PageProductDetail';
 import PageImagePicker from './picker/PageImagePicker';
 import PageImageUploader from './picker/PageImageUploader';
 
-import PageCameraRollPicker from './picker/PageCameraRollPicker';
+import PageCameraRollPickerUploader from './picker/PageCameraRollPickerUploader';
 import PageCameraRollPickerUpload from './picker/PageCameraRollPickerUpload';
 
 import PageMaps from './geo/PageMaps';
@@ -91,11 +91,11 @@ class RootContainer extends Component {
                      onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
                      rightTitle='HOME'
               />
-              <Scene key="pageCameraRollPicker" component={PageCameraRollPicker} title="사진 업로드(Test)"
+              <Scene key="pageCameraRollPickerUploader" component={PageCameraRollPickerUploader} title="사진 업로드(Uploader)"
                      onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
                      rightTitle='HOME'
               />
-              <Scene key="pageCameraRollPickerUpload" component={PageCameraRollPickerUpload} title="사진 업로드(Real)"
+              <Scene key="pageCameraRollPickerUpload" component={PageCameraRollPickerUpload} title="사진 업로드(Fetch_Blob)"
                      onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
                      rightTitle='HOME'
               />

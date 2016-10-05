@@ -17,7 +17,7 @@ class PageTestHome extends Component {
             isLoggedIn : false,
         };
 
-        this.goToPageCameraRollPicker = this.goToPageCameraRollPicker.bind(this);
+        this.pageCameraRollPickerUploader = this.pageCameraRollPickerUploader.bind(this);
         this.pageCameraRollPickerUpload = this.pageCameraRollPickerUpload.bind(this);
         this.pageImagePicker = this.pageImagePicker.bind(this);
         this.pageMapExamples = this.pageMapExamples.bind(this);
@@ -28,10 +28,12 @@ class PageTestHome extends Component {
         console.log("PageTestHome:",props,this.state);
     }
 
-  goToPageCameraRollPicker () {
-      return Actions.pageCameraRollPicker();
+  //Uploader
+  pageCameraRollPickerUploader () {
+      return Actions.pageCameraRollPickerUploader();
   }
-  pageCameraRollPickerUpload() {
+  //Fetch_Blob
+  pageCameraRollPickerUpload () {
       return Actions.pageCameraRollPickerUpload();
   }
 
@@ -68,20 +70,29 @@ class PageTestHome extends Component {
                 small
                 iconRight
                 icon={{name: 'collections'}}
-                title='카메라롤 픽커 & 업로드(Real)'
+                title='카메라롤 픽커 & 업로드(Uploader)'
                 color='#f58'
                 backgroundColor='#89faf8'
-                onPress={this.pageCameraRollPickerUpload}
+                onPress={this.pageCameraRollPickerUploader}
             />
             <View style={{flex:1, marginTop:5}} />
             <Button
                 small
                 iconRight
                 icon={{name: 'collections'}}
-                title='사진 선택 업로드 테스트(Fetch_Blob)'
+                title='카메라롤 픽커 & 업로드(Fetch_Blob)'
                 color='#f50'
                 backgroundColor='#39fbf7'
-                onPress={this.goToPageCameraRollPicker}
+                onPress={this.pageCameraRollPickerUpload}
+            />
+            <View style={{flex:1, marginTop:5}} />
+            <Button
+              small
+              iconRight
+              icon={{name: 'tab'}}
+              title='PageImageUploader 테스트'
+              backgroundColor='#4d7c55'
+              onPress={() => {console.log("PageImageUploader 클릭");Actions.pageImageUploader();}}
             />
             <View style={{flex:1, marginTop:5}} />
             <Button
@@ -161,15 +172,6 @@ class PageTestHome extends Component {
               title='Action Button'
               backgroundColor='#397af8'
               onPress={Actions.pageActionButton}
-            />
-            <View style={{flex:1, marginTop:5}} />
-            <Button
-                small
-                iconRight
-                icon={{name: 'tab'}}
-                title='PageImageUploader 테스트'
-                backgroundColor='#4d7c55'
-                onPress={() => {console.log("PageImageUploader 클릭");Actions.PageImageUploader();}}
             />
             <View style={{flex:1, marginTop:5}} />
             <Button
