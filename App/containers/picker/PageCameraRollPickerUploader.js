@@ -93,15 +93,17 @@ class PageCameraRollPickerUploader extends Component {
     } else {
       // get image files
      //let { firstImage, secondImage, lastImage } = this.refs;
-      let imageFiles = this.state.selected;
+      //let imageFiles = this.state.selected;
+      let imageFiles = [];
 
-      //let uploadFiles = this.state.selected.map((item,index) => {{filename: `image_{index}_${(new Date()).getTime()}`, filepath: item.uri.replace('file://', ''), isStatic: true }});
+      // upload format에 맞춰 배열을 만든다.
+      this.state.selected.map((item,index) => {imageFiles.push({filename: `image_{index}_${(new Date()).getTime()}`, filepath: item.uri.replace('file://', ''), isStatic: true })});
 
 //   filename: `image_${(new Date()).getTime()}`,
 //   filepath: response.uri.replace('file://', ''),
 //   isStatic: true
 
-      console.log("upload images:",uploadFiles);
+      console.log("upload images:",imageFiles);
 
       if (imageFiles.length == 0){
         this.setState({error: 'No images to upload'});
@@ -146,7 +148,7 @@ class PageCameraRollPickerUploader extends Component {
       return 'Uploading....';
     }
     if (isUploaded) {
-      return 'Uploaded Sucessfully. Click me to reset!';
+      return 'Uploaded Sucessfully. Choose Others!';
     }
     return 'Upload 파일선택중';
   }
