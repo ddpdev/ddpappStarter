@@ -18,8 +18,11 @@ import PageProductMain from './product/PageProductMain';
 import PageProductList from './product/PageProductList';
 import PageProductDetail from './product/PageProductDetail';
 import PageImagePicker from './picker/PageImagePicker';
+import PageImageUploader from './picker/PageImageUploader';
+
 import PageCameraRollPicker from './picker/PageCameraRollPicker';
 import PageCameraRollPickerUpload from './picker/PageCameraRollPickerUpload';
+
 import PageMaps from './geo/PageMaps';
 import PageGeoPosition from './geo/PageGeoPosition';
 import PageReactMaps from './geo/PageReactMaps';
@@ -79,7 +82,7 @@ class RootContainer extends Component {
                      rightTitle='상품'
                      initial={true}
               />
-              <Scene key="pageActionButton" component={PageActionButton} title="Page Two" />
+              <Scene key="pageActionButton" component={PageActionButton} title="Action Button" />
               <Scene key="pageThree" component={PageThree} title="웹뷰(DDPStyle)"
                      onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
                      rightTitle='HOME'
@@ -131,12 +134,16 @@ class RootContainer extends Component {
                     onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
                     rightTitle='HOME'
                 />
+            <Scene key="pageImageUploader" component={PageImageUploader} title="Image Uploader"
+                   onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
+                   rightTitle='HOME'
+            />
             <Scene key="menuDrawer" component={MenuDrawer} open={false} >
-                <Scene
-                    key="mainTab"
-                    tabs
-                    tabBarStyle={styles.tabBarStyle}
-                    tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}
+                <Scene key="mainTab"
+                       type={ActionConst.REPLACE}
+                        tabs
+                        tabBarStyle={styles.tabBarStyle}
+                        tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}
                 >
                     <Scene
                         key="tab1"

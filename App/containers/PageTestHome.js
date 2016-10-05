@@ -17,7 +17,6 @@ class PageTestHome extends Component {
             isLoggedIn : false,
         };
 
-        this.goToPageTwo = this.goToPageTwo.bind(this);
         this.goToPageCameraRollPicker = this.goToPageCameraRollPicker.bind(this);
         this.pageCameraRollPickerUpload = this.pageCameraRollPickerUpload.bind(this);
         this.pageImagePicker = this.pageImagePicker.bind(this);
@@ -29,9 +28,6 @@ class PageTestHome extends Component {
         console.log("PageTestHome:",props,this.state);
     }
 
-  goToPageTwo() {
-    return Actions.pageActionButton({text: 'Hello World!'});
-  }
   goToPageCameraRollPicker () {
       return Actions.pageCameraRollPicker();
   }
@@ -171,9 +167,18 @@ class PageTestHome extends Component {
                 small
                 iconRight
                 icon={{name: 'tab'}}
+                title='PageImageUploader 테스트'
+                backgroundColor='#4d7c55'
+                onPress={() => {console.log("PageImageUploader 클릭");Actions.PageImageUploader();}}
+            />
+            <View style={{flex:1, marginTop:5}} />
+            <Button
+                small
+                iconRight
+                icon={{name: 'tab'}}
                 title='Main Tab 테스트'
                 backgroundColor='#997c58'
-                onPress={Actions.mainTab}
+                onPress={() => {console.log("Main Tab 클릭");Actions.mainTab();}}
             />
             <View style={{flex:1, marginTop:5}} />
 

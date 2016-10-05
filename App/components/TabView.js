@@ -1,8 +1,8 @@
 /**
  * Created by leesy on 2016-10-05.
  */
-import React, {PropTypes} from 'react';
-import {StyleSheet, Text, View} from "react-native";
+import React, { PropTypes } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import Button from 'react-native-button';
 import { Actions } from 'react-native-router-flux';
 
@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
 
 const TabView = (props, context) => {
     const drawer = context.drawer;
+    console.log("TabView:", props, drawer);
     return (
         <View style={[styles.container, props.sceneStyle ]}>
             <Text>Tab {props.title}</Text>
@@ -44,7 +45,6 @@ const TabView = (props, context) => {
             <Button onPress={() => { drawer.close(); Actions.tab3(); }}>Switch to tab3</Button>
             <Button onPress={() => { drawer.close(); Actions.tab4(); }}>Switch to tab4</Button>
             <Button onPress={() => { drawer.close(); Actions.tab5(); }}>Switch to tab5</Button>
-            <Button onPress={() => { drawer.close(); Actions.echo(); }}>push new scene</Button>
         </View>
     );
 };
