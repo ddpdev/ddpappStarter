@@ -3,10 +3,14 @@ import {StyleSheet, Text, View} from 'react-native';
 import { Router, Scene, Actions, Modal,NavBar,TabBar, ActionConst } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
-import PageError from './common/PageError';
 import StatusModal from '../components/StatusModal';
-import pageTestHome from './PageTestHome';
-import PageTwo from './PageTwo';
+import MenuDrawer from './sidemenu/MenuDrawer';
+import TabView from '../components/TabView';
+import TabIcon from '../components/TabIcon';
+
+import PageError from './common/PageError';
+import PageTestHome from './PageTestHome';
+import PageActionButton from './PageActionButton';
 import PageThree from './PageThree';
 import PageWebView from './common/PageWebView';
 import PageEditor from './editor/PageEditor';
@@ -69,13 +73,13 @@ class RootContainer extends Component {
         <Scene key="modal" component={Modal} >
           <Scene key="root" hideNavBar={false}>
               <Scene key="pageTestHome"
-                     component={pageTestHome}
+                     component={PageTestHome}
                      title='HOME'
                      onRight={()=>(Actions.pageProductMain({type: ActionConst.REPLACE}))}
                      rightTitle='상품'
                      initial={true}
               />
-              <Scene key="pageTwo" component={PageTwo} title="Page Two" />
+              <Scene key="pageActionButton" component={PageActionButton} title="Page Two" />
               <Scene key="pageThree" component={PageThree} title="웹뷰(DDPStyle)"
                      onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
                      rightTitle='HOME'
@@ -95,9 +99,13 @@ class RootContainer extends Component {
               <Scene key="pageImagePicker" component={PageImagePicker} title="Image Picker"
                      onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
                      rightTitle='HOME' />
-              <Scene key="pageProductMain" component={PageProductMain} title="상점홈"
+              <Scene key="pageProductMain"
+                     tabs={true}
+                     component={PageProductMain}
+                     title="상점홈"
                      onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
                      rightTitle='Home' />
+              </Scene>
               <Scene key="pageProductList" component={PageProductList} title="상품리스트"
                   onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
                   rightTitle='상품설명'
@@ -119,28 +127,82 @@ class RootContainer extends Component {
                      onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
                      rightTitle='HOME'
               />
-
               <Scene key="pageEditor" component={PageEditor} title="에디터"
                     onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
                     rightTitle='HOME'
                 />
-              <Scene key="statusModal" component={StatusModal} />
+            <Scene key="menuDrawer" component={MenuDrawer} open={false} >
+                <Scene
+                    key="mainTab"
+                    tabs
+                    tabBarStyle={styles.tabBarStyle}
+                    tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}
+                >
+                    <Scene
+                        key="tab1"
+                        title="Tab #1"
+                        icon={TabIcon}
+                        navigationBarStyle={{ backgroundColor: 'red' }}
+                        titleStyle={{ color: 'white' }}
+                    >
+                        <Scene
+                            key="tab1_1"
+                            component={TabView}
+                            title="Tab #1_1"
+                            onRight={() => alert('Right button')}
+                            rightTitle="Right"
+                        />
+                        <Scene
+                            key="tab1_2"
+                            component={TabView}
+                            title="Tab #1_2"
+                            titleStyle={{ color: 'black' }}
+                        />
+                    </Scene>
+                    <Scene key="tab2" initial title="Tab #2" icon={TabIcon}>
+                        <Scene
+                            key="tab2_1"
+                            component={TabView}
+                            title="Tab #2_1"
+                            renderRightButton={() => <Text>Right</Text>}
+                        />
+                        <Scene
+                            key="tab2_2"
+                            component={TabView}
+                            title="Tab #2_2"
+                            hideBackImage
+                            onBack={() => alert('Left button!')}
+                            backTitle="Left"
+                            duration={1}
+                            panHandlers={null}
+                        />
+                    </Scene>
+                    <Scene key="tab3" component={TabView} title="Tab #3" hideTabBar icon={TabIcon} />
+                    <Scene key="tab4" component={TabView} title="Tab #4" hideNavBar icon={TabIcon} />
+                    <Scene key="tab5" component={TabView} title="Tab #5" hideTabBar icon={TabIcon} />
+                </Scene>
+            </Scene>
+            <Scene key="statusModal" component={StatusModal} />
               <Scene key="pageError" component={PageError}/>
             </Scene>
         </Scene>
-      </Scene>
     );
     return (
             <Router hideNavBar={false}  scenes={scenes} />
     );
   }
 }
-//
-// function select(store) {
-//   console.log("select:",store);
-//   return {
-//     isLoggedIn: store.user.isLoggedIn || false,
-//   };
-// }
-// export default connect(select)(App);
+
+const styles = StyleSheet.create({
+    container: { flex: 1, backgroundColor: 'transparent', justifyContent: 'center',
+        alignItems: 'center',
+    },
+    tabBarStyle: {
+        backgroundColor: '#eee',
+    },
+    tabBarSelectedItemStyle: {
+        backgroundColor: '#ddd',
+    },
+});
+
 export default connect()(RootContainer);

@@ -30,7 +30,7 @@ class PageTestHome extends Component {
     }
 
   goToPageTwo() {
-    return Actions.pageTwo({text: 'Hello World!'});
+    return Actions.pageActionButton({text: 'Hello World!'});
   }
   goToPageCameraRollPicker () {
       return Actions.pageCameraRollPicker();
@@ -60,7 +60,16 @@ class PageTestHome extends Component {
       <View style={{flex:1, marginTop:60}}>
         <ScrollView>
             <Button
-                raised
+                small
+                iconRight
+                icon={{name: 'view-list'}}
+                title='상품리스트'
+                backgroundColor='#79baca'
+                onPress={Actions.pageProductList}
+            />
+            <View style={{flex:1, marginTop:5}} />
+            <Button
+                small
                 iconRight
                 icon={{name: 'collections'}}
                 title='카메라롤 픽커 & 업로드(Real)'
@@ -68,9 +77,9 @@ class PageTestHome extends Component {
                 backgroundColor='#89faf8'
                 onPress={this.pageCameraRollPickerUpload}
             />
-
+            <View style={{flex:1, marginTop:5}} />
             <Button
-                raised
+                small
                 iconRight
                 icon={{name: 'collections'}}
                 title='사진 선택 업로드 테스트(Fetch_Blob)'
@@ -78,9 +87,9 @@ class PageTestHome extends Component {
                 backgroundColor='#39fbf7'
                 onPress={this.goToPageCameraRollPicker}
             />
-
+            <View style={{flex:1, marginTop:5}} />
             <Button
-              raised
+                small
               iconRight
               icon={{name: 'collections'}}
               title='Image Picker,Camera,Video'
@@ -88,49 +97,49 @@ class PageTestHome extends Component {
               backgroundColor='#89faf8'
               onPress={this.pageImagePicker}
             />
-
+            <View style={{flex:1, marginTop:5}} />
             <Button
-                raised
+                small
               iconRight
-              icon={{name: 'web'}}
+              icon={{name: 'file-upload'}}
               title='Web(Upload)'
               color='#517fa4'
               backgroundColor='#89faf8'
               onPress={Actions.pageThree}
             />
-
+            <View style={{flex:1, marginTop:5}} />
             <Button
-                raised
+                small
                 iconRight
-                icon={{name: 'web'}}
+                icon={{name: 'http'}}
                 title='Web(google map)'
                 color='#317fc4'
                 backgroundColor='#89faf8'
                 onPress={this.pageWebView}
             />
-
+            <View style={{flex:1, marginTop:5}} />
             <Button
-                raised
+                small
                 iconRight
-                icon={{name: 'collections'}}
+                icon={{name: 'add-location'}}
                 title='현재 위치 조회(GPS,WIFI)-Navigation'
                 color='#737ad4'
                 backgroundColor='#c9fab8'
                 onPress={Actions.pageGeoPosition}
             />
-
+            <View style={{flex:1, marginTop:5}} />
             <Button
-                raised
+                small
               iconRight
-              icon={{name: 'collections'}}
+              icon={{name: 'location-on'}}
               title='현재위치 - React GoogleMap 연동'
               color='#737fa4'
               backgroundColor='#a9cab8'
               onPress={this.pageReactMaps}
             />
-
+            <View style={{flex:1, marginTop:5}} />
             <Button
-                raised
+                small
                 iconRight
                 icon={{name: 'collections'}}
                 title='지도 표시 테스트'
@@ -138,25 +147,36 @@ class PageTestHome extends Component {
                 backgroundColor='#79f9b3'
                 onPress={this.pageMaps}
             />
-
+            <View style={{flex:1, marginTop:5}} />
+            {/*<Button*/}
+                {/*small*/}
+              {/*iconRight*/}
+              {/*icon={{name: 'web'}}*/}
+              {/*title='Editor(draft) 테스트'*/}
+              {/*color='#517fa4'*/}
+              {/*backgroundColor='#89faf8'*/}
+              {/*onPress={Actions.pageEditor}*/}
+            {/*/>*/}
+            {/*<View style={{flex:1, marginTop:5}} />*/}
             <Button
-                raised
+                small
               iconRight
-              icon={{name: 'web'}}
-              title='Editor(draft) 테스트'
-              color='#517fa4'
-              backgroundColor='#89faf8'
-              onPress={Actions.pageEditor}
-            />
-
-            <Button
-                raised
-              iconRight
-              icon={{name: 'smartphone'}}
-              title='go To PageTwo!'
+              icon={{name: 'touch-app'}}
+              title='Action Button'
               backgroundColor='#397af8'
-              onPress={() => this.goToPageTwo}
+              onPress={Actions.pageActionButton}
             />
+            <View style={{flex:1, marginTop:5}} />
+            <Button
+                small
+                iconRight
+                icon={{name: 'tab'}}
+                title='Main Tab 테스트'
+                backgroundColor='#997c58'
+                onPress={Actions.mainTab}
+            />
+            <View style={{flex:1, marginTop:5}} />
+
 
             </ScrollView>
       </View>
