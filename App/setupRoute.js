@@ -24,7 +24,7 @@
 import configureRealm from './realm/configure';
 import configureStore from './store/configureStore';
 //import MainApp from './mainApp';
-import RootContainer from './containers/route/rootContainer';
+import RootContainer from './containers/RootContainer';
 // component can connect and listen to props
 // const connMainApp = connect()(MainApp);
 

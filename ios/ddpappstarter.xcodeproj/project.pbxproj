@@ -27,6 +27,10 @@
 		48561F88F34A41B29AE81C3E /* libRealmReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F53106E3BB049BF99D8CA40 /* libRealmReact.a */; };
 		557DED4187114E36ACA72FB7 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E678AB6251B54381821BFDCE /* libc++.tbd */; };
 		43DEDB88A4A44CF28B76616B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A3BB663CFEB406ABB9BA5C3 /* libz.tbd */; };
+		BB4D778170D047F786603393 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B036EC7046441BC93CB43A7 /* libRNDeviceInfo.a */; };
+		0E79D8EB1E8743E7BFA3C4B6 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFA38AD186EF4597AE8E1624 /* libRNFetchBlob.a */; };
+		5AFF8CD4C02B453FA561B3BD /* libRNLocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A3DED7E1664DC3B4B00EF1 /* libRNLocation.a */; };
+		00F03E666B3D491A9DD6944F /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CE00CFFBE19419EA205CFF1 /* libAirMaps.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +143,14 @@
 		1F53106E3BB049BF99D8CA40 /* libRealmReact.a */ = {isa = PBXFileReference; name = "libRealmReact.a"; path = "libRealmReact.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		E678AB6251B54381821BFDCE /* libc++.tbd */ = {isa = PBXFileReference; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
 		4A3BB663CFEB406ABB9BA5C3 /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
+		16A0F9BF835F4CA09B18DD88 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; name = "RNDeviceInfo.xcodeproj"; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		3B036EC7046441BC93CB43A7 /* libRNDeviceInfo.a */ = {isa = PBXFileReference; name = "libRNDeviceInfo.a"; path = "libRNDeviceInfo.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		FA5DB91356E34AE5A6DB04A1 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; name = "RNFetchBlob.xcodeproj"; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		BFA38AD186EF4597AE8E1624 /* libRNFetchBlob.a */ = {isa = PBXFileReference; name = "libRNFetchBlob.a"; path = "libRNFetchBlob.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		A61BE3D2A9FA493586595B10 /* RNLocation.xcodeproj */ = {isa = PBXFileReference; name = "RNLocation.xcodeproj"; path = "../node_modules/react-native-gps/RNLocation.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		D8A3DED7E1664DC3B4B00EF1 /* libRNLocation.a */ = {isa = PBXFileReference; name = "libRNLocation.a"; path = "libRNLocation.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		30A81A4561504D0BAD55ED49 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; name = "AirMaps.xcodeproj"; path = "../node_modules/react-native-maps/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		3CE00CFFBE19419EA205CFF1 /* libAirMaps.a */ = {isa = PBXFileReference; name = "libAirMaps.a"; path = "libAirMaps.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +181,10 @@
 				48561F88F34A41B29AE81C3E /* libRealmReact.a in Frameworks */,
 				557DED4187114E36ACA72FB7 /* libc++.tbd in Frameworks */,
 				43DEDB88A4A44CF28B76616B /* libz.tbd in Frameworks */,
+				BB4D778170D047F786603393 /* libRNDeviceInfo.a in Frameworks */,
+				0E79D8EB1E8743E7BFA3C4B6 /* libRNFetchBlob.a in Frameworks */,
+				5AFF8CD4C02B453FA561B3BD /* libRNLocation.a in Frameworks */,
+				00F03E666B3D491A9DD6944F /* libAirMaps.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +310,10 @@
 				9001387EF66A4CD99FC30B82 /* RNImagePicker.xcodeproj */,
 				6B414216A7A74ECD8798B318 /* RNVectorIcons.xcodeproj */,
 				DA154A92BF74497FBEBFBBDA /* RealmReact.xcodeproj */,
+				16A0F9BF835F4CA09B18DD88 /* RNDeviceInfo.xcodeproj */,
+				FA5DB91356E34AE5A6DB04A1 /* RNFetchBlob.xcodeproj */,
+				A61BE3D2A9FA493586595B10 /* RNLocation.xcodeproj */,
+				30A81A4561504D0BAD55ED49 /* AirMaps.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -622,6 +642,10 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -638,6 +662,10 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ddpappstarter.app/ddpappstarter";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -658,6 +686,10 @@
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\realm\src/**",
+					"$(SRCROOT)\..\node_modules\react-native-device-info\RNDeviceInfo",
+					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-gps",
+					"$(SRCROOT)\..\node_modules\react-native-maps\ios\AirMaps/**",
 				);
 				INFOPLIST_FILE = "ddpappstarter/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -683,6 +715,10 @@
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\realm\src/**",
+					"$(SRCROOT)\..\node_modules\react-native-device-info\RNDeviceInfo",
+					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-gps",
+					"$(SRCROOT)\..\node_modules\react-native-maps\ios\AirMaps/**",
 				);
 				INFOPLIST_FILE = "ddpappstarter/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -737,6 +773,10 @@
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\realm\src/**",
+					"$(SRCROOT)\..\node_modules\react-native-device-info\RNDeviceInfo",
+					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-gps",
+					"$(SRCROOT)\..\node_modules\react-native-maps\ios\AirMaps/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -780,6 +820,10 @@
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\realm\src/**",
+					"$(SRCROOT)\..\node_modules\react-native-device-info\RNDeviceInfo",
+					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-gps",
+					"$(SRCROOT)\..\node_modules\react-native-maps\ios\AirMaps/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;

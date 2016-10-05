@@ -3,15 +3,13 @@
  * @flow
  */
 import React, { Component } from 'react';
-import { View, Text, StyleSheet,ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { SocialIcon, Button  } from 'react-native-elements'
-import { PROVIDER_GOOGLE, PROVIDER_DEFAULT } from 'react-native-maps';
+import { SocialIcon, Button  } from 'react-native-elements';
 
-
-class PageOne extends Component {
+class PageTestHome extends Component {
     constructor(props){
         super(props);
 
@@ -22,54 +20,45 @@ class PageOne extends Component {
         this.goToPageTwo = this.goToPageTwo.bind(this);
         this.goToPageCameraRollPicker = this.goToPageCameraRollPicker.bind(this);
         this.pageCameraRollPickerUpload = this.pageCameraRollPickerUpload.bind(this);
-        this.pagePhotoBrowser = this.pagePhotoBrowser.bind(this);
         this.pageImagePicker = this.pageImagePicker.bind(this);
         this.pageMapExamples = this.pageMapExamples.bind(this);
         this.pageMaps = this.pageMaps.bind(this);
         this.pageWebView = this.pageWebView.bind(this);
-        this.pageReactMap = this.pageReactMap(this);
+        this.pageReactMaps = this.pageReactMaps.bind(this);
 
-        console.log("PageOne:",props,this.state);
+        console.log("PageTestHome:",props,this.state);
     }
 
   goToPageTwo() {
-    Actions.pageTwo({text: 'Hello World!'});
+    return Actions.pageTwo({text: 'Hello World!'});
   }
   goToPageCameraRollPicker () {
-    Actions.pageCameraRollPicker();
+      return Actions.pageCameraRollPicker();
   }
   pageCameraRollPickerUpload() {
-    Actions.pageCameraRollPickerUpload();
+      return Actions.pageCameraRollPickerUpload();
   }
-  pagePhotoBrowser () {
-    Actions.pagePhotoBrowser();
-  }
+
   pageImagePicker () {
-    Actions.pageImagePicker();
+      return Actions.pageImagePicker();
   }
   pageMapExamples () {
-    Actions.pageMapExamples();
+      return Actions.pageMapExamples();
   }
   pageMaps () {
-    Actions.pageMaps();
+      return Actions.pageMaps();
   }
   pageWebView () {
-    Actions.pageWebView({uri:'http://istarkov.github.io/google-map-react/map/main'});
+      return  Actions.pageWebView({uri:'http://istarkov.github.io/google-map-react/map/main'});
   }
-  pageReactMap () {
-    Actions.pageReactMap({provider:'google'})
+  pageReactMaps () {
+      return Actions.pageReactMaps({provider:'google'});
   }
-
 
   render() {
-
-    //const pageLocation = () => Actions.pageLocation();
-
     return (
-      <View style={{flex:1, justifyContent: 'flex-start',alignItems: 'flex-start', marginTop: 60}}>
+      <View style={{flex:1, marginTop:60}}>
         <ScrollView>
-            <Text >This is 테스트페이지 모음</Text>
-
             <Button
                 raised
                 iconRight
@@ -79,6 +68,7 @@ class PageOne extends Component {
                 backgroundColor='#89faf8'
                 onPress={this.pageCameraRollPickerUpload}
             />
+
             <Button
                 raised
                 iconRight
@@ -88,6 +78,7 @@ class PageOne extends Component {
                 backgroundColor='#39fbf7'
                 onPress={this.goToPageCameraRollPicker}
             />
+
             <Button
               raised
               iconRight
@@ -97,64 +88,47 @@ class PageOne extends Component {
               backgroundColor='#89faf8'
               onPress={this.pageImagePicker}
             />
+
             <Button
-              raised
-              iconRight
-              icon={{name: 'collections'}}
-              title='photo browser'
-              color='#7c5'
-              //backgroundColor='#39fbf7'
-              onPress={this.pagePhotoBrowser}
-            />
-            <Button
+                raised
               iconRight
               icon={{name: 'web'}}
-              title='Web View(DDP)'
+              title='Web(Upload)'
               color='#517fa4'
               backgroundColor='#89faf8'
               onPress={Actions.pageThree}
             />
+
             <Button
+                raised
                 iconRight
                 icon={{name: 'web'}}
-                title='google map 연동 테스트'
+                title='Web(google map)'
                 color='#317fc4'
                 backgroundColor='#89faf8'
                 onPress={this.pageWebView}
             />
+
             <Button
                 raised
                 iconRight
                 icon={{name: 'collections'}}
-                title='Map 예제모음'
-                color='#c93'
-                backgroundColor='#89faf8'
-                onPress={this.pageMapExamples}
-            />
-            <Button
-                 iconRight
-                 icon={{name: 'collections'}}
-                 title='현재 위치 조회(GPS,WIFI)'
-                 color='#517fa4'
-                 backgroundColor='#89faf8'
-                 onPress={Actions.pageAmapLocation}
-            />
-            <Button
-                iconRight
-                icon={{name: 'collections'}}
-                title='현재 위치 조회(GPS,WIFI)-Android'
+                title='현재 위치 조회(GPS,WIFI)-Navigation'
                 color='#737ad4'
                 backgroundColor='#c9fab8'
-                onPress={Actions.pageAndroidLocation}
+                onPress={Actions.pageGeoPosition}
             />
+
             <Button
+                raised
               iconRight
               icon={{name: 'collections'}}
               title='현재위치 - React GoogleMap 연동'
               color='#737fa4'
               backgroundColor='#a9cab8'
-              onPress={this.pageReactMap}
+              onPress={this.pageReactMaps}
             />
+
             <Button
                 raised
                 iconRight
@@ -164,7 +138,9 @@ class PageOne extends Component {
                 backgroundColor='#79f9b3'
                 onPress={this.pageMaps}
             />
+
             <Button
+                raised
               iconRight
               icon={{name: 'web'}}
               title='Editor(draft) 테스트'
@@ -172,19 +148,20 @@ class PageOne extends Component {
               backgroundColor='#89faf8'
               onPress={Actions.pageEditor}
             />
+
             <Button
+                raised
               iconRight
               icon={{name: 'smartphone'}}
               title='go To PageTwo!'
               backgroundColor='#397af8'
-              onPress={this.goToPageTwo}
+              onPress={() => this.goToPageTwo}
             />
 
-            <Text onPress={Actions.pageMain}>Back Main!</Text>
             </ScrollView>
       </View>
     )
   }
 }
 
-export default connect()(PageOne);
+export default connect()(PageTestHome);
