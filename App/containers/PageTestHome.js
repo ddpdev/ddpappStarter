@@ -189,7 +189,7 @@ class PageTestHome extends Component {
   }
 }
 
-const style = StyleSheet.create( {
+const style = StyleSheet.create({
     container: {
         flex: 1,
     },
@@ -198,8 +198,7 @@ const style = StyleSheet.create( {
     },
     viewMarginHeader: {
         marginTop:60,
-    },
-    
-}
+    }
+});
 
 export default connect()(PageTestHome);

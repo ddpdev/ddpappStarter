@@ -97,7 +97,7 @@ class PageCameraRollPickerUploader extends Component {
       let imageFiles = [];
 
       // upload format에 맞춰 배열을 만든다.
-      this.state.selected.map((item,index) => {imageFiles.push({filename: `image_{index}_${(new Date()).getTime()}`, filepath: item.uri.replace('file://', ''), isStatic: true })});
+      this.state.selected.map((item,index) => {imageFiles.push({filename: `image_${index}_${(new Date()).getTime()}`, filepath: item.uri.replace('file://', ''), isStatic: true })});
 
 //   filename: `image_${(new Date()).getTime()}`,
 //   filepath: response.uri.replace('file://', ''),
@@ -113,11 +113,12 @@ class PageCameraRollPickerUploader extends Component {
 
         // build opts for uploader
         let opts = {
-          url: 'https://posttestserver.com/post.php', // not use localhost here for android. It must be a ip address.
+          //url: 'https://posttestserver.com/post.php', // not use localhost here for android. It must be a ip address.
+          url: 'http://app.ddpstyle.com/common/awsfileupload',
           files: imageFiles,
           method: 'POST',
           headers: { 'Accept': 'application/json' },
-          params: { coder: 'dddaaatranquangvu' }
+          params: { coder: 'ddpstyledev' }
         };
 
         // upload to server
@@ -130,11 +131,11 @@ class PageCameraRollPickerUploader extends Component {
             console.log(`Response status: ${res.status}`);
             console.log(`Response data: ${res.data}`);
             if (res.status == 200) {
-              this.setState({...initState, isUploaded: true, isUploading: false });
+              this.setState({selected: [], isUploaded: true, isUploading: false });
             }
           }
           if (Platform.OS === 'android') {
-            this.setState({...initState, isUploaded: true, isUploading: false});
+            this.setState({selected: [], isUploaded: true, isUploading: false});
           }
         })
       }
@@ -145,12 +146,12 @@ class PageCameraRollPickerUploader extends Component {
     let { isUploaded, isUploading } = this.state;
 
     if (isUploading) {
-      return 'Uploading....';
+      return ' Uploading....';
     }
     if (isUploaded) {
-      return 'Uploaded Sucessfully. Choose Others!';
+      return ' Uploaded Sucessfully. Choose Others!';
     }
-    return 'Upload 파일선택중';
+    return ' 파일선택중';
   }
 
 
@@ -160,7 +161,7 @@ class PageCameraRollPickerUploader extends Component {
   render() {
     return (
         <View style={styles.container}>
-          <View style={styles.imageContent}>
+          <View style={styles.top}>
             <CameraRollPicker
               scrollRenderAheadDistance={500}
               initialListSize={1}
@@ -175,43 +176,46 @@ class PageCameraRollPickerUploader extends Component {
               imageMargin={5}
               callback={this.getSelectedImages} />
           </View>
-          <View style={styles.bottomContent}>
-            <View style={styles.view1}>
-              <Text style={styles.text}>
-                <Text style={styles.bold}>{this.state.num}</Text> images selected{'\n'}
-                <Text style={styles.text}>{this._renderStatusText()}</Text>
-              </Text>
-            </View>
-            {/*<View style={styles.view2} />*/}
-            <View style={styles.selectImageList}>
-              <ScrollView>
-                { this.state.selected.length > 0 ?
-                  this.state.selected.map((item,i) => <Image key={i} source={{uri: item.uri.replace('file://', '')}} style={styles.thumbnail}>
-                      <Text key={i} style={styles.imageInfo}>file{i}:{`image_${(new Date()).getTime()}`}</Text>
-                      </Image>
-                  )
-                  : null }
-              </ScrollView>
-            </View>
-            <View style={styles.view3} >
-              <Icon
-                raised
-                name='image'
-                type='font-awesome'
-                color='#f50'
-                onPress={()=> Alert.alert(
-                            '파일업로드',
-                            '선택한파일을 등록하시겠습니까?',
-                            [
-                              {text:'Cancel', onPress:()=> console.log('Cancel Pressed')},
-                              {text:'OK', onPress:()=> this.uploadImages(this.state.selected)},
-                            ]
-                        )}
-                />
-              <Text style={styles.bold}>{this.state.uploadProgressPercent}%</Text>
-            </View>
+
+          <View style={styles.bottom}>
+            <View style={styles.innerTop}>
+                <Text style={styles.view1}>
+                  <Text style={styles.bold}>{this.state.num}</Text> images
+                  <Text style={styles.text}>{this._renderStatusText()}</Text>
+                </Text>
+              </View>
+            <View style={styles.innerBottom}>
+                  <View style={styles.innerLeft}>
+                    <ScrollView horizontal >
+                      { this.state.selected.length > 0 ?
+                        this.state.selected.map((item,i) => <Image key={i} source={{uri: item.uri.replace('file://', '')}} style={styles.thumbnail}>
+                            <Text key={i} style={styles.imageInfo}>file{i}:{`image_${(new Date()).getTime()}`}</Text>
+                          </Image>
+                        )
+                        : null }
+                    </ScrollView>
+                  </View>
+                  <View style={styles.innerRight} >
+                    <Icon
+                      raised
+                      name='image'
+                      type='font-awesome'
+                      color='#f50'
+                      onPress={()=> Alert.alert(
+                        '파일업로드',
+                        '선택한파일을 등록하시겠습니까?',
+                        [
+                          {text:'Cancel', onPress:()=> console.log('Cancel Pressed')},
+                          {text:'OK', onPress:()=> this.uploadImages(this.state.selected)},
+                        ]
+                      )}
+                      style={styles.viewUploadIcon}
+                    />
+                    <Text style={styles.bold}>{this.state.uploadProgressPercent}%</Text>
+                  </View>
+              </View>
           </View>
-    </View>
+      </View>
     )
   }
 }
@@ -219,89 +223,62 @@ class PageCameraRollPickerUploader extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //height: Dimensions.get('window').height ,
-    //width: Dimensions.get('window').width,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'flex-start', //'center',
-    //backgroundColor: 'green',
-    borderColor: 'grey',
-    borderWidth: 5,
-
+    flexDirection:'column',
   },
-  imageContent: {
-    flex: 0.8,
-    marginTop: 130,
-    //height: 250,
-    flexDirection: 'column',
+  top: {
+    flex: 0.7,
+    flexDirection:'row',
+    marginTop: 60,
     height: Dimensions.get('window').height/2 + 100 ,
     width: Dimensions.get('window').width,
-    //justifyContent: 'flex-start',
-    //alignItems: 'flex-start',
-    backgroundColor: 'steelblue',
-    flexWrap: 'wrap',
-    borderColor: 'white',
-    borderWidth: 3,
   },
-  bottomContent: {
-    flex: 0.2,
-    //marginTop: 15,
-    //height: 150,
-    height: 200,
+  bottom: {
+    flex: 0.3,
+    //flexDirection:'row',
+    height: 240 ,
     width: Dimensions.get('window').width,
+    backgroundColor: '#81D4FA',
+    //borderColor: 'black',
+    //borderWidth: 2,
+  },
+  innerTop: {
+    height: 20,
+    marginLeft: 5,
+    width: Dimensions.get('window').width-10,
+    //borderColor: 'yellow',
+    //borderWidth: 2,
+  },
+  innerBottom: {
+    //flex:1,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    backgroundColor: 'skyblue',
-    //flexWrap: 'wrap',
-    borderColor: 'black',
-    borderWidth: 3,
-
+    height: 180,
+    marginTop: 2,
+    marginLeft: 5,
+    width: Dimensions.get('window').width-10,
+    //borderColor: 'green',
+    //borderWidth: 2,
   },
-  selectImageList:{
-    //flex: 1,
-    //marginTop: 15,
-    height: 150,
-    //height: Dimensions.get('window').height/2 -100,
-    //width: Dimensions.get('window').width,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    //alignItems: 'flex-start',
-    //backgroundColor: 'skyblue',
-    //flexWrap: 'wrap',
-    borderColor: 'sky',
-    borderWidth: 2,
-
-  },
-  view1:{
-    marginTop: 5,
-    width: Dimensions.get('window').width/3,
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    backgroundColor: 'skyblue',
-    borderColor: 'red',
-    borderWidth: 2,
-
-  },
-  view2:{
-    marginTop: 5,
-    //width: Dimensions.get('window').width/3,
-    justifyContent: 'center',
+  innerLeft: {
+    //flex:1,
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: 'skyblue',
-    borderColor: 'red',
-    borderWidth: 2,
+    height: 180,
+    //marginTop: 5,
+    width: Dimensions.get('window').width-80,
+    //borderColor: 'green',
+    //borderWidth: 2,
 
   },
-  view3:{
-    marginTop: 5,
-    width: Dimensions.get('window').width/3,
-    justifyContent: 'center',
-    alignItems: 'center',
-    //backgroundColor: 'steelblue',
-    backgroundColor: 'skyblue',
-    borderColor: 'red',
-    borderWidth: 2,
+  innerRight: {
+    justifyContent: 'flex-start',
+    alignItems: 'flex-end',
+    height: 100,
+    marginLeft: 5,
+    //width: 110,
+    //borderColor: 'green',
+    //borderWidth: 2,
   },
   text: {
     fontSize: 12,
@@ -321,14 +298,14 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   thumbnail:{
-    width:80,
-    height:80,
-    marginVerticle: 5,
-    paddingTop: 5,
-    paddingBottom: 5,
-    paddingLeft: 5,
-    paddingRight: 5,
-    borderRadius: 20,
+    width:50,
+    height:50,
+    marginRight: 5,
+    // paddingTop: 5,
+    // paddingBottom: 5,
+    // paddingLeft: 5,
+    // paddingRight: 5,
+    // borderRadius: 20,
   },
   actionButtonIcon: {
     fontSize: 20,

@@ -57,45 +57,34 @@ class MainApp extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //flexDirection:'row',
-    paddingTop:60,
-    height: (Dimensions.get('window').height)-60,
-    width: Dimensions.get('window').width,
-    backgroundColor: '#f0e68c' //khaki
+    flexDirection:'column',
+    //paddingTop:60,
+    //height: Dimensions.get('window').height ,
+    //width: Dimensions.get('window').width,
+    //backgroundColor: '#f0e68c' //khaki
     //alignItems: 'center',
     //justifyContent: 'center',
   },
     topContainer: {
-        flex: 1,
+        //flex: 1,
         //flexDirection:'row',
-        height: (Dimensions.get('window').height) - 150,
+        marginTop: 40,
+        height: Dimensions.get('window').height - 120,
         width: Dimensions.get('window').width,
         backgroundColor: '#90ee90' // lightgreen
         // alignItems: 'center',
         // justifyContent: 'center',
     },
    bottomContainer: {
-        flex: 1,
+        //flex: 1,
         flexDirection:'row',
-        marginBottom: 20,
-        height: Dimensions.get('window').height/2,
+        //marginBottom: 20,
+        height: 70, //Dimensions.get('window').height/2,
         width: Dimensions.get('window').width,
         backgroundColor: '#add8e6' // lightblue
         //alignItems: 'center',
         //justifyContent: 'center',
     },
-  button: {
-    padding: 10,
-    width: Dimensions.get('window').width/3,
-    height:25,
-    borderRadius:5,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom:20,
-  },
-  buttonLabel: {
-    color: '#fff',
-  },
 });
 
 export default connect()(MainApp);
