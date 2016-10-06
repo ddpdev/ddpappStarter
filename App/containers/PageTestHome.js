@@ -55,7 +55,7 @@ class PageTestHome extends Component {
 
   render() {
     return (
-      <View style={{flex:1, marginTop:60}}>
+      <View style={style.viewMarginHeader}>
         <ScrollView>
             <Button
                 small
@@ -65,7 +65,7 @@ class PageTestHome extends Component {
                 backgroundColor='#79baca'
                 onPress={Actions.pageProductList}
             />
-            <View style={{flex:1, marginTop:5}} />
+            <View style={style.viewMarginTop} />
             <Button
                 small
                 iconRight
@@ -75,7 +75,7 @@ class PageTestHome extends Component {
                 backgroundColor='#89faf8'
                 onPress={this.pageCameraRollPickerUploader}
             />
-            <View style={{flex:1, marginTop:5}} />
+            <View style={style.viewMarginTop} />
             <Button
                 small
                 iconRight
@@ -85,7 +85,7 @@ class PageTestHome extends Component {
                 backgroundColor='#39fbf7'
                 onPress={this.pageCameraRollPickerUpload}
             />
-            <View style={{flex:1, marginTop:5}} />
+            <View style={style.viewMarginTop} />
             <Button
               small
               iconRight
@@ -94,7 +94,7 @@ class PageTestHome extends Component {
               backgroundColor='#4d7c55'
               onPress={() => {console.log("PageImageUploader 클릭");Actions.pageImageUploader();}}
             />
-            <View style={{flex:1, marginTop:5}} />
+            <View style={style.viewMarginTop} />
             <Button
                 small
               iconRight
@@ -104,7 +104,7 @@ class PageTestHome extends Component {
               backgroundColor='#89faf8'
               onPress={this.pageImagePicker}
             />
-            <View style={{flex:1, marginTop:5}} />
+            <View style={style.viewMarginTop} />
             <Button
                 small
               iconRight
@@ -114,7 +114,7 @@ class PageTestHome extends Component {
               backgroundColor='#89faf8'
               onPress={Actions.pageThree}
             />
-            <View style={{flex:1, marginTop:5}} />
+            <View style={style.viewMarginTop} />
             <Button
                 small
                 iconRight
@@ -124,7 +124,7 @@ class PageTestHome extends Component {
                 backgroundColor='#89faf8'
                 onPress={this.pageWebView}
             />
-            <View style={{flex:1, marginTop:5}} />
+            <View style={style.viewMarginTop} />
             <Button
                 small
                 iconRight
@@ -134,7 +134,7 @@ class PageTestHome extends Component {
                 backgroundColor='#c9fab8'
                 onPress={Actions.pageGeoPosition}
             />
-            <View style={{flex:1, marginTop:5}} />
+            <View style={style.viewMarginTop} />
             <Button
                 small
               iconRight
@@ -144,7 +144,7 @@ class PageTestHome extends Component {
               backgroundColor='#a9cab8'
               onPress={this.pageReactMaps}
             />
-            <View style={{flex:1, marginTop:5}} />
+            <View style={style.viewMarginTop} />
             <Button
                 small
                 iconRight
@@ -154,7 +154,7 @@ class PageTestHome extends Component {
                 backgroundColor='#79f9b3'
                 onPress={this.pageMaps}
             />
-            <View style={{flex:1, marginTop:5}} />
+            <View style={style.viewMarginTop} />
             {/*<Button*/}
                 {/*small*/}
               {/*iconRight*/}
@@ -164,7 +164,7 @@ class PageTestHome extends Component {
               {/*backgroundColor='#89faf8'*/}
               {/*onPress={Actions.pageEditor}*/}
             {/*/>*/}
-            {/*<View style={{flex:1, marginTop:5}} />*/}
+            {/*<View style={style.viewMarginTop} />*/}
             <Button
                 small
               iconRight
@@ -173,7 +173,7 @@ class PageTestHome extends Component {
               backgroundColor='#397af8'
               onPress={Actions.pageActionButton}
             />
-            <View style={{flex:1, marginTop:5}} />
+            <View style={style.viewMarginTop} />
             <Button
                 small
                 iconRight
@@ -182,13 +182,24 @@ class PageTestHome extends Component {
                 backgroundColor='#997c58'
                 onPress={() => {console.log("Main Tab 클릭");Actions.mainTab();}}
             />
-            <View style={{flex:1, marginTop:5}} />
-
-
+            <View style={style.viewMarginTop} />
             </ScrollView>
       </View>
     )
   }
+}
+
+const style = StyleSheet.create( {
+    container: {
+        flex: 1,
+    },
+    viewMarginTop: {
+        marginTop:5,
+    },
+    viewMarginHeader: {
+        marginTop:60,
+    },
+    
 }
 
 export default connect()(PageTestHome);

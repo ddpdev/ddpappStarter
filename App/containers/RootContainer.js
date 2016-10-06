@@ -201,7 +201,10 @@ class RootContainer extends Component {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: 'transparent', justifyContent: 'center',
+    container: {
+        flex: 1,
+        backgroundColor: 'transparent',
+        justifyContent: 'center',
         alignItems: 'center',
     },
     tabBarStyle: {

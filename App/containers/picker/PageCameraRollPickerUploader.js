@@ -130,11 +130,11 @@ class PageCameraRollPickerUploader extends Component {
             console.log(`Response status: ${res.status}`);
             console.log(`Response data: ${res.data}`);
             if (res.status == 200) {
-              this.setState({isUploaded: true, isUploading: false});
+              this.setState({...initState, isUploaded: true, isUploading: false });
             }
           }
           if (Platform.OS === 'android') {
-            this.setState({isUploaded: true, isUploading: false});
+            this.setState({...initState, isUploaded: true, isUploading: false});
           }
         })
       }
@@ -225,6 +225,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'flex-start', //'center',
     //backgroundColor: 'green',
+    borderColor: 'grey',
+    borderWidth: 5,
+
   },
   imageContent: {
     flex: 0.8,
@@ -237,6 +240,8 @@ const styles = StyleSheet.create({
     //alignItems: 'flex-start',
     backgroundColor: 'steelblue',
     flexWrap: 'wrap',
+    borderColor: 'white',
+    borderWidth: 3,
   },
   bottomContent: {
     flex: 0.2,
@@ -249,9 +254,12 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     backgroundColor: 'skyblue',
     //flexWrap: 'wrap',
+    borderColor: 'black',
+    borderWidth: 3,
+
   },
   selectImageList:{
-    flex: 1,
+    //flex: 1,
     //marginTop: 15,
     height: 150,
     //height: Dimensions.get('window').height/2 -100,
@@ -261,6 +269,9 @@ const styles = StyleSheet.create({
     //alignItems: 'flex-start',
     //backgroundColor: 'skyblue',
     //flexWrap: 'wrap',
+    borderColor: 'sky',
+    borderWidth: 2,
+
   },
   view1:{
     marginTop: 5,
@@ -268,6 +279,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'flex-start',
     backgroundColor: 'skyblue',
+    borderColor: 'red',
+    borderWidth: 2,
+
   },
   view2:{
     marginTop: 5,
@@ -275,6 +289,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'skyblue',
+    borderColor: 'red',
+    borderWidth: 2,
+
   },
   view3:{
     marginTop: 5,
@@ -283,6 +300,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     //backgroundColor: 'steelblue',
     backgroundColor: 'skyblue',
+    borderColor: 'red',
+    borderWidth: 2,
   },
   text: {
     fontSize: 12,
@@ -304,6 +323,7 @@ const styles = StyleSheet.create({
   thumbnail:{
     width:80,
     height:80,
+    marginVerticle: 5,
     paddingTop: 5,
     paddingBottom: 5,
     paddingLeft: 5,
