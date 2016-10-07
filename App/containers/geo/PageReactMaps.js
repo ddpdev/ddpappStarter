@@ -12,7 +12,8 @@ import {
     ScrollView,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Location } from 'react-native-gps';
+var { RNLocation: Location } = require('NativeModules');
+//import { Location } from 'react-native-gps';
 
 import { connect } from 'react-redux';
 import MapView from 'react-native-maps';
@@ -41,6 +42,7 @@ class PageReactMaps extends React.Component {
                 longitudeDelta: LONGITUDE_DELTA,
             },
             events: [],
+            gpsHistory: [],
         };
         this.updataPostion = this.updataPostion.bind(this);
         console.log("PageReactMap:",props,this.state);
@@ -75,7 +77,7 @@ class PageReactMaps extends React.Component {
           geo_options
         );
 
-        this.watchID = navigator.geolocation.watchPosition((position) => {
+        this.watchID = await navigator.geolocation.watchPosition((position) => {
             let lastPosition = JSON.stringify(position);
             //console.log("initialPosition",lastPosition);
             //this.updatePosition(lastPosition);
@@ -89,11 +91,34 @@ class PageReactMaps extends React.Component {
     }
 
     componentWillMount() {
-        Location.startUpdatingLocation();
+
     }
 
     componentDidMount() {
         this.updataPostion();
+
+        Location.startUpdatingLocation();
+        const subscription = DeviceEventEmitter.addListener(
+            'locationUpdated',
+            (location) => {
+                /* Example location returned
+                 {
+                 speed: -1,
+                 longitude: -0.1337,
+                 latitude: 51.50998,
+                 accuracy: 5,
+                 heading: -1,
+                 altitude: 0,
+                 altitudeAccuracy: -1
+                 }
+                 */
+                const currLocation = Object.assign(location, {date:(new Date()).getTime()});
+                this.setState({gpsLoction: this.state.gpsLocation.push(currLocation)});
+                console.log("gps location:",this.state.gpsLoction);
+            }
+        );
+        console.log("gps subscription:",subscription);
+
     }
 
     componentWillUnmount() {
@@ -109,13 +134,15 @@ class PageReactMaps extends React.Component {
                     initialRegion={this.state.region}
                 >
                     <MapView.Marker
-                      coordinate={{
-                                      latitude: this.state.region.latitude,
-                                      longitude:  this.state.region.longitude,
+                      coordinate={() => {
+                                        let curPosition = this.state.gpsLocation.reverse().slice(0);
+                                        let latitude =  curPosition.latitude;
+                                        let longitude =  curPosition.longitude;
+                                        console.log("last Position",curPosition );
+                                        return {latitude, longitude};
                                     }}
-                      image={require('../../../images/icon/icon-user.png')}
-                      title={'내위치'}
-                      description={Date()}
+                      title={'현재위치'}
+                      description={Date.now()}
                     />
                 </MapView>
                 {/*<View style={styles.eventList}>*/}

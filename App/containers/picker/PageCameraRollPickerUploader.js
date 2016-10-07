@@ -49,9 +49,13 @@ class PageCameraRollPickerUploader extends Component {
   getSelectedImages(images, current) {
     var num = images.length;
     //selectImages = this.state.selected.join();
-    console.log("current:" +JSON.stringify(current));
-    console.log("filename:" +'image_${(new Date()).getTime()}');
-    console.log("filepath:" +current.uri.replace('file://', ''));
+    console.log("current:",current);
+
+    var fileBlob = current.uri.replace('file://', '');
+    console.log("fileBlob:", fileBlob[0].type, ",", fileBlob);
+
+    //console.log("filename:" + `image_${(new Date()).getTime()}`);
+    //console.log("filepath:" +current.uri.replace('file://', ''));
 
     console.log("images:", JSON.stringify(images));
     console.log("selected:" + JSON.stringify(this.state.selected));
@@ -97,7 +101,11 @@ class PageCameraRollPickerUploader extends Component {
       let imageFiles = [];
 
       // upload format에 맞춰 배열을 만든다.
-      this.state.selected.map((item,index) => {imageFiles.push({filename: `image_${index}_${(new Date()).getTime()}`, filepath: item.uri.replace('file://', ''), isStatic: true })});
+      this.state.selected.map((item,index) => {
+        let fileExt = item.uri.replace('file://', '');
+        console.log("fileExt:"+fileExt.type+","+fileExt);
+        imageFiles.push({filename: `image_${index+1}_${(new Date()).getTime()}.jpg`, filepath: item.uri.replace('file://', ''), isStatic: true });
+      });
 
 //   filename: `image_${(new Date()).getTime()}`,
 //   filepath: response.uri.replace('file://', ''),

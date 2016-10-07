@@ -18,7 +18,7 @@ import { connect } from 'react-redux';
         return (
           <WebView
             source={{uri: this.props.uri }}
-            style={{marginTop: 20}}
+            style={{marginTop: 40}}
             javaScriptEnabled={true}
             domStorageEnabled={true}
             decelerationRate='normal'

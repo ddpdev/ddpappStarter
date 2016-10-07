@@ -90,7 +90,7 @@ class PageTestHome extends Component {
               small
               iconRight
               icon={{name: 'tab'}}
-              title='PageImageUploader 테스트'
+              title='Image Picker & Uploader - PageImageUploader'
               backgroundColor='#4d7c55'
               onPress={() => {console.log("PageImageUploader 클릭");Actions.pageImageUploader();}}
             />
@@ -99,7 +99,7 @@ class PageTestHome extends Component {
                 small
               iconRight
               icon={{name: 'collections'}}
-              title='Image Picker,Camera,Video'
+              title='Image Picker(pageImagePicker)'
               color='#386'
               backgroundColor='#89faf8'
               onPress={this.pageImagePicker}
@@ -109,7 +109,7 @@ class PageTestHome extends Component {
                 small
               iconRight
               icon={{name: 'file-upload'}}
-              title='Web(Upload)'
+              title='DDP Web(Upload)'
               color='#517fa4'
               backgroundColor='#89faf8'
               onPress={Actions.pageThree}
@@ -119,7 +119,7 @@ class PageTestHome extends Component {
                 small
                 iconRight
                 icon={{name: 'http'}}
-                title='Web(google map)'
+                title='Web(google map)-pageWebView'
                 color='#317fc4'
                 backgroundColor='#89faf8'
                 onPress={this.pageWebView}
@@ -129,7 +129,7 @@ class PageTestHome extends Component {
                 small
                 iconRight
                 icon={{name: 'add-location'}}
-                title='현재 위치 조회(GPS,WIFI)-Navigation'
+                title='현재 위치 조회(GPS,WIFI)-pageGeoPosition'
                 color='#737ad4'
                 backgroundColor='#c9fab8'
                 onPress={Actions.pageGeoPosition}
@@ -139,7 +139,7 @@ class PageTestHome extends Component {
                 small
               iconRight
               icon={{name: 'location-on'}}
-              title='현재위치 - React GoogleMap 연동'
+              title='지도표시 - pageReactMaps'
               color='#737fa4'
               backgroundColor='#a9cab8'
               onPress={this.pageReactMaps}
@@ -149,7 +149,7 @@ class PageTestHome extends Component {
                 small
                 iconRight
                 icon={{name: 'collections'}}
-                title='지도 표시 테스트'
+                title='지도 표시 - pageMaps'
                 color='#d47'
                 backgroundColor='#79f9b3'
                 onPress={this.pageMaps}

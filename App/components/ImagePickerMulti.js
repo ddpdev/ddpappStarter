@@ -46,6 +46,7 @@ class ImagePickerMulti extends Component {
                 console.log('User tapped custom button: ', response.customButton);
             }
             else {
+
                 let source = {
                     name: 'image[]',
                     filename: `image_${(new Date()).getTime()}`,
@@ -54,7 +55,8 @@ class ImagePickerMulti extends Component {
                 };
                 if (Platform.OS === 'android') {
                     source.filepath = response.uri;
-                }
+                };
+                console.log("image Picker:", response, ",source:", source);
                 self.pickedImage(source);
             }
         });

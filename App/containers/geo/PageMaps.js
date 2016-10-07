@@ -13,7 +13,8 @@ import {
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
-import MapView, { MAP_TYPES , PROVIDER_GOOGLE, PROVIDER_DEFAULT }  from 'react-native-maps';
+//import MapView, { MAP_TYPES , PROVIDER_GOOGLE, PROVIDER_DEFAULT }  from 'react-native-maps';
+import MapView  from 'react-native-maps';
 
 const { width, height } = Dimensions.get('window');
 
@@ -22,6 +23,16 @@ const LATITUDE = 35.907757;
 const LONGITUDE = 127.766922;
 const LATITUDE_DELTA = 10.0;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+
+const PROVIDER_GOOGLE = 'google';
+const MAP_TYPES = {
+  	  STANDARD: 'standard',
+  	  SATELLITE: 'satellite',
+  	  HYBRID: 'hybrid',
+  	  TERRAIN: 'terrain',
+  	  NONE: 'none',
+  	};
+
 
 class PageMaps extends Component {
   constructor(props) {
@@ -35,6 +46,8 @@ class PageMaps extends Component {
         longitudeDelta: LONGITUDE_DELTA,
       },
     };
+
+    console.log("PageMaps:",PROVIDER_GOOGLE,props,this.state);
   }
 
   onRegionChange(region) {
@@ -64,7 +77,7 @@ class PageMaps extends Component {
         <MapView
           provider= {PROVIDER_GOOGLE}
           ref={ref => { this.map = ref; }}
-          mapType={MAP_TYPES.TERRAIN}
+          mapType={MAP_TYPES.STANDARD}
           style={styles.map}
           initialRegion={this.state.region}
           onRegionChange={region => this.onRegionChange(region)}
@@ -94,9 +107,9 @@ class PageMaps extends Component {
   }
 }
 
-PageMaps.propTypes = {
-  provider: MapView.ProviderPropType,
-};
+// PageMaps.propTypes = {
+//   provider: MapView.ProviderPropType ? MapView.ProviderPropType : PROVIDER_GOOGLE,
+// };
 
 const styles = StyleSheet.create({
   container: {

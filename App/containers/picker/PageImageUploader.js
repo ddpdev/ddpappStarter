@@ -30,7 +30,8 @@ const initState = {
     }, {
         name: 'lastImage',
         image: null
-    }]
+    }],
+    selected: [],
 }
 
 class PageImageUploader extends Component {
@@ -42,6 +43,17 @@ class PageImageUploader extends Component {
     afterPicked(ref) {
         let refName     = ref.getName();
         let imgFilePath = ref.getImage().filepath;
+
+        // let imageFiles = [];
+        //
+        // // upload format에 맞춰 배열을 만든다.
+        // this.state.selected.map((item,index) => {
+        //     let fileExt = item.uri.replace('file://', '');
+        //     console.log("fileExt:"+fileExt.type+","+fileExt);
+        //     imageFiles.push({filename: `image_${index+1}_${(new Date()).getTime()}.jpg`, filepath: item.uri.replace('file://', ''), isStatic: true });
+        // });
+
+        console.log("afterPicked this.state.imageRefs:", ref);
 
         this.state.imageRefs = this.state.imageRefs.map(iR => {
             if (iR.name == refName) {
@@ -75,11 +87,12 @@ class PageImageUploader extends Component {
 
                 // build opts for uploader
                 let opts = {
-                    url: 'https://posttestserver.com/post.php', // not use localhost here for android. It must be a ip address.
+                    //url: 'https://posttestserver.com/post.php', // not use localhost here for android. It must be a ip address.
+                    url: 'http://app.ddpstyle.com/common/awsfileupload',
                     files: imageFiles,
                     method: 'POST',
                     headers: { 'Accept': 'application/json' },
-                    params: { coder: 'tranquangvu' }
+                    params: { coder: 'ddpstyledevfromImagePickerUploader' }
                 };
 
                 // upload to server

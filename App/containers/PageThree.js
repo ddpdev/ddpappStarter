@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
     return (
       <WebView
         source={{uri: 'http://app.ddpstyle.com/common/awsfileupload'}}
-        style={{marginTop: 20}}
+        style={{marginTop: 40}}
         javaScriptEnabled={true}
         domStorageEnabled={true}
         decelerationRate='normal'
