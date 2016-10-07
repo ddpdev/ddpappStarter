@@ -21,8 +21,8 @@ const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
 const LATITUDE = 35.907757;
 const LONGITUDE = 127.766922;
-const LATITUDE_DELTA = 10.0;
-const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+const LATITUDE_DELTA = 0.0922; //10.0;
+const LONGITUDE_DELTA = 0.0421; //LATITUDE_DELTA * ASPECT_RATIO;
 
 const PROVIDER_GOOGLE = 'google';
 const MAP_TYPES = {
@@ -75,7 +75,7 @@ class PageMaps extends Component {
     return (
       <View style={styles.container}>
         <MapView
-          provider= {PROVIDER_GOOGLE}
+          provider= {this.props.provider}
           ref={ref => { this.map = ref; }}
           mapType={MAP_TYPES.STANDARD}
           style={styles.map}

@@ -127,7 +127,7 @@ android {
 
 dependencies {
     // module
-    compile project(':realm')
+    // compile project(':realm')
     compile project(':react-native-vector-icons')
     compile project(':react-native-image-picker')
     compile project(':react-native-fetch-blob')

@@ -14,14 +14,10 @@ import {
     TouchableHighlight,
     ActivityIndicator,
 } from 'react-native';
-//import fetch from 'isomorphic-fetch';
 import { Router, Scene, Actions, ActionConst } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-//import { PricingCard } from 'react-native-elements';
-
-// Progress Image
 import ProgressImage from 'react-native-image-progress';
-import ProgressBar from 'react-native-progress/Bar';
+import * as Progress from 'react-native-progress'; // INDICATORS => Progress.Bar, Progress.Circle, Progress.Pie
 
 
 //https://ddpimage01.s3.ap-northeast-2.amazonaws.com/thumb/BJYGFdiU_thm.png
@@ -37,7 +33,8 @@ const API_SERVER = 'http://app.ddpstyle.com';
 const API_LASTEST = API_SERVER + '/json/get/itemlist?page={page}';
 
 function getFormattedDate(createdTimestamp) {
-  var created = Date.parse(createdTimestamp), elapsed = (Date.now() - created)/1000; // seconds
+  const created = Date.parse(createdTimestamp);
+  const elapsed = (Date.now() - created)/1000; // seconds
 
   if (elapsed < 10) return '방금 전';
   if (elapsed < 60) return (elapsed%60)+'초 전';
@@ -45,7 +42,10 @@ function getFormattedDate(createdTimestamp) {
   if (elapsed < 86400) return Math.round(elapsed/3600)+'시간 전';
   if (elapsed < 525600) return Math.round(elapsed/86400)+'일 전';
 
-  var createdDate = new Date(created);
+  const createdDate = new Date(created);
+
+  console.log("getFormattedDate:",createdTimestamp,created,elapsed,createdDate);
+
   return createdDate.getFullYear()+'-'+(createdDate.getMonth()+1)+'-'+createdDate.getDate();
 }
 
@@ -248,7 +248,7 @@ class Product extends Component {
       Promise.all([
                     this.loadPage(this.state.currentPage+1),
                     new Promise( resolve => this.setState({loadingNextPage:true}, resolve)),
-                    new Promise( resolve => setTimeout(() => resolve(), 1500)),
+                    new Promise( resolve => setTimeout(() => resolve(), 1000)),
                   ])
         .then (() => this.setState({loadingNextPage:false}) )
         .catch(reason => {
@@ -294,7 +294,7 @@ class Product extends Component {
                 {/*/>*/}
                 <ProgressImage
                     source={{uri: imageUri}}
-                    indicator={ProgressBar}
+                    indicator={Progress.Pie}
                     style={styles.thumbnail}
                 />
 

@@ -41,10 +41,10 @@ class PageTestHome extends Component {
       return Actions.pageImagePicker();
   }
   pageMapExamples () {
-      return Actions.pageMapExamples();
+      return Actions.pageMapExamples({provider:'google'});
   }
   pageMaps () {
-      return Actions.pageMaps();
+      return Actions.pageMaps({provider:'google'});
   }
   pageWebView () {
       return  Actions.pageWebView({uri:'http://istarkov.github.io/google-map-react/map/main'});

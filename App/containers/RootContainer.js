@@ -118,15 +118,21 @@ class RootContainer extends Component {
                        rightTitle='리스트'
                 />
 
-              <Scene key="pageGeoPosition" component={PageGeoPosition} title="Geo Position"
+              <Scene key="pageGeoPosition" component={PageGeoPosition}
+                     title="Geo Position"
+                     provider={'google'}
                      onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
                      rightTitle='HOME'
               />
-              <Scene key="pageReactMaps" component={PageReactMaps} title="React Map "
+              <Scene key="pageReactMaps" component={PageReactMaps}
+                     provider={'google'}
+                     title="React Map "
                      onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
                      rightTitle='HOME'
               />
-              <Scene key="pageMaps" component={PageMaps} title="Map 테스트"
+              <Scene key="pageMaps" component={PageMaps}
+                     provider={'google'}
+                     title="Map 테스트"
                      onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
                      rightTitle='HOME'
               />

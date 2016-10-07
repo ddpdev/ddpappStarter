@@ -7,7 +7,7 @@ import android.util.Log;
 // react-native
 import com.facebook.react.ReactApplication;
 // add modules
-import io.realm.react.RealmReactPackage;
+//import io.realm.react.RealmReactPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.imagepicker.ImagePickerPackage;
@@ -44,7 +44,7 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
             new FileTransferPackage(),
-            new RealmReactPackage(),
+            //new RealmReactPackage(),
             new VectorIconsPackage(),
             new MapsPackage(),
             new ImagePickerPackage(),

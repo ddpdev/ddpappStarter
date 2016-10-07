@@ -10,11 +10,9 @@ import {
     Text,
     Dimensions,
     ScrollView,
+    TouchableOpacity,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-var { RNLocation: Location } = require('NativeModules');
-//import { Location } from 'react-native-gps';
-
 import { connect } from 'react-redux';
 import MapView from 'react-native-maps';
 import ShopMarker from './ShopMarker';
@@ -26,12 +24,16 @@ const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
 const LATITUDE = 37.5321114;
 const LONGITUDE = 126.8465744;
-const LATITUDE_DELTA = 0.0522;  //  0.0922 -->  0.0522 숫자(0.02)가 작으면 좁은 영역, 즉 우리동네 자세히~보임
-const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+const LATITUDE_DELTA = 0.0922;  //  0.0922 -->  0.0522 숫자(0.02)가 작으면 좁은 영역, 즉 우리동네 자세히~보임
+const LONGITUDE_DELTA = 0.0421; //LATITUDE_DELTA * ASPECT_RATIO;
 let id = 0;
 
+function randomColor() {
+    return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+}
+
 class PageReactMaps extends React.Component {
-    static watchID = 0;
+
     constructor(props) {
         super(props);
         this.state = {
@@ -41,17 +43,19 @@ class PageReactMaps extends React.Component {
                 latitudeDelta: LATITUDE_DELTA,
                 longitudeDelta: LONGITUDE_DELTA,
             },
+            markers: [],
             events: [],
             gpsHistory: [],
+            watchID: 0,
         };
         this.updataPostion = this.updataPostion.bind(this);
         console.log("PageReactMap:",props,this.state);
     }
 
-    async updataPostion() {
+    updataPostion() {
 
-        let geo_options = {
-            enableHighAccuracy: true,
+        const geo_options = {
+            enableHighAccuracy: false,
             maximumAge        : 30000,
             timeout           : 27000
         };
@@ -63,67 +67,60 @@ class PageReactMaps extends React.Component {
               longitudeDelta: LONGITUDE_DELTA,
         };
 
-        await navigator.geolocation.getCurrentPosition(
-          (position) => {
-              let initialPosition = JSON.stringify(position);
-              console.log("initialPosition",initialPosition);
-              //this.updatePosition(initialPosition);
-              currentRegion.latitude = position.coords.latitude;
-              currentRegion.longitude = position.coords.longitude;
+        let currentPostion = {
+            latitude: LATITUDE,
+            longitude: LONGITUDE,
+        };
 
-              this.setState({region : currentRegion});
+        // 조회시만 발생함.
+         navigator.geolocation.getCurrentPosition(
+              (position) => {
+                  currentPostion = { latitude: position.coords.latitude, longitude: position.coords.longitude };
+                  currentRegion = {  latitude: position.coords.latitude, longitude: position.coords.longitude , latitudeDelta: LATITUDE_DELTA,longitudeDelta: LONGITUDE_DELTA,  }
+                  this.setState({
+                                    marker : this.state.markers.concat(currentPostion),
+                                    region : currentRegion,
+                                });
+                  console.log("getCurrentPosition:", position);
           },
           (error) => console.log("error:",error), //alert(JSON.stringify(error)),
           geo_options
         );
 
-        this.watchID = await navigator.geolocation.watchPosition((position) => {
-            let lastPosition = JSON.stringify(position);
-            //console.log("initialPosition",lastPosition);
-            //this.updatePosition(lastPosition);
-            //this.setState(this.state.region.latitude: position.latitude, this.state.region.longitude : position.longitude);
-            currentRegion.latitude = position.coords.latitude;
-            currentRegion.longitude = position.coords.longitude;
+        // 이동시 발생함.
+        const watchPositionID = navigator.geolocation.watchPosition((position) => {
+            currentPostion = { latitude: position.coords.latitude, longitude: position.coords.longitude };
+            this.setState({marker : this.state.markers.concat(currentPostion), watchID : watchPositionID});
+            console.log("watchPosition:", this.watchID, currentPostion);
+        });
 
-            this.setState({region : currentRegion});
-            console.log("currentPosition:", this.watchID, lastPosition);
+    }
+
+    onMapPress(e) {
+        this.setState({
+            markers: [
+                ...this.state.markers,
+                {
+                    coordinate: e.nativeEvent.coordinate,
+                    key: id++,
+                    color: randomColor(),
+                },
+            ],
         });
     }
 
-    componentWillMount() {
 
-    }
+    // componentWillMount() {
+    //     //this.updataPostion();
+    // };
 
     componentDidMount() {
         this.updataPostion();
-
-        Location.startUpdatingLocation();
-        const subscription = DeviceEventEmitter.addListener(
-            'locationUpdated',
-            (location) => {
-                /* Example location returned
-                 {
-                 speed: -1,
-                 longitude: -0.1337,
-                 latitude: 51.50998,
-                 accuracy: 5,
-                 heading: -1,
-                 altitude: 0,
-                 altitudeAccuracy: -1
-                 }
-                 */
-                const currLocation = Object.assign(location, {date:(new Date()).getTime()});
-                this.setState({gpsLoction: this.state.gpsLocation.push(currLocation)});
-                console.log("gps location:",this.state.gpsLoction);
-            }
-        );
-        console.log("gps subscription:",subscription);
-
-    }
+    };
 
     componentWillUnmount() {
-        navigator.geolocation.clearWatch(this.watchID);
-    }
+        navigator.geolocation.clearWatch(this.state.watchID);
+    };
 
     render() {
         return (
@@ -131,33 +128,31 @@ class PageReactMaps extends React.Component {
                 <MapView
                     provider={this.props.provider}
                     style={styles.map}
-                    initialRegion={this.state.region}
+                    region={this.state.region}
+                    onPress={(e) => this.onMapPress(e)}
                 >
-                    <MapView.Marker
-                      coordinate={() => {
-                                        let curPosition = this.state.gpsLocation.reverse().slice(0);
-                                        let latitude =  curPosition.latitude;
-                                        let longitude =  curPosition.longitude;
-                                        console.log("last Position",curPosition );
-                                        return {latitude, longitude};
-                                    }}
-                      title={'현재위치'}
-                      description={Date.now()}
-                    />
+                    {this.state.markers.map(marker => (
+                      <MapView.Marker
+                        key={marker.key}
+                        coordinate={marker.coordinate}
+                        pinColor={marker.color}
+                        title={'현재위치'}
+                        description={'무엇을 팔까?'}
+                      />
+                    ))}
                 </MapView>
-                {/*<View style={styles.eventList}>*/}
-                    {/*<ScrollView>*/}
-                        {/*{this.state.events.map(event => <Event key={event.id} event={event} />)}*/}
-                    {/*</ScrollView>*/}
-                {/*</View>*/}
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity
+                      onPress={() => this.setState({ markers: [] })}
+                      style={styles.bubble}
+                    >
+                        <Text>마커지우개</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         );
     }
 }
-
-PageReactMaps.propTypes = {
-    provider: MapView.ProviderPropType ? MapView.ProviderPropType : 'google',
-};
 
 const styles = StyleSheet.create({
     callout: {
@@ -168,34 +163,8 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
-    event: {
-        borderBottomWidth: 1,
-        borderBottomColor: '#ccc',
-        padding: 8,
-    },
-    eventData: {
-        fontSize: 10,
-        fontFamily: 'courier',
-        color: '#555',
-    },
-    eventName: {
-        fontSize: 13,
-        fontWeight: 'bold',
-        color: '#222',
-    },
-    eventList: {
-        position: 'absolute',
-        top: height / 2,
-        left: 0,
-        right: 0,
-        bottom: 0,
-    },
     map: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: height / 2,
+        ...StyleSheet.absoluteFillObject,
     },
     bubble: {
         backgroundColor: 'rgba(255,255,255,0.7)',
