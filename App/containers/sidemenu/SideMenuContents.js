@@ -1,56 +1,59 @@
-/**
- * Created by leesy on 2016-10-05.
- */
+'use strict';
 
-import React, {PropTypes} from 'react';
-import {StyleSheet, Text, View} from "react-native";
-import Button from 'react-native-button';
-import { Actions } from 'react-native-router-flux';
+import React, {Component} from "react";
+import {Text, View, TouchableOpacity, Image, ScrollView} from "react-native";
+import styles from "./MenuStyle";
+import {Actions} from "react-native-router-flux";
 
-const contextTypes = {
-    drawer: React.PropTypes.object,
-};
-
-const propTypes = {
-    name: PropTypes.string,
-    sceneStyle: View.propTypes.style,
-    title: PropTypes.string,
-};
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-        borderWidth: 2,
-        borderColor: 'red',
-    },
-});
-
-const SideMenuContents = (props, context) => {
-    const drawer = context.drawer;
+export default class SideMenuContents extends Component {
+  render() {
     return (
-        <View style={[styles.container, props.sceneStyle ]}>
-            <Text>Tab {props.title}</Text>
-            {props.name === 'tab1_1' &&
-            <Button onPress={Actions.tab1_2}>next screen for tab1_1</Button>
-            }
-            {props.name === 'tab2_1' &&
-            <Button onPress={Actions.tab2_2}>next screen for tab2_1</Button>
-            }
-            <Button onPress={Actions.pop}>Back</Button>
-            <Button onPress={() => { drawer.close(); Actions.tab1(); }}>Switch to tab1</Button>
-            <Button onPress={() => { drawer.close(); Actions.tab2(); }}>Switch to tab2</Button>
-            <Button onPress={() => { drawer.close(); Actions.tab3(); }}>Switch to tab3</Button>
-            <Button onPress={() => { drawer.close(); Actions.tab4(); }}>Switch to tab4</Button>
-            <Button onPress={() => { drawer.close(); Actions.tab5(); }}>Switch to tab5</Button>
-            {/*<Button onPress={() => { drawer.close(); Actions.echo(); }}>push new scene</Button>*/}
+      <ScrollView>
+        <View style={[styles.sideMenu, this.props.menuBody]}>
+          <View style={styles.profile}>
+            <Image style={styles.avatar}
+                   source={{uri: 'https://freeiconshop.com/files/edd/person-flat.png' }}/>
+            <Text style={[styles.fullname, this.props.textColor]}>Best User</Text>
+            <Text style={[styles.email, this.props.textColor]}>ddpdev@ddpstyle.com</Text>
+          </View>
+
+          <TouchableOpacity
+            style={[styles.menuRow, this.props.rowStyle]}
+            underlayColor="#2D2D30"
+            onPress={Actions.pageCameraRollPickerUploader}>
+            <Text style={[styles.menuLink, this.props.textColor]}>Uploader</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.menuRow, this.props.rowStyle]}
+            underlayColor="#2D2D30"
+            onPress={Actions.pageReactMaps}>
+            <Text style={[styles.menuLink, this.props.textColor]}>Map</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.menuRow, this.props.rowStyle]}
+            underlayColor="#2D2D30"
+            onPress={Actions.pageProductMain}>
+            <Text style={[styles.menuLink, this.props.textColor]}>Product List</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.menuRow, this.props.rowStyle]}
+            underlayColor="#2D2D30"
+            onPress={Actions.pageThree}>
+            <Text style={[styles.menuLink, this.props.textColor]}>WebView</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.menuRow, styles.menuSignOut, this.props.rowStyle]}
+            underlayColor="#2D2D30"
+            onPress={Actions.pageActionButton}>
+            <Text style={[styles.menuLink, styles.logoutLink, this.props.textColor]}>Action Button</Text>
+          </TouchableOpacity>
         </View>
+      </ScrollView>
     );
-};
+  }
 
-SideMenuContents.contextTypes = contextTypes;
-SideMenuContents.propTypes = propTypes;
-
-export default SideMenuContents;
+}

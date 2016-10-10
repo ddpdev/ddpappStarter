@@ -27,25 +27,7 @@ import PageMaps from './geo/PageMaps';
 import PageGeoPosition from './geo/PageGeoPosition';
 import PageReactMaps from './geo/PageReactMaps';
 
-import Icon from "react-native-vector-icons/EvilIcons";
-//import * as actions from '../../actions'
-
-// class Right extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     console.log("Right:",props);
-//   }
-//   render(){
-//     return <Text style={{
-//       width: 80,
-//       height: 37,
-//       position: "absolute",
-//       bottom: 4,
-//       right: 2,
-//       padding: 8,
-//     }} onClick={()=>Actions.pageProduct}>{this.props.rightTitle}</Text>
-//   }
-// }
+import MenuSide from "./sidemenu/MenuWide";
 
 class RootContainer extends Component {
   constructor(props){
@@ -53,24 +35,12 @@ class RootContainer extends Component {
     this.state = {
       isLoggedIn : false,
     }
-    console.log("App:",props,this.state);
-  }
-  // componentDidMount() {
-  //   //const { state} = this.props;
-  //
-  //   console.log("DidMount:",state,actions);
-  //
-  //   if(this.state.isLoggedIn) {
-  //     console.log("isLoggedIn",this.state.isLoggedIn);
-  //     userActions.userlogin();
-  //   }
-  // }
+    console.log("RootContainer App:", props, this.state);
+  };
 
   render() {
-    //const { state, actions } = this.props;
-    //const { userActions } = actions;
-
     console.log("render:", this.props, this.state); // everything ok here
+
     const scenes = Actions.create(
       <Scene key="scene">
         <Scene key="modal" component={Modal} >
@@ -144,65 +114,13 @@ class RootContainer extends Component {
                    onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
                    rightTitle='HOME'
             />
-            <Scene key="menuDrawer" component={MenuDrawer} open={false} >
-                <Scene key="mainTab"
-                       type={ActionConst.REPLACE}
-                        tabs
-                        tabBarStyle={styles.tabBarStyle}
-                        tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}
-                >
-                    <Scene
-                        key="tab1"
-                        title="Tab #1"
-                        icon={TabIcon}
-                        navigationBarStyle={{ backgroundColor: 'red' }}
-                        titleStyle={{ color: 'white' }}
-                    >
-                        <Scene
-                            key="tab1_1"
-                            component={TabView}
-                            title="Tab #1_1"
-                            onRight={() => alert('Right button')}
-                            rightTitle="Right"
-                        />
-                        <Scene
-                            key="tab1_2"
-                            component={TabView}
-                            title="Tab #1_2"
-                            titleStyle={{ color: 'black' }}
-                        />
-                    </Scene>
-                    <Scene key="tab2" initial title="Tab #2" icon={TabIcon}>
-                        <Scene
-                            key="tab2_1"
-                            component={TabView}
-                            title="Tab #2_1"
-                            renderRightButton={() => <Text>Right</Text>}
-                        />
-                        <Scene
-                            key="tab2_2"
-                            component={TabView}
-                            title="Tab #2_2"
-                            hideBackImage
-                            onBack={() => alert('Left button!')}
-                            backTitle="Left"
-                            duration={1}
-                            panHandlers={null}
-                        />
-                    </Scene>
-                    <Scene key="tab3" component={TabView} title="Tab #3" hideTabBar icon={TabIcon} />
-                    <Scene key="tab4" component={TabView} title="Tab #4" hideNavBar icon={TabIcon} />
-                    <Scene key="tab5" component={TabView} title="Tab #5" hideTabBar icon={TabIcon} />
-                </Scene>
-            </Scene>
             <Scene key="statusModal" component={StatusModal} />
               <Scene key="pageError" component={PageError}/>
             </Scene>
         </Scene>
     );
-    return (
-            <Router hideNavBar={false}  scenes={scenes} />
-    );
+    // return (<Router hideNavBar={false}  scenes={scenes} />);
+    return (<MenuSide ref="menuDefault" scenes={scenes}/>);
   }
 }
 

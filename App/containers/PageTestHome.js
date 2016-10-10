@@ -63,7 +63,7 @@ class PageTestHome extends Component {
                 icon={{name: 'view-list'}}
                 title='상품리스트'
                 backgroundColor='#79baca'
-                onPress={Actions.pageProductList}
+                onPress={Actions.pageProductMain}
             />
             <View style={style.viewMarginTop} />
             <Button
