@@ -21,7 +21,7 @@
 
  const RouterWithRedux = connect()(Router);
 
-//import configureRealm from './realm/configure';
+import configureRealm from './realm/configure';
 import configureStore from './store/configureStore';
 //import MainApp from './mainApp';
 import RootContainer from './containers/RootContainer';
@@ -41,7 +41,7 @@ import RootContainer from './containers/RootContainer';
    constructor(props) {
      super(props);
 
-     //configureRealm();
+     configureRealm();
 
      this.state = {
        isLoading : true,

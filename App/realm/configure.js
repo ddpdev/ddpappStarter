@@ -19,6 +19,8 @@ function configureRealm() {
     }
   }
 
+  console.log("configureRealm Start & migration complete");
+
   let current = schema.current();
   let realm = new Realm(current);
   realm.close();
