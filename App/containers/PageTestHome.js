@@ -9,6 +9,20 @@ import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { SocialIcon, Button  } from 'react-native-elements';
 
+//components
+import TwitterEditor from '../components/TwitterEditor';
+import ThumblrMenu from '../components/ThumblrMenu';
+import ScrollTabView from '../components/ScrollTabView';
+
+class GotoScrollTabView extends Component {
+    render() {
+        console.log("GotoScrollTabView");
+        return (
+            <ScrollTabView />
+        );
+    }
+}
+
 class PageTestHome extends Component {
     constructor(props){
         super(props);
@@ -25,7 +39,15 @@ class PageTestHome extends Component {
         this.pageWebView = this.pageWebView.bind(this);
         this.pageReactMaps = this.pageReactMaps.bind(this);
 
+        this.gotoTwitterEditor = this.gotoTwitterEditor.bind(this);
+
         console.log("PageTestHome:",props,this.state);
+    }
+
+    //TwitterEditor
+    gotoTwitterEditor () {
+        console.log("call gotoTwitterEditor");
+        return <TwitterEditor />;
     }
 
   //Uploader
@@ -57,6 +79,37 @@ class PageTestHome extends Component {
     return (
       <View style={style.viewMarginHeader}>
         <ScrollView>
+            <ThumblrMenu />
+            <View style={style.viewMarginTop} />
+            <Button
+                small
+                iconRight
+                icon={{name: 'tab'}}
+                title='Twitter Editor'
+                backgroundColor='#a97c58'
+                onPress={() => {console.log("TwitterEditor 클릭"); this.gotoTwitterEditor();}}
+            />
+            <TwitterEditor />
+            <View style={style.viewMarginTop} />
+            <GotoScrollTabView />
+            <Button
+                small
+                iconRight
+                icon={{name: 'tab'}}
+                title='ScrollTabView'
+                backgroundColor='#b97c58'
+                onPress={() => <GotoScrollTabView />}
+            />
+            <View style={style.viewMarginTop} />
+            <Button
+                small
+                iconRight
+                icon={{name: 'tab'}}
+                title='ThumblrMenu '
+                backgroundColor='#c97c58'
+                onPress={() => {console.log("ThumblrMenu 클릭"); return <ThumblrMenu />;}}
+            />
+            <View style={style.viewMarginTop} />
             <Button
                 small
                 iconRight

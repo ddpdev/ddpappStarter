@@ -12,7 +12,7 @@ const Util = {
   pixel: 1 / PixelRatio.get(),
   size: {
     width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height
+    height: Dimensions.get('window').height - 100,
   },
   post(url, data, callback) {
     const fetchOptions = {
