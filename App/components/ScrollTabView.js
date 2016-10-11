@@ -172,7 +172,7 @@ export default class ScrollTabView extends Component{
                     <Text style={styles.title}>{this.state.title}</Text>
                     <View style={styles.iconContainer}>
                         <Icon name="ios-search" color="#fff" size={25}/>
-                        <Icon name="ion-android-more-vertical" color="#fff" size={25}/>
+                        <Icon name="md-more" color="#fff" size={25}/>
                     </View>
                 </View>
                 <ScrollableTabView

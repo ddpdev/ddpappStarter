@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import { Router, Scene, Actions, Modal,NavBar,TabBar, ActionConst } from 'react-native-router-flux';
+import { Router, Scene, Actions, Reducer, Modal, ActionConst } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
 import StatusModal from '../components/StatusModal';
@@ -27,14 +27,46 @@ import PageMaps from './geo/PageMaps';
 import PageGeoPosition from './geo/PageGeoPosition';
 import PageReactMaps from './geo/PageReactMaps';
 
-import MenuSide from "./sidemenu/MenuWide";
+import MenuSide from './sidemenu/MenuWide';
+import NavigationDrawer from './sidemenu/NavigationDrawer';
+//components
+import PageTwitterEditor from '../components/TwitterEditor';
+import PageThumblrMenu from '../components/ThumblrMenu';
+import PageScrollTabView from '../components/ScrollTabView';
+
+
+
+const reducerCreate = params => {
+  const defaultReducer = new Reducer(params);
+  return (state, action) => {
+    console.log('ACTION:', action);
+    return defaultReducer(state, action);
+  };
+};
+
+// define this based on the styles/dimensions you use
+const getSceneStyle = (/* NavigationSceneRendererProps */ props, computedProps) => {
+  const style = {
+    flex: 1,
+    backgroundColor: '#fff',
+    shadowColor: null,
+    shadowOffset: null,
+    shadowOpacity: null,
+    shadowRadius: null,
+  };
+  if (computedProps.isActive) {
+    style.marginTop = computedProps.hideNavBar ? 0 : 64;
+    style.marginBottom = computedProps.hideTabBar ? 0 : 50;
+  }
+  return style;
+};
 
 class RootContainer extends Component {
   constructor(props){
     super(props);
     this.state = {
       isLoggedIn : false,
-    }
+    };
     console.log("RootContainer App:", props, this.state);
   };
 
@@ -44,7 +76,7 @@ class RootContainer extends Component {
     const scenes = Actions.create(
       <Scene key="scene">
         <Scene key="modal" component={Modal} >
-          <Scene key="root" hideNavBar={false}>
+          <Scene key="root" hideNavBar={false} hideTabBar>
               <Scene key="pageTestHome"
                      component={PageTestHome}
                      title='HOME'
@@ -52,7 +84,16 @@ class RootContainer extends Component {
                      rightTitle='상품'
                      initial={true}
               />
+
+              <Scene key="tabbar" component={NavigationDrawer}>
+                <Scene key="pageMenuSide" component={MenuSide} title="Action Button" />
+              </Scene>
+
               <Scene key="pageActionButton" component={PageActionButton} title="Action Button" />
+              <Scene key="pageTwitterEditor" component={PageTwitterEditor} title="Action Button" />
+              <Scene key="pageThumblrMenu" component={PageThumblrMenu} title="Action Button" />
+              <Scene key="pageScrollTabView" component={PageScrollTabView} title="Action Button" />
+
               <Scene key="pageThree" component={PageThree} title="웹뷰(DDPStyle)"
                      onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
                      rightTitle='HOME'
@@ -115,12 +156,13 @@ class RootContainer extends Component {
                    rightTitle='HOME'
             />
             <Scene key="statusModal" component={StatusModal} />
-              <Scene key="pageError" component={PageError}/>
+            <Scene key="pageError" component={PageError} />
             </Scene>
         </Scene>
     );
-    // return (<Router hideNavBar={false}  scenes={scenes} />);
-    return (<MenuSide ref="menuDefault" scenes={scenes}/>);
+
+    return (<Router hideNavBar={false}  drawerImage={require('../images/icon/icon-nav.png')} createReducer={reducerCreate} getSceneStyle={getSceneStyle} scenes={scenes} />);
+    //return (<MenuSide ref="menuDefault" scenes={scenes}/>);
   }
 }
 

@@ -9,20 +9,6 @@ import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { SocialIcon, Button  } from 'react-native-elements';
 
-//components
-import TwitterEditor from '../components/TwitterEditor';
-import ThumblrMenu from '../components/ThumblrMenu';
-import ScrollTabView from '../components/ScrollTabView';
-
-class GotoScrollTabView extends Component {
-    render() {
-        console.log("GotoScrollTabView");
-        return (
-            <ScrollTabView />
-        );
-    }
-}
-
 class PageTestHome extends Component {
     constructor(props){
         super(props);
@@ -39,15 +25,7 @@ class PageTestHome extends Component {
         this.pageWebView = this.pageWebView.bind(this);
         this.pageReactMaps = this.pageReactMaps.bind(this);
 
-        this.gotoTwitterEditor = this.gotoTwitterEditor.bind(this);
-
         console.log("PageTestHome:",props,this.state);
-    }
-
-    //TwitterEditor
-    gotoTwitterEditor () {
-        console.log("call gotoTwitterEditor");
-        return <TwitterEditor />;
     }
 
   //Uploader
@@ -79,26 +57,22 @@ class PageTestHome extends Component {
     return (
       <View style={style.viewMarginHeader}>
         <ScrollView>
-            <ThumblrMenu />
-            <View style={style.viewMarginTop} />
             <Button
                 small
                 iconRight
                 icon={{name: 'tab'}}
                 title='Twitter Editor'
                 backgroundColor='#a97c58'
-                onPress={() => {console.log("TwitterEditor 클릭"); this.gotoTwitterEditor();}}
+                onPress={Actions.pageTwitterEditor}
             />
-            <TwitterEditor />
             <View style={style.viewMarginTop} />
-            <GotoScrollTabView />
             <Button
                 small
                 iconRight
                 icon={{name: 'tab'}}
                 title='ScrollTabView'
-                backgroundColor='#b97c58'
-                onPress={() => <GotoScrollTabView />}
+                backgroundColor='#b93c58'
+                onPress={Actions.pageScrollTabView}
             />
             <View style={style.viewMarginTop} />
             <Button
@@ -106,8 +80,17 @@ class PageTestHome extends Component {
                 iconRight
                 icon={{name: 'tab'}}
                 title='ThumblrMenu '
-                backgroundColor='#c97c58'
-                onPress={() => {console.log("ThumblrMenu 클릭"); return <ThumblrMenu />;}}
+                backgroundColor='#c3ac5f'
+                onPress={Actions.pageThumblrMenu}
+            />
+            <View style={style.viewMarginTop} />
+            <Button
+              small
+              iconRight
+              icon={{name: 'touch-app'}}
+              title='Action Button'
+              backgroundColor='#397af8'
+              onPress={Actions.pageActionButton}
             />
             <View style={style.viewMarginTop} />
             <Button
@@ -115,7 +98,7 @@ class PageTestHome extends Component {
                 iconRight
                 icon={{name: 'view-list'}}
                 title='상품리스트'
-                backgroundColor='#79baca'
+                backgroundColor='#79dad5'
                 onPress={Actions.pageProductMain}
             />
             <View style={style.viewMarginTop} />
@@ -218,24 +201,15 @@ class PageTestHome extends Component {
               {/*onPress={Actions.pageEditor}*/}
             {/*/>*/}
             {/*<View style={style.viewMarginTop} />*/}
-            <Button
-                small
-              iconRight
-              icon={{name: 'touch-app'}}
-              title='Action Button'
-              backgroundColor='#397af8'
-              onPress={Actions.pageActionButton}
-            />
-            <View style={style.viewMarginTop} />
-            <Button
-                small
-                iconRight
-                icon={{name: 'tab'}}
-                title='Main Tab 테스트'
-                backgroundColor='#997c58'
-                onPress={() => {console.log("Main Tab 클릭");Actions.mainTab();}}
-            />
-            <View style={style.viewMarginTop} />
+            {/*<View style={style.viewMarginTop} />*/}
+            {/*<Button*/}
+                {/*small*/}
+                {/*iconRight*/}
+                {/*icon={{name: 'tab'}}*/}
+                {/*title='Main Tab 테스트'*/}
+                {/*backgroundColor='#997c58'*/}
+                {/*onPress={() => {console.log("Main Tab 클릭");Actions.mainTab();}}*/}
+            {/*/>*/}
             </ScrollView>
       </View>
     )
@@ -250,7 +224,7 @@ const style = StyleSheet.create({
         marginTop:5,
     },
     viewMarginHeader: {
-        marginTop:60,
+        marginTop:2,
     }
 });
 

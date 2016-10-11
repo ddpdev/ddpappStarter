@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "(cd android/ && ./gradlew assembleDebug)",
-    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start": "node_modules/react-native/packager/packager.sh",
     "bundle-android": "react-native bundle --platform android --dev true --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --sourcemap-output android/app/src/main/assets/index.android.map --assets-dest android/app/src/main/res/"
   },
   "dependencies": {
