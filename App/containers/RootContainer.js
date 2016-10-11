@@ -86,13 +86,13 @@ class RootContainer extends Component {
               />
 
               <Scene key="tabbar" component={NavigationDrawer}>
-                <Scene key="pageMenuSide" component={MenuSide} title="Action Button" />
+                <Scene key="pageMenuSide" component={MenuSide} title="Side Menu" />
               </Scene>
 
               <Scene key="pageActionButton" component={PageActionButton} title="Action Button" />
-              <Scene key="pageTwitterEditor" component={PageTwitterEditor} title="Action Button" />
-              <Scene key="pageThumblrMenu" component={PageThumblrMenu} title="Action Button" />
-              <Scene key="pageScrollTabView" component={PageScrollTabView} title="Action Button" />
+              <Scene key="pageTwitterEditor" component={PageTwitterEditor} title="Twitter Editor" />
+              <Scene key="pageThumblrMenu" component={PageThumblrMenu} title="Thumblr Menu" />
+              <Scene key="pageScrollTabView" component={PageScrollTabView} title="Scrollable TabView" />
 
               <Scene key="pageThree" component={PageThree} title="웹뷰(DDPStyle)"
                      onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}

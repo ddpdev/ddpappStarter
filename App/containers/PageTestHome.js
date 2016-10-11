@@ -70,7 +70,7 @@ class PageTestHome extends Component {
                 small
                 iconRight
                 icon={{name: 'tab'}}
-                title='ScrollTabView'
+                title='Scrollable TabView'
                 backgroundColor='#b93c58'
                 onPress={Actions.pageScrollTabView}
             />
@@ -79,7 +79,7 @@ class PageTestHome extends Component {
                 small
                 iconRight
                 icon={{name: 'tab'}}
-                title='ThumblrMenu '
+                title='Thumblr Menu '
                 backgroundColor='#c3ac5f'
                 onPress={Actions.pageThumblrMenu}
             />
