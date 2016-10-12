@@ -81,7 +81,7 @@ class PageTestHome extends Component {
                 icon={{name: 'tab'}}
                 title='Thumblr Menu '
                 backgroundColor='#c3ac5f'
-                onPress={Actions.pageThumblrMenu}
+                onPress={Actions.pageTumblrMenu}
             />
             <View style={style.viewMarginTop} />
             <Button
@@ -105,6 +105,36 @@ class PageTestHome extends Component {
             <Button
                 small
                 iconRight
+                icon={{name: 'location-on'}}
+                title='Photo Pinch Zoom'
+                color='#737fa4'
+                backgroundColor='#7993d8'
+                onPress={Actions.pagePhotoPinchZoom}
+            />
+            <View style={style.viewMarginTop} />
+            <Button
+                small
+                iconRight
+                icon={{name: 'location-on'}}
+                title='Photo Lazy Swiper'
+                color='#737fa4'
+                backgroundColor='#a9cab8'
+                onPress={Actions.pagePhotoLazySwiper}
+            />
+            <View style={style.viewMarginTop} />
+            <Button
+                small
+                iconRight
+                icon={{name: 'location-on'}}
+                title='Photo Swiper'
+                color='#737fa4'
+                backgroundColor='#49f5b8'
+                onPress={Actions.pagePhotoSwiper}
+            />
+            <View style={style.viewMarginTop} />
+            <Button
+                small
+                iconRight
                 icon={{name: 'collections'}}
                 title='카메라롤 픽커 & 업로드(Uploader)'
                 color='#f58'
@@ -115,50 +145,41 @@ class PageTestHome extends Component {
             <Button
                 small
                 iconRight
+                icon={{name: 'location-on'}}
+                title='지도표시 - pageReactMaps'
+                color='#737fa4'
+                backgroundColor='#a9cab8'
+                onPress={this.pageReactMaps}
+            />
+            <View style={style.viewMarginTop} />
+            <Button
+                small
+                iconRight
                 icon={{name: 'collections'}}
-                title='카메라롤 픽커 & 업로드(Fetch_Blob)'
-                color='#f50'
-                backgroundColor='#39fbf7'
-                onPress={this.pageCameraRollPickerUpload}
-            />
-            <View style={style.viewMarginTop} />
-            <Button
-              small
-              iconRight
-              icon={{name: 'tab'}}
-              title='Image Picker & Uploader - PageImageUploader'
-              backgroundColor='#4d7c55'
-              onPress={() => {console.log("PageImageUploader 클릭");Actions.pageImageUploader();}}
-            />
-            <View style={style.viewMarginTop} />
-            <Button
-                small
-              iconRight
-              icon={{name: 'collections'}}
-              title='Image Picker(pageImagePicker)'
-              color='#386'
-              backgroundColor='#89faf8'
-              onPress={this.pageImagePicker}
-            />
-            <View style={style.viewMarginTop} />
-            <Button
-                small
-              iconRight
-              icon={{name: 'file-upload'}}
-              title='DDP Web(Upload)'
-              color='#517fa4'
-              backgroundColor='#89faf8'
-              onPress={Actions.pageThree}
+                title='Image Picker(pageImagePicker)'
+                color='#386'
+                backgroundColor='#89faf8'
+                onPress={this.pageImagePicker}
             />
             <View style={style.viewMarginTop} />
             <Button
                 small
                 iconRight
                 icon={{name: 'http'}}
-                title='Web(google map)-pageWebView'
+                title='Web Browser'
                 color='#317fc4'
                 backgroundColor='#89faf8'
-                onPress={this.pageWebView}
+                onPress={() => Actions.pageWebBrowser({url:'http://app.ddpstyle.com'})}
+            />
+            <View style={style.viewMarginTop} />
+            <Button
+                small
+                iconRight
+                icon={{name: 'file-upload'}}
+                title='DDP Web(Upload)'
+                color='#517fa4'
+                backgroundColor='#89faf8'
+                onPress={Actions.pageThree}
             />
             <View style={style.viewMarginTop} />
             <Button
@@ -173,22 +194,41 @@ class PageTestHome extends Component {
             <View style={style.viewMarginTop} />
             <Button
                 small
-              iconRight
-              icon={{name: 'location-on'}}
-              title='지도표시 - pageReactMaps'
-              color='#737fa4'
-              backgroundColor='#a9cab8'
-              onPress={this.pageReactMaps}
-            />
-            <View style={style.viewMarginTop} />
-            <Button
-                small
                 iconRight
                 icon={{name: 'collections'}}
                 title='지도 표시 - pageMaps'
                 color='#d47'
                 backgroundColor='#79f9b3'
                 onPress={this.pageMaps}
+            />
+            <View style={style.viewMarginTop} />
+            <Button
+                small
+                iconRight
+                icon={{name: 'collections'}}
+                title='카메라롤 픽커 & 업로드(Fetch_Blob)'
+                color='#f50'
+                backgroundColor='#39fbf7'
+                onPress={this.pageCameraRollPickerUpload}
+            />
+            <View style={style.viewMarginTop} />
+            <Button
+                small
+                iconRight
+                icon={{name: 'tab'}}
+                title='Image Picker & Uploader - PageImageUploader'
+                backgroundColor='#4d7c55'
+                onPress={() => {console.log("PageImageUploader 클릭");Actions.pageImageUploader();}}
+            />
+            <View style={style.viewMarginTop} />
+            <Button
+                small
+                iconRight
+                icon={{name: 'http'}}
+                title='Web(google map)-pageWebView'
+                color='#317fc4'
+                backgroundColor='#89faf8'
+                onPress={this.pageWebView}
             />
             <View style={style.viewMarginTop} />
             {/*<Button*/}

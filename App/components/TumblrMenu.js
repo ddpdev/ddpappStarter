@@ -9,7 +9,7 @@ import { Image,StyleSheet,Text,TouchableWithoutFeedback,TouchableHighlight,Statu
 import Util from '../util/utils';
 // import {BlurView} from 'react-native-blur';
 
-export default class ThumblerMenu extends Component{
+export default class TumblerMenu extends Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -93,7 +93,7 @@ export default class ThumblerMenu extends Component{
                             <Text style={styles.menuText}>Audio</Text>
                         </Animated.View>
                         <TouchableHighlight underlayColor="rgba(0,0,0,0)" activeOpacity={0} style={styles.dismissBtn} onPress={() => this._popMenu()}>
-                            <Text style={styles.dismiss}>NeverMind</Text>
+                            <Text style={styles.dismiss}>취 소</Text>
                         </TouchableHighlight>
                     </Image>:
                     <View></View>
@@ -181,5 +181,10 @@ const styles = StyleSheet.create({
         color:"rgba(255,255,255,0.2)",
         fontWeight:"700",
         backgroundColor: "transparent"
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        marginVertical: 20,
+        backgroundColor: 'transparent',
     },
 });

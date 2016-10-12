@@ -351,7 +351,7 @@ var styles = StyleSheet.create({
         textAlign: 'left',
     },
     listView: {
-        paddingTop:20,
+        paddingTop:2,
         backgroundColor:'#F5FCFF',
     },
     loadingIndicator: {

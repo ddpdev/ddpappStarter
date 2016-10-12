@@ -68,8 +68,8 @@ const styles = StyleSheet.create({
     topContainer: {
         //flex: 1,
         //flexDirection:'row',
-        marginTop: 40,
-        height: Dimensions.get('window').height - 120,
+        marginTop: 2,
+        height: Dimensions.get('window').height ,
         width: Dimensions.get('window').width,
         backgroundColor: '#90ee90' // lightgreen
         // alignItems: 'center',

@@ -53,9 +53,9 @@ class FunctionView extends Component{
                 <View style={styles.functionIconContainer}>
                     <View style={styles.functionIcon}>
                         <Icon name="ios-pin" size={23} color="#8899a5"></Icon>
-                        <Icon name="md-camera" size={23} color="#8899a5"></Icon>
-                        <Icon name="md-image" size={23} color="#8899a5"></Icon>
-                        <Icon name="md-pie" size={23} color="#8899a5"></Icon>
+                        <Icon name="ios-camera" size={23} color="#8899a5"></Icon>
+                        <Icon name="ios-image" size={23} color="#8899a5"></Icon>
+                        <Icon name="ios-pie" size={23} color="#8899a5"></Icon>
                     </View>
                     <View style={styles.functionBtn}>
                         <Text style={styles.text}>{this.props.numOfText}</Text>
@@ -126,7 +126,7 @@ export default class TwitterEditor extends Component{
 
 const styles = StyleSheet.create({
     container:{
-        paddingTop:30,
+        paddingTop:5,
         height:Util.size.height,
         backgroundColor: "#ffffff"
     },

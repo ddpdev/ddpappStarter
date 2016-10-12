@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View, Alert } from 'react-native';
 import { Router, Scene, Actions, Reducer, Modal, ActionConst } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
@@ -31,10 +31,12 @@ import MenuSide from './sidemenu/MenuWide';
 import NavigationDrawer from './sidemenu/NavigationDrawer';
 //components
 import PageTwitterEditor from '../components/TwitterEditor';
-import PageThumblrMenu from '../components/ThumblrMenu';
+import PageTumblrMenu from '../components/TumblrMenu';
 import PageScrollTabView from '../components/ScrollTabView';
-
-
+import PagePhotoLazySwiper from '../components/photo/PhotoLazySwiper';
+import PagePhotoSwiper from '../components/photo/PhotoSwiper';
+import PagePhotoPinchZoom from '../components/photo/PhotoPinchZoom';
+import PageWebBrowser from '../components/browser/WebBrowser';
 
 const reducerCreate = params => {
   const defaultReducer = new Reducer(params);
@@ -80,79 +82,84 @@ class RootContainer extends Component {
               <Scene key="pageTestHome"
                      component={PageTestHome}
                      title='HOME'
-                     onRight={()=>(Actions.pageProductMain({type: ActionConst.REPLACE}))}
+                     onRight={()=>Actions.pageProductMain()}
                      rightTitle='상품'
                      initial={true}
               />
 
-              <Scene key="tabbar" component={NavigationDrawer}>
+              <Scene key="tabbar" component={NavigationDrawer} tabs={true}>
                 <Scene key="pageMenuSide" component={MenuSide} title="Side Menu" />
               </Scene>
 
+              <Scene key="pageWebBrowser" component={PageWebBrowser} title="Web Browser" />
               <Scene key="pageActionButton" component={PageActionButton} title="Action Button" />
-              <Scene key="pageTwitterEditor" component={PageTwitterEditor} title="Twitter Editor" />
-              <Scene key="pageThumblrMenu" component={PageThumblrMenu} title="Thumblr Menu" />
-              <Scene key="pageScrollTabView" component={PageScrollTabView} title="Scrollable TabView" />
+              <Scene key="pageTwitterEditor" component={PageTwitterEditor} title="Twitter Editor"  />
+              <Scene key="pageTumblrMenu" component={PageTumblrMenu} title="Tumblr Menu" hideNavBar={true} />
+              <Scene key="pageScrollTabView" component={PageScrollTabView} title="Scrollable TabView" hideNavBar={true} />
+
+              <Scene key="pagePhotoPinchZoom" component={PagePhotoPinchZoom} title="Photo Pinch Zoom"  />
+              <Scene key="pagePhotoLazySwiper" component={PagePhotoLazySwiper} title="Photo Lazy Swiper"  />
+              <Scene key="pagePhotoSwiper" component={PagePhotoSwiper} title="Photo Swiper"  />
 
               <Scene key="pageThree" component={PageThree} title="웹뷰(DDPStyle)"
-                     onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
+                     onRight={() => Actions.pageTestHome()}
                      rightTitle='HOME'
               />
               <Scene key="pageWebView" component={PageWebView} title="웹뷰"
-                     onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
+                     onRight={() => Actions.pageTestHome()}
                      rightTitle='HOME'
               />
               <Scene key="pageCameraRollPickerUploader" component={PageCameraRollPickerUploader} title="사진 업로드(Uploader)"
-                     onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
+                     onRight={() => Actions.pageTestHome()}
                      rightTitle='HOME'
               />
               <Scene key="pageCameraRollPickerUpload" component={PageCameraRollPickerUpload} title="사진 업로드(Fetch_Blob)"
-                     onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
+                     onRight={() => Actions.pageTestHome()}
                      rightTitle='HOME'
               />
               <Scene key="pageImagePicker" component={PageImagePicker} title="Image Picker"
-                     onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
+                     onRight={() => Actions.pageTestHome()}
                      rightTitle='HOME' />
               <Scene key="pageProductMain"
                      tabs={true}
                      component={PageProductMain}
                      title="상점홈"
-                     onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
+                     onRight={() => Actions.pageTestHome()}
                      rightTitle='Home' />
               </Scene>
               <Scene key="pageProductList" component={PageProductList} title="상품리스트"
-                  onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
+                  onRight={() => Actions.pageTestHome()}
                   rightTitle='상품설명'
                 />
                 <Scene  key="pageProductDetail" component={PageProductDetail} title="상품상세정보"
-                       onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
+                       onRight={() => Actions.pageTestHome()}
                        rightTitle='리스트'
                 />
 
               <Scene key="pageGeoPosition" component={PageGeoPosition}
                      title="Geo Position"
                      provider={'google'}
-                     onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
+                     onRight={() => Actions.pageTestHome()}
                      rightTitle='HOME'
               />
               <Scene key="pageReactMaps" component={PageReactMaps}
                      provider={'google'}
                      title="React Map "
-                     onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
+                     onRight={() => Actions.pageTestHome()}
                      rightTitle='HOME'
               />
               <Scene key="pageMaps" component={PageMaps}
                      provider={'google'}
                      title="Map 테스트"
-                     onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
+                     onRight={() => Actions.pageTestHome()}
                      rightTitle='HOME'
               />
               <Scene key="pageEditor" component={PageEditor} title="에디터"
-                    onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
+                    onRight={() => Actions.pageTestHome()}
                     rightTitle='HOME'
                 />
             <Scene key="pageImageUploader" component={PageImageUploader} title="Image Uploader"
-                   onRight={()=>(Actions.pageTestHome({type: ActionConst.REPLACE}))}
+                   onRight={() => Actions.pageTestHome()}
                    rightTitle='HOME'
             />
             <Scene key="statusModal" component={StatusModal} />
@@ -161,7 +168,14 @@ class RootContainer extends Component {
         </Scene>
     );
 
-    return (<Router hideNavBar={false}  drawerImage={require('../images/icon/icon-nav.png')} createReducer={reducerCreate} getSceneStyle={getSceneStyle} scenes={scenes} />);
+    return (<Router
+                hideNavBar={false}
+                drawerImage={require('../images/icon/icon-nav.png')}
+                createReducer={reducerCreate}
+                getSceneStyle={getSceneStyle}
+                scenes={scenes}
+                onExitApp={()=>Alert.alert('앱을 종료하시겠습니까?')}
+    />);
     //return (<MenuSide ref="menuDefault" scenes={scenes}/>);
   }
 }

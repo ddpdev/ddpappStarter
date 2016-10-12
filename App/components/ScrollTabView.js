@@ -16,7 +16,7 @@ class HomePage extends Component{
     render() {
         return(
             <ScrollView>
-                <Image style={styles.img} source={require("../images/app/yt1.png")}/>
+                <Image style={styles.img} source={require('./../images/app/yt1.png')} />
             </ScrollView>
         )
     }
@@ -26,7 +26,7 @@ class PopularPage extends Component{
     render() {
         return(
             <ScrollView>
-                <Image style={styles.img} source={require("../images/app/yt2.png")}/>
+                <Image style={styles.img} source={require('./../images/app/yt2.png')}/>
             </ScrollView>
         )
     }
@@ -36,7 +36,7 @@ class SubscribePage extends Component{
     render() {
         return(
             <ScrollView>
-                <Image style={styles.img} source={require("../images/app/yt3.png")}/>
+                <Image style={styles.img} source={require('./../images/app/yt3.png')}/>
             </ScrollView>
         )
     }
@@ -46,7 +46,7 @@ class MinePage extends Component{
     render() {
         return(
             <ScrollView>
-                <Image style={styles.img} source={require("../images/app/yt4.png")}/>
+                <Image style={styles.img} source={require('./../images/app/yt4.png')}/>
             </ScrollView>
         )
     }
@@ -65,6 +65,7 @@ var FacebookTabBar = React.createClass({
     renderTabOption(name, page) {
         var isTabActive = this.props.activeTab === page;
 
+        console.log("renderTabOption:",isTabActive,page);
         return (
             <TouchableOpacity key={name} onPress={() => this.props.goToPage(page)} style={styles.tab}>
                 <Icon name={name} size={30} color='#fff' style={styles.icon}

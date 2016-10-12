@@ -2,7 +2,9 @@
  * Created by ms.kim2 on 2016-09-09.
  */
 import React, { Component } from 'react';
-import { Router, Scene, Modal } from 'react-native-router-flux';
+import { TouchableHighlight, Text, View, StyleSheet } from 'react-native';
+import Util from '../util/utils';
+//import { Router, Scene, Modal } from 'react-native-router-flux';
 
 class StatusModal extends Component {
 
@@ -14,11 +16,12 @@ class StatusModal extends Component {
       hide: props.hide,
     }
     // bind functions
-    this.dismissModal = this.dismissModal.bind(this)
+    this.dismissModal = this.dismissModal.bind(this);
+    console.log("StatusModal:",props,this.state);
   }
 
   dismissModal() {
-    this.setState({hide: true})
+    this.setState({hide: true});
   }
 
   // show or hide Modal based on 'hide' prop
@@ -37,5 +40,25 @@ class StatusModal extends Component {
     }
   }
 }
+
+const styles = StyleSheet.create({
+  mainContainer: {
+      flex: 1,
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      right: 0,
+      top: 0,
+      backgroundColor: "#c5ff1e",
+  },
+  text: {
+    //backgroundColor: "#e32524",
+    color: "#e32524",
+    fontSize: 16,
+    paddingTop: 5,
+    paddingLeft: 5,
+  },
+});
+
 
 module.exports = StatusModal;
