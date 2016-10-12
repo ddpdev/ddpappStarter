@@ -64,7 +64,7 @@ export default class TumblerMenu extends Component{
         return(
             <View style={{backgroundColor:"#37465c"}}>
                 <TouchableWithoutFeedback style={styles.imgContainer} onPress={() => this._pushMenu()}>
-                    <Image source={require('../images/app/tumblr.png')} style={styles.img}></Image>
+                    <Image source={{uri:'https://ddpimage01.s3.ap-northeast-2.amazonaws.com/image/SJs8Bw6h_img.jpg'}} style={styles.img}></Image>
                 </TouchableWithoutFeedback>
                 {this.state.show?
                     <Image source={require('../images/app/tumblrblur.png')} style={styles.menu}>

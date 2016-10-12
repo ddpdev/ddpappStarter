@@ -32,14 +32,13 @@ const propTypes = {
 
 const defaultProps = {
     url: '',
-    status: '',
     hideToolbar: false,
     hideAddressBar: false,
     hideStatusBar: false,
     hideHomeButton: false,
     hideActivityIndicator: false,
     foregroundColor:'#8f3dc9',
-    backgroundColor:'#ffffff',
+    backgroundColor:'#f8f3f5',
     onNavigationStateChange: ()=>{},
     onShouldStartLoadWithRequest: ()=>true,
 }
@@ -50,7 +49,7 @@ class WebBrowser extends BaseComponent {
         super(props);
 
         this.state = {
-            status: '',
+            status: this.props.status ||  Utils.sanitizeUrl(this.props.url),
             currentUrl: Utils.sanitizeUrl(this.props.url),
             url: Utils.sanitizeUrl(this.props.url),
             backButtonEnabled: false,

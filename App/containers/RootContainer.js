@@ -91,7 +91,7 @@ class RootContainer extends Component {
                 <Scene key="pageMenuSide" component={MenuSide} title="Side Menu" />
               </Scene>
 
-              <Scene key="pageWebBrowser" component={PageWebBrowser} title="Web Browser" />
+              <Scene key="pageWebBrowser" component={PageWebBrowser} title="Web Browser" hideNavBar={true} />
               <Scene key="pageActionButton" component={PageActionButton} title="Action Button" />
               <Scene key="pageTwitterEditor" component={PageTwitterEditor} title="Twitter Editor"  />
               <Scene key="pageTumblrMenu" component={PageTumblrMenu} title="Tumblr Menu" hideNavBar={true} />

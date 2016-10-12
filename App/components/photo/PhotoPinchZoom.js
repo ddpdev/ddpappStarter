@@ -79,7 +79,7 @@ const Viewer = props => <Swiper index={props.index} style={styles.wrapper} rende
         props.imgList.map((item, i) => <View key={i} style={styles.slide}>
             <TouchableWithoutFeedback onPress={e => props.pressHandle()}>
                 <PhotoView
-                    source={() => {`uri: item.indexOf('https://') ? {uri: ${item}} : {require(${item})}`}}
+                    source={{uri: item}}
                     resizeMode='contain'
                     minimumZoomScale={0.5}
                     maximumZoomScale={3}
@@ -95,13 +95,18 @@ export default class PhotoPinchZoom extends Component {
         super(props)
         this.state = {
             imgList: [
+                'https://ddpimage01.s3.ap-northeast-2.amazonaws.com/image/rkzXdFnj0_img.jpg',
+                'https://ddpimage01.s3.ap-northeast-2.amazonaws.com/image/rkxX_FnjR_img.jpg',
+                'https://ddpimage01.s3.ap-northeast-2.amazonaws.com/image/rJO7_t3iA_img.jpg',
+                'https://ddpimage01.s3.ap-northeast-2.amazonaws.com/image/ByLQOthoA_img.jpg',
+                'https://ddpimage01.s3.ap-northeast-2.amazonaws.com/image/BJNXOthiC_img.jpg',
                 'https://avatars3.githubusercontent.com/u/533360?v=3&s=466',
                 'https://assets-cdn.github.com/images/modules/site/business-hero.jpg',
                 'https://placeholdit.imgix.net/~text?txtsize=29&txt=350%C3%971150&w=350&h=1150',
-                './../../images/sample/1_340.jpg',
-                './../../images/sample/11_340.jpg',
-                './../../images/sample/2_340.jpg',
-                './../../images/sample/20_340.jpg',
+                // './images/sample/1_340.jpg',
+                // './images/sample/11_340.jpg',
+                // './images/sample/2_340.jpg',
+                // './images/sample/20_340.jpg',
             ],
             showViewer: true,
             showIndex: 0

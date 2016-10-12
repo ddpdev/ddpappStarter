@@ -85,22 +85,22 @@ export default class PhotoSwiper extends Component {
                     <View style={styles.slide} title={<Text numberOfLines={1}>Big lie behind Nine’s new show</Text>}>
                         <Image resizeMode='stretch' style={styles.image} source={require('./../../images/sample/2_340.jpg')} />
                     </View>
-                    <View style={styles.slide} title={<Text numberOfLines={1}>Why Stone split from Garfield</Text>}>
-                        <Image resizeMode='stretch' style={styles.image} source={require('./../../images/sample/3_340.jpg')} />
+                    <View style={styles.slide} title={<Text numberOfLines={1}>서버이미지 1</Text>}>
+                        <Image resizeMode='stretch' style={styles.image} source={{uri: 'https://ddpimage01.s3.ap-northeast-2.amazonaws.com/image/H1pJcaQA_img.jpg'}} />
                     </View>
-                    <View style={styles.slide} title={<Text numberOfLines={1}>Learn from Kim K to land that job</Text>}>
-                        <Image resizeMode='stretch' style={styles.image} source={require('./../../images/sample/4_340.jpg')} />
+                    <View style={styles.slide} title={<Text numberOfLines={1}>서버이미지 2</Text>}>
+                        <Image resizeMode='stretch' style={styles.image} source={{uri: 'https://ddpimage01.s3.ap-northeast-2.amazonaws.com/image/rJerEb3E0_img'}} />
                     </View>
-                    <View style={styles.slide} title={<Text numberOfLines={1}>Learn from Kim K to land that job</Text>}>
-                        <Image resizeMode='stretch' style={styles.image} source={require('./../../images/sample/5_340.jpg')} />
+                    <View style={styles.slide} title={<Text numberOfLines={1}>서버이미지 3</Text>}>
+                        <Image resizeMode='stretch' style={styles.image} source={{uri:'https://ddpimage01.s3.ap-northeast-2.amazonaws.com/image/By9lTIWL_img.jpg'}} />
                     </View>
-                    <View style={styles.slide} title={<Text numberOfLines={1}>Learn from Kim K to land that job</Text>}>
+                    <View style={styles.slide} title={<Text numberOfLines={1}>local image 3</Text>}>
                         <Image resizeMode='stretch' style={styles.image} source={require('./../../images/sample/6_340.jpg')} />
                     </View>
-                    <View style={styles.slide} title={<Text numberOfLines={1}>Learn from Kim K to land that job</Text>}>
+                    <View style={styles.slide} title={<Text numberOfLines={1}>local image 4</Text>}>
                         <Image resizeMode='stretch' style={styles.image} source={require('./../../images/sample/7_340.jpg')} />
                     </View>
-                    <View style={styles.slide} title={<Text numberOfLines={1}>Learn from Kim K to land that job</Text>}>
+                    <View style={styles.slide} title={<Text numberOfLines={1}>local image 5</Text>}>
                         <Image resizeMode='stretch' style={styles.image} source={require('./../../images/sample/8_340.jpg')} />
                     </View>
                 </Swiper>

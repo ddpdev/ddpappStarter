@@ -56,7 +56,7 @@ class PageTestHome extends Component {
   render() {
     return (
       <View style={style.viewMarginHeader}>
-        <ScrollView>
+        <ScrollView scrollEnabled={true}>
             <Button
                 small
                 iconRight
