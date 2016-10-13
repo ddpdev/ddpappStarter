@@ -14,6 +14,7 @@ import com.imagepicker.ImagePickerPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.burlap.filetransfer.FileTransferPackage;
+import com.reactnative.photoview.PhotoViewPackage;
 // facebook
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
@@ -49,7 +50,8 @@ public class MainApplication extends Application implements ReactApplication {
             new MapsPackage(),
             new ImagePickerPackage(),
             new RNFetchBlobPackage(),
-            new RNDeviceInfo()
+            new RNDeviceInfo(),
+            new PhotoViewPackage()
       );
     }
   };

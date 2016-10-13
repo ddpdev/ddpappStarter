@@ -9,6 +9,8 @@ import { Image,StyleSheet,Text,TouchableWithoutFeedback,TouchableHighlight,Statu
 import Util from '../util/utils';
 // import {BlurView} from 'react-native-blur';
 
+const _isMounted = false;
+
 export default class TumblerMenu extends Component{
     constructor(props) {
         super(props);
@@ -45,9 +47,11 @@ export default class TumblerMenu extends Component{
         ).start();
 
         setTimeout(()=>{
-            this.setState({
-                show: false,
-            })
+            if (this._isMounted) {
+                this.setState({
+                    show: false,
+                });
+            }
         },500);
     }
 
@@ -57,9 +61,12 @@ export default class TumblerMenu extends Component{
         } else {
             StatusBar.translucent = true;
         }
-
+        this._isMounted = true;
     }
 
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
     render() {
         return(
             <View style={{backgroundColor:"#37465c"}}>

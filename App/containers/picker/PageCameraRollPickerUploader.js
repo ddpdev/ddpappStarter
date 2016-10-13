@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
   top: {
     flex: 0.7,
     flexDirection:'row',
-    marginTop: 60,
+    marginTop: 5,
     height: Dimensions.get('window').height/2 + 100 ,
     width: Dimensions.get('window').width,
   },

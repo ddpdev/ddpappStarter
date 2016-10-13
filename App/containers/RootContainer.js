@@ -41,7 +41,7 @@ import PageWebBrowser from '../components/browser/WebBrowser';
 const reducerCreate = params => {
   const defaultReducer = new Reducer(params);
   return (state, action) => {
-    console.log('ACTION:', action);
+    console.log('ACTION:'+Date.now(), action);
     return defaultReducer(state, action);
   };
 };
@@ -69,16 +69,16 @@ class RootContainer extends Component {
     this.state = {
       isLoggedIn : false,
     };
-    console.log("RootContainer App:", props, this.state);
+    console.log("RootContainer App:"+Date.now(), props, this.state);
   };
 
   render() {
-    console.log("render:", this.props, this.state); // everything ok here
-
+    //console.log("render:", this.props, this.state); // everything ok here
+    // tabs={true} ==> {false} 로 수정하면 Back button 생김(10/13)
     const scenes = Actions.create(
       <Scene key="scene">
-        <Scene key="modal" component={Modal} >
-          <Scene key="root" hideNavBar={false} hideTabBar>
+        <Scene key="navigationDrawer" component={NavigationDrawer} open={false}>
+          <Scene key="root" hideNavBar={false} tabs={true}>
               <Scene key="pageTestHome"
                      component={PageTestHome}
                      title='HOME'
@@ -86,11 +86,6 @@ class RootContainer extends Component {
                      rightTitle='상품'
                      initial={true}
               />
-
-              <Scene key="tabbar" component={NavigationDrawer} tabs={true}>
-                <Scene key="pageMenuSide" component={MenuSide} title="Side Menu" />
-              </Scene>
-
               <Scene key="pageWebBrowser" component={PageWebBrowser} title="Web Browser" hideNavBar={true} />
               <Scene key="pageActionButton" component={PageActionButton} title="Action Button" />
               <Scene key="pageTwitterEditor" component={PageTwitterEditor} title="Twitter Editor"  />
@@ -121,21 +116,18 @@ class RootContainer extends Component {
                      onRight={() => Actions.pageTestHome()}
                      rightTitle='HOME' />
               <Scene key="pageProductMain"
-                     tabs={true}
                      component={PageProductMain}
                      title="상점홈"
                      onRight={() => Actions.pageTestHome()}
                      rightTitle='Home' />
-              </Scene>
               <Scene key="pageProductList" component={PageProductList} title="상품리스트"
-                  onRight={() => Actions.pageTestHome()}
-                  rightTitle='상품설명'
-                />
-                <Scene  key="pageProductDetail" component={PageProductDetail} title="상품상세정보"
+                      onRight={() => Actions.pageTestHome()}
+                      rightTitle='상품설명'
+              />
+              <Scene  key="pageProductDetail" component={PageProductDetail} title="상품상세정보"
                        onRight={() => Actions.pageTestHome()}
                        rightTitle='리스트'
-                />
-
+              />
               <Scene key="pageGeoPosition" component={PageGeoPosition}
                      title="Geo Position"
                      provider={'google'}
@@ -164,19 +156,21 @@ class RootContainer extends Component {
             />
             <Scene key="statusModal" component={StatusModal} />
             <Scene key="pageError" component={PageError} />
-            </Scene>
+          </Scene>
         </Scene>
+      </Scene>
     );
 
     return (<Router
                 hideNavBar={false}
+                hideTabBar={true}
                 drawerImage={require('../images/icon/icon-nav.png')}
-                createReducer={reducerCreate}
                 getSceneStyle={getSceneStyle}
                 scenes={scenes}
                 onExitApp={()=>Alert.alert('앱을 종료하시겠습니까?')}
     />);
     //return (<MenuSide ref="menuDefault" scenes={scenes}/>);
+      //{/*createReducer={reducerCreate}*/}
   }
 }
 
