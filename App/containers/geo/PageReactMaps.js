@@ -26,7 +26,7 @@ const LATITUDE = 37.5321114;
 const LONGITUDE = 126.8465744;
 const LATITUDE_DELTA = 0.0922;  //  0.0922 -->  0.0522 숫자(0.02)가 작으면 좁은 영역, 즉 우리동네 자세히~보임
 const LONGITUDE_DELTA = 0.0421; //LATITUDE_DELTA * ASPECT_RATIO;
-let id = 0;
+let id = 1;
 
 function randomColor() {
     return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
@@ -77,10 +77,23 @@ class PageReactMaps extends React.Component {
               (position) => {
                   currentPostion = { latitude: position.coords.latitude, longitude: position.coords.longitude };
                   currentRegion = {  latitude: position.coords.latitude, longitude: position.coords.longitude , latitudeDelta: LATITUDE_DELTA,longitudeDelta: LONGITUDE_DELTA,  }
+                  // this.setState({
+                  //                   marker : this.state.markers.concat(currentPostion),
+                  //                   region : currentRegion,
+                  //               });
+
                   this.setState({
-                                    marker : this.state.markers.concat(currentPostion),
-                                    region : currentRegion,
-                                });
+                      markers: [
+                          ...this.state.markers,
+                          {
+                              coordinate: position.coords,
+                              key: id++,
+                              color: randomColor(),
+                          },
+                      ],
+                      region : currentRegion,
+                  });
+
                   console.log("getCurrentPosition:", position);
           },
           (error) => console.log("error:",error), //alert(JSON.stringify(error)),
@@ -90,7 +103,21 @@ class PageReactMaps extends React.Component {
         // 이동시 발생함.
         const watchPositionID = navigator.geolocation.watchPosition((position) => {
             currentPostion = { latitude: position.coords.latitude, longitude: position.coords.longitude };
-            this.setState({marker : this.state.markers.concat(currentPostion), watchID : watchPositionID});
+            //this.setState({marker : this.state.markers.concat(currentPostion), watchID : watchPositionID});
+            currentRegion = {  latitude: position.coords.latitude, longitude: position.coords.longitude , latitudeDelta: LATITUDE_DELTA,longitudeDelta: LONGITUDE_DELTA,  }
+
+            this.setState({
+                markers: [
+                    ...this.state.markers,
+                    {
+                        coordinate: position.coords,
+                        key: id++,
+                        color: randomColor(),
+                    },
+                ],
+              region : currentRegion,
+              watchID : watchPositionID,
+            });
             console.log("watchPosition:", this.watchID, currentPostion);
         });
 
@@ -116,6 +143,7 @@ class PageReactMaps extends React.Component {
 
     componentDidMount() {
         this.updataPostion();
+        //setTimeout(() => this.onMapPress(), 1000);
     };
 
     componentWillUnmount() {
@@ -137,7 +165,7 @@ class PageReactMaps extends React.Component {
                         coordinate={marker.coordinate}
                         pinColor={marker.color}
                         title={'현재위치'}
-                        description={'무엇을 팔까?'}
+                        description={'나는 뭐 살까?'}
                       />
                     ))}
                 </MapView>

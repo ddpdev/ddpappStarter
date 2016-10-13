@@ -63,10 +63,46 @@ export default class SideMenuContents extends Component {
             underlayColor="#2D2D30"
             onPress={() => {
                               Actions.refresh({key: 'navigationDrawer', open: false });
-                              setTimeout(() => Actions.pagePhotoLazySwiper(), 0);
+                              setTimeout(() => Actions.pagePhotoSwiper(), 0);
                             }
             }>
-            <Text style={[styles.menuLink, this.props.textColor]}>Photo</Text>
+            <Text style={[styles.menuLink, this.props.textColor]}>Photo Swiper</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.menuRow, this.props.rowStyle]}
+            underlayColor="#2D2D30"
+            onPress={() => {
+              Actions.pageTwitterEditor();
+              setTimeout(() =>  Actions.refresh({key: 'navigationDrawer', open: false }), 0);
+              //Actions.refresh({key: 'navigationDrawer', open: false });
+            }
+            }>
+            <Text style={[styles.menuLink, this.props.textColor]}>Editor</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.menuRow, this.props.rowStyle]}
+            underlayColor="#2D2D30"
+            onPress={() => {
+              Actions.pageTumblrMenu();
+              setTimeout(() =>  Actions.refresh({key: 'navigationDrawer', open: false }), 0);
+              //Actions.refresh({key: 'navigationDrawer', open: false });
+            }
+            }>
+            <Text style={[styles.menuLink, this.props.textColor]}>Tumblr</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.menuRow, this.props.rowStyle]}
+            underlayColor="#2D2D30"
+            onPress={() => {
+              Actions.pageThree();
+              setTimeout(() =>  Actions.refresh({key: 'navigationDrawer', open: false }), 0);
+              //Actions.refresh({key: 'navigationDrawer', open: false });
+            }
+            }>
+            <Text style={[styles.menuLink, this.props.textColor]}>웹(Web)</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -80,6 +116,7 @@ export default class SideMenuContents extends Component {
             }>
             <Text style={[styles.menuLink, styles.logoutLink, this.props.textColor]}>Action Button</Text>
           </TouchableOpacity>
+
         </View>
       </ScrollView>
     );

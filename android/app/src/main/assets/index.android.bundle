@@ -91120,16 +91120,16 @@ var _NavigationDrawer=require(896 /* ./sidemenu/NavigationDrawer */);var _Naviga
 
 var _TwitterEditor=require(898 /* ../components/TwitterEditor */);var _TwitterEditor2=babelHelpers.interopRequireDefault(_TwitterEditor);
 var _TumblrMenu=require(900 /* ../components/TumblrMenu */);var _TumblrMenu2=babelHelpers.interopRequireDefault(_TumblrMenu);
-var _ScrollTabView=require(909 /* ../components/ScrollTabView */);var _ScrollTabView2=babelHelpers.interopRequireDefault(_ScrollTabView);
-var _PhotoLazySwiper=require(919 /* ../components/photo/PhotoLazySwiper */);var _PhotoLazySwiper2=babelHelpers.interopRequireDefault(_PhotoLazySwiper);
-var _PhotoSwiper=require(923 /* ../components/photo/PhotoSwiper */);var _PhotoSwiper2=babelHelpers.interopRequireDefault(_PhotoSwiper);
-var _PhotoPinchZoom=require(932 /* ../components/photo/PhotoPinchZoom */);var _PhotoPinchZoom2=babelHelpers.interopRequireDefault(_PhotoPinchZoom);
-var _WebBrowser=require(935 /* ../components/browser/WebBrowser */);var _WebBrowser2=babelHelpers.interopRequireDefault(_WebBrowser);
+var _ScrollTabView=require(908 /* ../components/ScrollTabView */);var _ScrollTabView2=babelHelpers.interopRequireDefault(_ScrollTabView);
+var _PhotoLazySwiper=require(918 /* ../components/photo/PhotoLazySwiper */);var _PhotoLazySwiper2=babelHelpers.interopRequireDefault(_PhotoLazySwiper);
+var _PhotoSwiper=require(922 /* ../components/photo/PhotoSwiper */);var _PhotoSwiper2=babelHelpers.interopRequireDefault(_PhotoSwiper);
+var _PhotoPinchZoom=require(928 /* ../components/photo/PhotoPinchZoom */);var _PhotoPinchZoom2=babelHelpers.interopRequireDefault(_PhotoPinchZoom);
+var _WebBrowser=require(931 /* ../components/browser/WebBrowser */);var _WebBrowser2=babelHelpers.interopRequireDefault(_WebBrowser);
 
 var reducerCreate=function reducerCreate(params){
 var defaultReducer=new _reactNativeRouterFlux.Reducer(params);
 return function(state,action){
-console.log('ACTION:',action);
+console.log('ACTION:'+Date.now(),action);
 return defaultReducer(state,action);
 };
 };
@@ -91157,27 +91157,22 @@ props));
 _this.state={
 isLoggedIn:false};
 
-console.log("RootContainer App:",props,_this.state);return _this;
+console.log("RootContainer App:"+Date.now(),props,_this.state);return _this;
 }babelHelpers.createClass(RootContainer,[{key:'render',value:function render()
 
 {
-console.log("render:",this.props,this.state);
+
 
 var scenes=_reactNativeRouterFlux.Actions.create(
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'scene'},
-_react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'modal',component:_reactNativeRouterFlux.Modal},
-_react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'root',hideNavBar:false,hideTabBar:true},
+_react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'navigationDrawer',component:_NavigationDrawer2.default,open:false},
+_react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'root',hideNavBar:false,tabs:false},
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'pageTestHome',
 component:_PageTestHome2.default,
 title:'HOME',
 onRight:function onRight(){return _reactNativeRouterFlux.Actions.pageProductMain();},
 rightTitle:'\uC0C1\uD488',
 initial:true}),
-
-
-_react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'tabbar',component:_NavigationDrawer2.default,tabs:true},
-_react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'pageMenuSide',component:_MenuWide2.default,title:'Side Menu'})),
-
 
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'pageWebBrowser',component:_WebBrowser2.default,title:'Web Browser',hideNavBar:true}),
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'pageActionButton',component:_PageActionButton2.default,title:'Action Button'}),
@@ -91209,12 +91204,10 @@ _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'pageImagePicker
 onRight:function onRight(){return _reactNativeRouterFlux.Actions.pageTestHome();},
 rightTitle:'HOME'}),
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'pageProductMain',
-tabs:true,
 component:_PageProductMain2.default,
 title:'\uC0C1\uC810\uD648',
 onRight:function onRight(){return _reactNativeRouterFlux.Actions.pageTestHome();},
-rightTitle:'Home'})),
-
+rightTitle:'Home'}),
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'pageProductList',component:_PageProductList2.default,title:'\uC0C1\uD488\uB9AC\uC2A4\uD2B8',
 onRight:function onRight(){return _reactNativeRouterFlux.Actions.pageTestHome();},
 rightTitle:'\uC0C1\uD488\uC124\uBA85'}),
@@ -91222,7 +91215,6 @@ rightTitle:'\uC0C1\uD488\uC124\uBA85'}),
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'pageProductDetail',component:_PageProductDetail2.default,title:'\uC0C1\uD488\uC0C1\uC138\uC815\uBCF4',
 onRight:function onRight(){return _reactNativeRouterFlux.Actions.pageTestHome();},
 rightTitle:'\uB9AC\uC2A4\uD2B8'}),
-
 
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'pageGeoPosition',component:_PageGeoPosition2.default,
 title:'Geo Position',
@@ -91251,18 +91243,20 @@ onRight:function onRight(){return _reactNativeRouterFlux.Actions.pageTestHome();
 rightTitle:'HOME'}),
 
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'statusModal',component:_StatusModal2.default}),
-_react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'pageError',component:_PageError2.default}))));
+_react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'pageError',component:_PageError2.default})))));
+
 
 
 
 
 return _react2.default.createElement(_reactNativeRouterFlux.Router,{
 hideNavBar:false,
-drawerImage:require(947 /* ../images/icon/icon-nav.png */),
-createReducer:reducerCreate,
+hideTabBar:true,
+drawerImage:require(943 /* ../images/icon/icon-nav.png */),
 getSceneStyle:getSceneStyle,
 scenes:scenes,
 onExitApp:function onExitApp(){return _reactNative.Alert.alert('앱을 종료하시겠습니까?');}});
+
 
 
 }}]);return RootContainer;}(_react.Component);
@@ -105377,25 +105371,7 @@ var MOCKED_IMAGE_DATA=[
 
 
 var API_SERVER='http://app.ddpstyle.com';
-var API_LASTEST=API_SERVER+'/json/get/itemlist?page={page}';
-
-function getFormattedDate(createdTimestamp){
-var created=Date.parse(createdTimestamp);
-var elapsed=(Date.now()-created)/1000;
-
-if(elapsed<10)return'방금 전';
-if(elapsed<60)return elapsed%60+'초 전';
-if(elapsed<3600)return Math.round(elapsed/60)+'분 전';
-if(elapsed<86400)return Math.round(elapsed/3600)+'시간 전';
-if(elapsed<525600)return Math.round(elapsed/86400)+'일 전';
-
-var createdDate=new Date(created);
-
-console.log("getFormattedDate:",createdTimestamp,created,elapsed,createdDate);
-
-return createdDate.getFullYear()+'-'+(createdDate.getMonth()+1)+'-'+createdDate.getDate();
-}var
-
+var API_LASTEST=API_SERVER+'/json/get/itemlist?page={page}';var
 
 Product=function(_Component){babelHelpers.inherits(Product,_Component);
 
@@ -105420,6 +105396,7 @@ _this.handleEndReached=_this.handleEndReached.bind(_this);
 _this.handleScroll=_this.handleScroll.bind(_this);
 _this.renderFooter=_this.renderFooter.bind(_this);
 _this.renderHeader=_this.renderHeader.bind(_this);
+_this.getFormattedDate=_this.getFormattedDate.bind(_this);
 
 console.log("Product List:",_this.props,_this.state);return _this;
 }babelHelpers.createClass(Product,[{key:'componentDidMount',value:function componentDidMount()
@@ -105437,44 +105414,28 @@ catch(function(error){
 console.error(error);
 });
 
-}},{key:'loadPage_Prev',value:function loadPage_Prev(
+}},{key:'getFormattedDate',value:function getFormattedDate(
 
+createdTimestamp){
+var created=Date.parse(createdTimestamp);
+var elapsed=(Date.now()-created)/1000;
 
-page){var _this3=this;
-var url=page===undefined?API_LASTEST.replace('{page}',0):API_LASTEST.replace('{page}',page);
+if(elapsed<10)return'\uBC29\uAE08 \uC804';
+if(elapsed<60)return elapsed%60+' \uCD08 \uC804';
+if(elapsed<3600)return Math.round(elapsed/60)+' \uBD84 \uC804';
+if(elapsed<86400)return Math.round(elapsed/3600)+' \uC2DC\uAC04 \uC804';
+if(elapsed<525600)return Math.round(elapsed/86400)+' \uC77C \uC804';
 
-console.log("loadPage url:"+url);
+var createdDate=new Date(created);
 
+console.log("getFormattedDate:",createdTimestamp,created,elapsed,createdDate);
 
-
-console.log("prev itemList count:"+this.itemList.length);
-
-fetch(url).
-then(function(response){return response.json();}).
-then(function(responseData){
-
-_this3.itemList=_this3.itemList.concat(responseData.itemlist);
-
-
-
-
-
-
-_this3.setState({
-
-
-dataSource:_this3.state.dataSource.cloneWithRows(_this3.itemList),
-loaded:true,
-currentPage:page,
-loadingNextPage:false});
-
-console.log("item count:"+_this3.itemList.length);
-}).
-done(console.log("FETCH_DONE"));
+return''+(createdDate.getFullYear()+'-'+(createdDate.getMonth()+1)+'-'+createdDate.getDate());
 }},{key:'loadPage',value:function loadPage(
 
 
 page){var url,response,responseData;return regeneratorRuntime.async(function loadPage$(_context){while(1){switch(_context.prev=_context.next){case 0:
+
 url=page===undefined?API_LASTEST.replace('{page}',0):API_LASTEST.replace('{page}',page);
 
 console.log("loadPage url:"+url);
@@ -105568,8 +105529,7 @@ this.reloadItems();
 this._prevY=posY;
 }},{key:'reloadItems',value:function reloadItems()
 
-{var _this4=this;
-
+{var _this3=this;
 console.log("reloadItems:",this.state.reloading);
 
 if(this.state.reloading)return;
@@ -105577,13 +105537,12 @@ if(this.state.reloading)return;
 Promise.all([
 this.itemList=[],
 this.loadPage(0),
-new Promise(function(resolve){return _this4.setState({reloading:true},resolve);}),
+new Promise(function(resolve){return _this3.setState({reloading:true},resolve);}),
 new Promise(function(resolve){return setTimeout(function(){return resolve();},1500);})]).
-then(function(){return _this4.setState({reloading:false});});
+then(function(){return _this3.setState({reloading:false});});
 }},{key:'handleEndReached',value:function handleEndReached()
 
-{var _this5=this;
-
+{var _this4=this;
 console.log("handleEndReached:",this.state.loadingNextPage);
 
 if(this.state.loadingNextPage)return;
@@ -105594,10 +105553,10 @@ if(this.state.loadingNextPage)return;
 
 Promise.all([
 this.loadPage(this.state.currentPage+1),
-new Promise(function(resolve){return _this5.setState({loadingNextPage:true},resolve);}),
+new Promise(function(resolve){return _this4.setState({loadingNextPage:true},resolve);}),
 new Promise(function(resolve){return setTimeout(function(){return resolve();},1000);})]).
 
-then(function(){return _this5.setState({loadingNextPage:false});}).
+then(function(){return _this4.setState({loadingNextPage:false});}).
 catch(function(reason){
 console.log(reason);
 });
@@ -105634,20 +105593,14 @@ underlayColor:'#eee',style:{padding:2,backgroundColor:"#F8F8F8",borderBottomWidt
 onPress:gotoDetail},
 
 _react2.default.createElement(_reactNative.View,{style:styles.container},
-
-
-
-
-
 _react2.default.createElement(_reactNativeImageProgress2.default,{
 source:{uri:imageUri},
 indicator:Progress.Pie,
 style:styles.thumbnail}),
 
-
 _react2.default.createElement(_reactNative.View,{style:styles.rightContainer},
 _react2.default.createElement(_reactNative.Text,{style:styles.title},'[',image.item_id,'] ',itemInfo.uploadfilename),
-_react2.default.createElement(_reactNative.Text,{style:styles.text},getFormattedDate(image.last_date)),_react2.default.createElement(_reactNative.Text,{style:styles.date},'\uB4F1\uB85D\uC77C\uC2DC:',image.last_date),
+_react2.default.createElement(_reactNative.Text,{style:styles.text},this.getFormattedDate(image.last_date)),_react2.default.createElement(_reactNative.Text,{style:styles.date},'\uB4F1\uB85D\uC77C\uC2DC:',image.last_date),
 _react2.default.createElement(_reactNative.Text,{style:styles.date},'size:',itemInfo.filesize,'byte')))));
 
 
@@ -107598,7 +107551,7 @@ flexDirection:'column'},
 top:{
 flex:0.7,
 flexDirection:'row',
-marginTop:60,
+marginTop:5,
 height:_Dimensions2.default.get('window').height/2+100,
 width:_Dimensions2.default.get('window').width},
 
@@ -130649,7 +130602,7 @@ var LATITUDE=37.5321114;
 var LONGITUDE=126.8465744;
 var LATITUDE_DELTA=0.0922;
 var LONGITUDE_DELTA=0.0421;
-var id=0;
+var id=1;
 
 function randomColor(){
 return'#'+Math.floor(Math.random()*16777215).toString(16);
@@ -130700,9 +130653,22 @@ navigator.geolocation.getCurrentPosition(
 function(position){
 currentPostion={latitude:position.coords.latitude,longitude:position.coords.longitude};
 currentRegion={latitude:position.coords.latitude,longitude:position.coords.longitude,latitudeDelta:LATITUDE_DELTA,longitudeDelta:LONGITUDE_DELTA};
+
+
+
+
+
 _this2.setState({
-marker:_this2.state.markers.concat(currentPostion),
+markers:[].concat(babelHelpers.toConsumableArray(
+_this2.state.markers),[
+{
+coordinate:position.coords,
+key:id++,
+color:randomColor()}]),
+
+
 region:currentRegion});
+
 
 console.log("getCurrentPosition:",position);
 },
@@ -130713,7 +130679,21 @@ geo_options);
 
 var watchPositionID=navigator.geolocation.watchPosition(function(position){
 currentPostion={latitude:position.coords.latitude,longitude:position.coords.longitude};
-_this2.setState({marker:_this2.state.markers.concat(currentPostion),watchID:watchPositionID});
+
+currentRegion={latitude:position.coords.latitude,longitude:position.coords.longitude,latitudeDelta:LATITUDE_DELTA,longitudeDelta:LONGITUDE_DELTA};
+
+_this2.setState({
+markers:[].concat(babelHelpers.toConsumableArray(
+_this2.state.markers),[
+{
+coordinate:position.coords,
+key:id++,
+color:randomColor()}]),
+
+
+region:currentRegion,
+watchID:watchPositionID});
+
 console.log("watchPosition:",_this2.watchID,currentPostion);
 });
 
@@ -130739,6 +130719,7 @@ color:randomColor()}])});
 
 {
 this.updataPostion();
+
 }},{key:'componentWillUnmount',value:function componentWillUnmount()
 
 {
@@ -130760,7 +130741,7 @@ key:marker.key,
 coordinate:marker.coordinate,
 pinColor:marker.color,
 title:'현재위치',
-description:'무엇을 팔까?'}));})),
+description:'나는 뭐 살까?'}));})),
 
 
 
@@ -131238,30 +131219,57 @@ var _react=require(16 /* react */);var _react2=babelHelpers.interopRequireDefaul
 var _reactNativeDrawer=require(755 /* react-native-drawer */);var _reactNativeDrawer2=babelHelpers.interopRequireDefault(_reactNativeDrawer);
 var _reactNativeRouterFlux=require(678 /* react-native-router-flux */);
 var _SideMenuContents=require(897 /* ./SideMenuContents */);var _SideMenuContents2=babelHelpers.interopRequireDefault(_SideMenuContents);
+var _MenuStyle=require(893 /* ./MenuStyle */);var _MenuStyle2=babelHelpers.interopRequireDefault(_MenuStyle);
 
 
 var propTypes={
 navigationState:_react.PropTypes.object};var
 
 
-NavigationDrawer=function(_React$Component){babelHelpers.inherits(NavigationDrawer,_React$Component);function NavigationDrawer(){babelHelpers.classCallCheck(this,NavigationDrawer);return babelHelpers.possibleConstructorReturn(this,(NavigationDrawer.__proto__||Object.getPrototypeOf(NavigationDrawer)).apply(this,arguments));}babelHelpers.createClass(NavigationDrawer,[{key:'render',value:function render()
+NavigationDrawer=function(_React$Component){babelHelpers.inherits(NavigationDrawer,_React$Component);
+
+function NavigationDrawer(props){babelHelpers.classCallCheck(this,NavigationDrawer);var _this=babelHelpers.possibleConstructorReturn(this,(NavigationDrawer.__proto__||Object.getPrototypeOf(NavigationDrawer)).call(this,
+props));
+console.log('NavigationDrawer:',props,props.children);return _this;
+}babelHelpers.createClass(NavigationDrawer,[{key:'render',value:function render()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
 var state=this.props.navigationState;
 var children=state.children;
 
-console.log("NavigationDrawer:",state,children);
+console.log("children:",children,state);
+console.log("state.open:",state.open,state.key);
+
+
+
+
 
 return(
 _react2.default.createElement(_reactNativeDrawer2.default,{
 ref:'navigation',
-type:'displace',
+open:state.open,
 onOpen:function onOpen(){return _reactNativeRouterFlux.Actions.refresh({key:state.key,open:true});},
 onClose:function onClose(){return _reactNativeRouterFlux.Actions.refresh({key:state.key,open:false});},
-content:_react2.default.createElement(_SideMenuContents2.default,{
+type:'displace',
+content:_react2.default.createElement(_SideMenuContents2.default,babelHelpers.extends({
 textColor:{color:'#fff',backgroundColor:'transparent'},
-rowStyle:styles.menuRowWide,
-iconStyle:styles.iconWide,
-menuBody:styles.menuColorWide}),
+rowStyle:_MenuStyle2.default.menuRowWide,
+iconStyle:_MenuStyle2.default.iconWide,
+menuBody:_MenuStyle2.default.menuColorWide},
+this.props)),
 
 tapToClose:true,
 openDrawerOffset:0.2,
@@ -131288,51 +131296,117 @@ var _reactNative=require(12 /* react-native */);
 var _MenuStyle=require(893 /* ./MenuStyle */);var _MenuStyle2=babelHelpers.interopRequireDefault(_MenuStyle);
 var _reactNativeRouterFlux=require(678 /* react-native-router-flux */);var
 
-SideMenuContents=function(_Component){babelHelpers.inherits(SideMenuContents,_Component);function SideMenuContents(){babelHelpers.classCallCheck(this,SideMenuContents);return babelHelpers.possibleConstructorReturn(this,(SideMenuContents.__proto__||Object.getPrototypeOf(SideMenuContents)).apply(this,arguments));}babelHelpers.createClass(SideMenuContents,[{key:"render",value:function render()
-{
+SideMenuContents=function(_Component){babelHelpers.inherits(SideMenuContents,_Component);
+function SideMenuContents(props){babelHelpers.classCallCheck(this,SideMenuContents);var _this=babelHelpers.possibleConstructorReturn(this,(SideMenuContents.__proto__||Object.getPrototypeOf(SideMenuContents)).call(this,
+props));
+console.log("SideMenuContents:",props);return _this;
+}babelHelpers.createClass(SideMenuContents,[{key:"render",value:function render()
+
+{var _this2=this;
 return(
 _react2.default.createElement(_reactNative.ScrollView,null,
 _react2.default.createElement(_reactNative.View,{style:[_MenuStyle2.default.sideMenu,this.props.menuBody]},
 _react2.default.createElement(_reactNative.View,{style:_MenuStyle2.default.profile},
 _react2.default.createElement(_reactNative.Image,{style:_MenuStyle2.default.avatar,
 source:{uri:'https://freeiconshop.com/files/edd/person-flat.png'}}),
-_react2.default.createElement(_reactNative.Text,{style:[_MenuStyle2.default.fullname,this.props.textColor]},"Best User"),
+_react2.default.createElement(_reactNative.Text,{style:[_MenuStyle2.default.fullname,this.props.textColor]},"\uC77C\uBC18\uC0AC\uC6A9\uC790"),
 _react2.default.createElement(_reactNative.Text,{style:[_MenuStyle2.default.email,this.props.textColor]},"ddpdev@ddpstyle.com")),
 
 
 _react2.default.createElement(_reactNative.TouchableOpacity,{
 style:[_MenuStyle2.default.menuRow,this.props.rowStyle],
 underlayColor:"#2D2D30",
-onPress:_reactNativeRouterFlux.Actions.pageCameraRollPickerUploader},
+onPress:function onPress(){
+_reactNativeRouterFlux.Actions.refresh({key:_this2.props.navigationState.key,open:false});
+setTimeout(function(){return _reactNativeRouterFlux.Actions.pageCameraRollPickerUploader();},0);
+}},
+
 _react2.default.createElement(_reactNative.Text,{style:[_MenuStyle2.default.menuLink,this.props.textColor]},"Uploader")),
 
 
 _react2.default.createElement(_reactNative.TouchableOpacity,{
 style:[_MenuStyle2.default.menuRow,this.props.rowStyle],
 underlayColor:"#2D2D30",
-onPress:_reactNativeRouterFlux.Actions.pageReactMaps},
+onPress:function onPress(){
+
+_reactNativeRouterFlux.Actions.refresh({key:'navigationDrawer',open:false});
+setTimeout(function(){return _reactNativeRouterFlux.Actions.pageReactMaps();},0);
+}},
+
 _react2.default.createElement(_reactNative.Text,{style:[_MenuStyle2.default.menuLink,this.props.textColor]},"Map")),
 
 
 _react2.default.createElement(_reactNative.TouchableOpacity,{
 style:[_MenuStyle2.default.menuRow,this.props.rowStyle],
 underlayColor:"#2D2D30",
-onPress:_reactNativeRouterFlux.Actions.pageProductMain},
+onPress:function onPress(){
+
+_reactNativeRouterFlux.Actions.pageProductMain();
+setTimeout(function(){return _reactNativeRouterFlux.Actions.refresh({key:'navigationDrawer',open:false});},0);
+
+}},
+
 _react2.default.createElement(_reactNative.Text,{style:[_MenuStyle2.default.menuLink,this.props.textColor]},"Product List")),
 
 
 _react2.default.createElement(_reactNative.TouchableOpacity,{
 style:[_MenuStyle2.default.menuRow,this.props.rowStyle],
 underlayColor:"#2D2D30",
-onPress:_reactNativeRouterFlux.Actions.pageThree},
-_react2.default.createElement(_reactNative.Text,{style:[_MenuStyle2.default.menuLink,this.props.textColor]},"WebView")),
+onPress:function onPress(){
+_reactNativeRouterFlux.Actions.refresh({key:'navigationDrawer',open:false});
+setTimeout(function(){return _reactNativeRouterFlux.Actions.pagePhotoSwiper();},0);
+}},
+
+_react2.default.createElement(_reactNative.Text,{style:[_MenuStyle2.default.menuLink,this.props.textColor]},"Photo Swiper")),
+
+
+_react2.default.createElement(_reactNative.TouchableOpacity,{
+style:[_MenuStyle2.default.menuRow,this.props.rowStyle],
+underlayColor:"#2D2D30",
+onPress:function onPress(){
+_reactNativeRouterFlux.Actions.pageTwitterEditor();
+setTimeout(function(){return _reactNativeRouterFlux.Actions.refresh({key:'navigationDrawer',open:false});},0);
+
+}},
+
+_react2.default.createElement(_reactNative.Text,{style:[_MenuStyle2.default.menuLink,this.props.textColor]},"Editor")),
+
+
+_react2.default.createElement(_reactNative.TouchableOpacity,{
+style:[_MenuStyle2.default.menuRow,this.props.rowStyle],
+underlayColor:"#2D2D30",
+onPress:function onPress(){
+_reactNativeRouterFlux.Actions.pageTumblrMenu();
+setTimeout(function(){return _reactNativeRouterFlux.Actions.refresh({key:'navigationDrawer',open:false});},0);
+
+}},
+
+_react2.default.createElement(_reactNative.Text,{style:[_MenuStyle2.default.menuLink,this.props.textColor]},"Tumblr")),
+
+
+_react2.default.createElement(_reactNative.TouchableOpacity,{
+style:[_MenuStyle2.default.menuRow,this.props.rowStyle],
+underlayColor:"#2D2D30",
+onPress:function onPress(){
+_reactNativeRouterFlux.Actions.pageThree();
+setTimeout(function(){return _reactNativeRouterFlux.Actions.refresh({key:'navigationDrawer',open:false});},0);
+
+}},
+
+_react2.default.createElement(_reactNative.Text,{style:[_MenuStyle2.default.menuLink,this.props.textColor]},"\uC6F9(Web)")),
 
 
 _react2.default.createElement(_reactNative.TouchableOpacity,{
 style:[_MenuStyle2.default.menuRow,_MenuStyle2.default.menuSignOut,this.props.rowStyle],
 underlayColor:"#2D2D30",
-onPress:_reactNativeRouterFlux.Actions.pageActionButton},
+onPress:function onPress(){
+_reactNativeRouterFlux.Actions.pageActionButton();
+setTimeout(function(){return _reactNativeRouterFlux.Actions.refresh({key:'navigationDrawer',open:false});},0);
+
+}},
+
 _react2.default.createElement(_reactNative.Text,{style:[_MenuStyle2.default.menuLink,_MenuStyle2.default.logoutLink,this.props.textColor]},"Action Button")))));
+
 
 
 
@@ -131572,8 +131646,10 @@ __d(900 /* ddpappstarter/App/components/TumblrMenu.js */, function(global, requi
 
 var _react=require(16 /* react */);var _react2=babelHelpers.interopRequireDefault(_react);
 var _reactNative=require(12 /* react-native */);
-var _utils=require(753 /* ../util/utils */);var _utils2=babelHelpers.interopRequireDefault(_utils);var
+var _utils=require(753 /* ../util/utils */);var _utils2=babelHelpers.interopRequireDefault(_utils);
 
+
+var _isMounted=false;var
 
 TumblerMenu=function(_Component){babelHelpers.inherits(TumblerMenu,_Component);
 function TumblerMenu(props){babelHelpers.classCallCheck(this,TumblerMenu);var _this=babelHelpers.possibleConstructorReturn(this,(TumblerMenu.__proto__||Object.getPrototypeOf(TumblerMenu)).call(this,
@@ -131611,9 +131687,11 @@ easing:_reactNative.Easing.elastic(1)}).
 start();
 
 setTimeout(function(){
+if(_this2._isMounted){
 _this2.setState({
 show:false});
 
+}
 },500);
 }},{key:'componentDidMount',value:function componentDidMount()
 
@@ -131623,9 +131701,12 @@ _reactNative.StatusBar.setBarStyle(1);
 }else{
 _reactNative.StatusBar.translucent=true;
 }
+this._isMounted=true;
+}},{key:'componentWillUnmount',value:function componentWillUnmount()
 
+{
+this._isMounted=false;
 }},{key:'render',value:function render()
-
 {var _this3=this;
 return(
 _react2.default.createElement(_reactNative.View,{style:{backgroundColor:"#37465c"}},
@@ -131633,29 +131714,29 @@ _react2.default.createElement(_reactNative.TouchableWithoutFeedback,{style:style
 _react2.default.createElement(_reactNative.Image,{source:{uri:'https://ddpimage01.s3.ap-northeast-2.amazonaws.com/image/SJs8Bw6h_img.jpg'},style:styles.img})),
 
 this.state.show?
-_react2.default.createElement(_reactNative.Image,{source:require(902 /* ../images/app/tumblrblur.png */),style:styles.menu},
+_react2.default.createElement(_reactNative.Image,{source:require(901 /* ../images/app/tumblrblur.png */),style:styles.menu},
 _react2.default.createElement(_reactNative.Animated.View,{style:[styles.menuItem1,{left:this.state.shift}]},
-_react2.default.createElement(_reactNative.Image,{style:styles.menuImg,source:require(903 /* ../images/app/tumblr-text.png */)}),
+_react2.default.createElement(_reactNative.Image,{style:styles.menuImg,source:require(902 /* ../images/app/tumblr-text.png */)}),
 _react2.default.createElement(_reactNative.Text,{style:styles.menuText},'Text')),
 
 _react2.default.createElement(_reactNative.Animated.View,{style:[styles.menuItem2,{right:this.state.shift}]},
-_react2.default.createElement(_reactNative.Image,{style:styles.menuImg,source:require(904 /* ../images/app/tumblr-photo.png */)}),
+_react2.default.createElement(_reactNative.Image,{style:styles.menuImg,source:require(903 /* ../images/app/tumblr-photo.png */)}),
 _react2.default.createElement(_reactNative.Text,{style:styles.menuText},'Photo')),
 
 _react2.default.createElement(_reactNative.Animated.View,{style:[styles.menuItem3,{left:this.state.shift}]},
-_react2.default.createElement(_reactNative.Image,{style:styles.menuImg,source:require(905 /* ../images/app/tumblr-quote.png */)}),
+_react2.default.createElement(_reactNative.Image,{style:styles.menuImg,source:require(904 /* ../images/app/tumblr-quote.png */)}),
 _react2.default.createElement(_reactNative.Text,{style:styles.menuText},'Quote')),
 
 _react2.default.createElement(_reactNative.Animated.View,{style:[styles.menuItem4,{right:this.state.shift}]},
-_react2.default.createElement(_reactNative.Image,{style:styles.menuImg,source:require(906 /* ../images/app/tumblr-link.png */)}),
+_react2.default.createElement(_reactNative.Image,{style:styles.menuImg,source:require(905 /* ../images/app/tumblr-link.png */)}),
 _react2.default.createElement(_reactNative.Text,{style:styles.menuText},'Link')),
 
 _react2.default.createElement(_reactNative.Animated.View,{style:[styles.menuItem5,{left:this.state.shift}]},
-_react2.default.createElement(_reactNative.Image,{style:styles.menuImg,source:require(907 /* ../images/app/tumblr-chat.png */)}),
+_react2.default.createElement(_reactNative.Image,{style:styles.menuImg,source:require(906 /* ../images/app/tumblr-chat.png */)}),
 _react2.default.createElement(_reactNative.Text,{style:styles.menuText},'Chat')),
 
 _react2.default.createElement(_reactNative.Animated.View,{style:[styles.menuItem6,{right:this.state.shift}]},
-_react2.default.createElement(_reactNative.Image,{style:styles.menuImg,source:require(908 /* ../images/app/tumblr-audio.png */)}),
+_react2.default.createElement(_reactNative.Image,{style:styles.menuImg,source:require(907 /* ../images/app/tumblr-audio.png */)}),
 _react2.default.createElement(_reactNative.Text,{style:styles.menuText},'Audio')),
 
 _react2.default.createElement(_reactNative.TouchableHighlight,{underlayColor:'rgba(0,0,0,0)',activeOpacity:0,style:styles.dismissBtn,onPress:function onPress(){return _this3._popMenu();}},
@@ -131753,21 +131834,21 @@ flexDirection:'row',
 marginVertical:20,
 backgroundColor:'transparent'}});
 }, "ddpappstarter/App/components/TumblrMenu.js");
-__d(902 /* ddpappstarter/App/images/app/tumblrblur.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/app","width":698,"height":1198,"scales":[1],"hash":"dad63758f045459c623e05ead167ac6c","name":"tumblrblur","type":"png"});
+__d(901 /* ddpappstarter/App/images/app/tumblrblur.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/app","width":698,"height":1198,"scales":[1],"hash":"dad63758f045459c623e05ead167ac6c","name":"tumblrblur","type":"png"});
 }, "ddpappstarter/App/images/app/tumblrblur.png");
-__d(903 /* ddpappstarter/App/images/app/tumblr-text.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/app","width":200,"height":200,"scales":[1],"hash":"30f1efa38461cca5f79490df7e9a239d","name":"tumblr-text","type":"png"});
+__d(902 /* ddpappstarter/App/images/app/tumblr-text.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/app","width":200,"height":200,"scales":[1],"hash":"30f1efa38461cca5f79490df7e9a239d","name":"tumblr-text","type":"png"});
 }, "ddpappstarter/App/images/app/tumblr-text.png");
-__d(904 /* ddpappstarter/App/images/app/tumblr-photo.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/app","width":200,"height":200,"scales":[1],"hash":"1d75f914e958427d5028d2bdb9adc0a4","name":"tumblr-photo","type":"png"});
+__d(903 /* ddpappstarter/App/images/app/tumblr-photo.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/app","width":200,"height":200,"scales":[1],"hash":"1d75f914e958427d5028d2bdb9adc0a4","name":"tumblr-photo","type":"png"});
 }, "ddpappstarter/App/images/app/tumblr-photo.png");
-__d(905 /* ddpappstarter/App/images/app/tumblr-quote.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/app","width":200,"height":200,"scales":[1],"hash":"64abdf5456a4f5ebb786864ae0514ee3","name":"tumblr-quote","type":"png"});
+__d(904 /* ddpappstarter/App/images/app/tumblr-quote.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/app","width":200,"height":200,"scales":[1],"hash":"64abdf5456a4f5ebb786864ae0514ee3","name":"tumblr-quote","type":"png"});
 }, "ddpappstarter/App/images/app/tumblr-quote.png");
-__d(906 /* ddpappstarter/App/images/app/tumblr-link.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/app","width":200,"height":200,"scales":[1],"hash":"dea6ff718acd6b0f00cef85c2def7e64","name":"tumblr-link","type":"png"});
+__d(905 /* ddpappstarter/App/images/app/tumblr-link.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/app","width":200,"height":200,"scales":[1],"hash":"dea6ff718acd6b0f00cef85c2def7e64","name":"tumblr-link","type":"png"});
 }, "ddpappstarter/App/images/app/tumblr-link.png");
-__d(907 /* ddpappstarter/App/images/app/tumblr-chat.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/app","width":200,"height":200,"scales":[1],"hash":"eb3ae9d956e2497b480efd1efcc355bf","name":"tumblr-chat","type":"png"});
+__d(906 /* ddpappstarter/App/images/app/tumblr-chat.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/app","width":200,"height":200,"scales":[1],"hash":"eb3ae9d956e2497b480efd1efcc355bf","name":"tumblr-chat","type":"png"});
 }, "ddpappstarter/App/images/app/tumblr-chat.png");
-__d(908 /* ddpappstarter/App/images/app/tumblr-audio.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/app","width":200,"height":200,"scales":[1],"hash":"29335a4bb56d31aa77dd623e38491a50","name":"tumblr-audio","type":"png"});
+__d(907 /* ddpappstarter/App/images/app/tumblr-audio.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/app","width":200,"height":200,"scales":[1],"hash":"29335a4bb56d31aa77dd623e38491a50","name":"tumblr-audio","type":"png"});
 }, "ddpappstarter/App/images/app/tumblr-audio.png");
-__d(909 /* ddpappstarter/App/components/ScrollTabView.js */, function(global, require, module, exports) {
+__d(908 /* ddpappstarter/App/components/ScrollTabView.js */, function(global, require, module, exports) {
 
 
 
@@ -131779,13 +131860,13 @@ var _react=require(16 /* react */);var _react2=babelHelpers.interopRequireDefaul
 var _reactNative=require(12 /* react-native */);
 var _utils=require(753 /* ../util/utils */);var _utils2=babelHelpers.interopRequireDefault(_utils);
 var _Ionicons=require(764 /* react-native-vector-icons/Ionicons */);var _Ionicons2=babelHelpers.interopRequireDefault(_Ionicons);
-var _reactNativeScrollableTabView=require(910 /* react-native-scrollable-tab-view */);var _reactNativeScrollableTabView2=babelHelpers.interopRequireDefault(_reactNativeScrollableTabView);var
+var _reactNativeScrollableTabView=require(909 /* react-native-scrollable-tab-view */);var _reactNativeScrollableTabView2=babelHelpers.interopRequireDefault(_reactNativeScrollableTabView);var
 
 HomePage=function(_Component){babelHelpers.inherits(HomePage,_Component);function HomePage(){babelHelpers.classCallCheck(this,HomePage);return babelHelpers.possibleConstructorReturn(this,(HomePage.__proto__||Object.getPrototypeOf(HomePage)).apply(this,arguments));}babelHelpers.createClass(HomePage,[{key:'render',value:function render()
 {
 return(
 _react2.default.createElement(_reactNative.ScrollView,null,
-_react2.default.createElement(_reactNative.Image,{style:styles.img,source:require(915 /* ./../images/app/yt1.png */)})));
+_react2.default.createElement(_reactNative.Image,{style:styles.img,source:require(914 /* ./../images/app/yt1.png */)})));
 
 
 }}]);return HomePage;}(_react.Component);var
@@ -131795,7 +131876,7 @@ PopularPage=function(_Component2){babelHelpers.inherits(PopularPage,_Component2)
 {
 return(
 _react2.default.createElement(_reactNative.ScrollView,null,
-_react2.default.createElement(_reactNative.Image,{style:styles.img,source:require(916 /* ./../images/app/yt2.png */)})));
+_react2.default.createElement(_reactNative.Image,{style:styles.img,source:require(915 /* ./../images/app/yt2.png */)})));
 
 
 }}]);return PopularPage;}(_react.Component);var
@@ -131805,7 +131886,7 @@ SubscribePage=function(_Component3){babelHelpers.inherits(SubscribePage,_Compone
 {
 return(
 _react2.default.createElement(_reactNative.ScrollView,null,
-_react2.default.createElement(_reactNative.Image,{style:styles.img,source:require(917 /* ./../images/app/yt3.png */)})));
+_react2.default.createElement(_reactNative.Image,{style:styles.img,source:require(916 /* ./../images/app/yt3.png */)})));
 
 
 }}]);return SubscribePage;}(_react.Component);var
@@ -131815,7 +131896,7 @@ MinePage=function(_Component4){babelHelpers.inherits(MinePage,_Component4);funct
 {
 return(
 _react2.default.createElement(_reactNative.ScrollView,null,
-_react2.default.createElement(_reactNative.Image,{style:styles.img,source:require(918 /* ./../images/app/yt4.png */)})));
+_react2.default.createElement(_reactNative.Image,{style:styles.img,source:require(917 /* ./../images/app/yt4.png */)})));
 
 
 }}]);return MinePage;}(_react.Component);
@@ -132010,7 +132091,7 @@ flexDirection:"row",
 justifyContent:"space-between",
 width:60}});
 }, "ddpappstarter/App/components/ScrollTabView.js");
-__d(910 /* react-native-scrollable-tab-view/index.js */, function(global, require, module, exports) {var React=require(16 /* react */);var
+__d(909 /* react-native-scrollable-tab-view/index.js */, function(global, require, module, exports) {var React=require(16 /* react */);var
 
 PropTypes=
 
@@ -132028,9 +132109,9 @@ Dimensions=
 ReactNative.Dimensions;var View=ReactNative.View;var Animated=ReactNative.Animated;var ScrollView=ReactNative.ScrollView;var Platform=ReactNative.Platform;var StyleSheet=ReactNative.StyleSheet;var ViewPagerAndroid=ReactNative.ViewPagerAndroid;var InteractionManager=ReactNative.InteractionManager;
 var TimerMixin=require(401 /* react-timer-mixin */);
 
-var SceneComponent=require(911 /* ./SceneComponent */);
-var DefaultTabBar=require(912 /* ./DefaultTabBar */);
-var ScrollableTabBar=require(914 /* ./ScrollableTabBar */);
+var SceneComponent=require(910 /* ./SceneComponent */);
+var DefaultTabBar=require(911 /* ./DefaultTabBar */);
+var ScrollableTabBar=require(913 /* ./ScrollableTabBar */);
 
 
 var ScrollableTabView=React.createClass({displayName:'ScrollableTabView',
@@ -132311,7 +132392,7 @@ flex:1},
 scrollableContentAndroid:{
 flex:1}});
 }, "react-native-scrollable-tab-view/index.js");
-__d(911 /* react-native-scrollable-tab-view/SceneComponent.js */, function(global, require, module, exports) {var React=require(16 /* react */);
+__d(910 /* react-native-scrollable-tab-view/SceneComponent.js */, function(global, require, module, exports) {var React=require(16 /* react */);
 var ReactNative=require(12 /* react-native */);var
 Component=React.Component;var
 View=ReactNative.View;var StyleSheet=ReactNative.StyleSheet;
@@ -132329,7 +132410,7 @@ props.children));
 
 module.exports=SceneComponent;
 }, "react-native-scrollable-tab-view/SceneComponent.js");
-__d(912 /* react-native-scrollable-tab-view/DefaultTabBar.js */, function(global, require, module, exports) {var React=require(16 /* react */);
+__d(911 /* react-native-scrollable-tab-view/DefaultTabBar.js */, function(global, require, module, exports) {var React=require(16 /* react */);
 var ReactNative=require(12 /* react-native */);var
 
 StyleSheet=
@@ -132337,7 +132418,7 @@ StyleSheet=
 
 
 ReactNative.StyleSheet;var Text=ReactNative.Text;var View=ReactNative.View;var Animated=ReactNative.Animated;
-var Button=require(913 /* ./Button */);
+var Button=require(912 /* ./Button */);
 
 var DefaultTabBar=React.createClass({displayName:'DefaultTabBar',
 propTypes:{
@@ -132433,7 +132514,7 @@ borderColor:'#ccc'}});
 
 module.exports=DefaultTabBar;
 }, "react-native-scrollable-tab-view/DefaultTabBar.js");
-__d(913 /* react-native-scrollable-tab-view/Button.android.js */, function(global, require, module, exports) {var React=require(16 /* react */);
+__d(912 /* react-native-scrollable-tab-view/Button.android.js */, function(global, require, module, exports) {var React=require(16 /* react */);
 var ReactNative=require(12 /* react-native */);var
 
 TouchableNativeFeedback=
@@ -132452,7 +132533,7 @@ props.children);
 
 module.exports=Button;
 }, "react-native-scrollable-tab-view/Button.android.js");
-__d(914 /* react-native-scrollable-tab-view/ScrollableTabBar.js */, function(global, require, module, exports) {var React=require(16 /* react */);
+__d(913 /* react-native-scrollable-tab-view/ScrollableTabBar.js */, function(global, require, module, exports) {var React=require(16 /* react */);
 var ReactNative=require(12 /* react-native */);var
 
 View=
@@ -132463,7 +132544,7 @@ View=
 
 
 ReactNative.View;var Animated=ReactNative.Animated;var StyleSheet=ReactNative.StyleSheet;var ScrollView=ReactNative.ScrollView;var Text=ReactNative.Text;var Platform=ReactNative.Platform;var Dimensions=ReactNative.Dimensions;
-var Button=require(913 /* ./Button */);
+var Button=require(912 /* ./Button */);
 
 var WINDOW_WIDTH=Dimensions.get('window').width;
 
@@ -132682,15 +132763,15 @@ tabs:{
 flexDirection:'row',
 justifyContent:'space-around'}});
 }, "react-native-scrollable-tab-view/ScrollableTabBar.js");
-__d(915 /* ddpappstarter/App/images/app/yt1.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/app","width":696,"height":1024,"scales":[1],"hash":"5b10267fe4665a194ae3088b8ba1c9bc","name":"yt1","type":"png"});
+__d(914 /* ddpappstarter/App/images/app/yt1.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/app","width":696,"height":1024,"scales":[1],"hash":"5b10267fe4665a194ae3088b8ba1c9bc","name":"yt1","type":"png"});
 }, "ddpappstarter/App/images/app/yt1.png");
-__d(916 /* ddpappstarter/App/images/app/yt2.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/app","width":700,"height":1030,"scales":[1],"hash":"29e809ff7770669960113e2043eccb34","name":"yt2","type":"png"});
+__d(915 /* ddpappstarter/App/images/app/yt2.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/app","width":700,"height":1030,"scales":[1],"hash":"29e809ff7770669960113e2043eccb34","name":"yt2","type":"png"});
 }, "ddpappstarter/App/images/app/yt2.png");
-__d(917 /* ddpappstarter/App/images/app/yt3.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/app","width":696,"height":1022,"scales":[1],"hash":"d6ab795015e52a7f174d62c9ff3362c6","name":"yt3","type":"png"});
+__d(916 /* ddpappstarter/App/images/app/yt3.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/app","width":696,"height":1022,"scales":[1],"hash":"d6ab795015e52a7f174d62c9ff3362c6","name":"yt3","type":"png"});
 }, "ddpappstarter/App/images/app/yt3.png");
-__d(918 /* ddpappstarter/App/images/app/yt4.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/app","width":700,"height":1026,"scales":[1],"hash":"054ae7adbd9f8d482c7eb42a05ddb415","name":"yt4","type":"png"});
+__d(917 /* ddpappstarter/App/images/app/yt4.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/app","width":700,"height":1026,"scales":[1],"hash":"054ae7adbd9f8d482c7eb42a05ddb415","name":"yt4","type":"png"});
 }, "ddpappstarter/App/images/app/yt4.png");
-__d(919 /* ddpappstarter/App/components/photo/PhotoLazySwiper.js */, function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
+__d(918 /* ddpappstarter/App/components/photo/PhotoLazySwiper.js */, function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
 
 
 var _react=require(16 /* react */);var _react2=babelHelpers.interopRequireDefault(_react);
@@ -132700,10 +132781,10 @@ var _reactNative=require(12 /* react-native */);
 
 
 
-var _reactNativeSwiper=require(920 /* react-native-swiper */);var _reactNativeSwiper2=babelHelpers.interopRequireDefault(_reactNativeSwiper);var _Dimensions$get=
+var _reactNativeSwiper=require(919 /* react-native-swiper */);var _reactNativeSwiper2=babelHelpers.interopRequireDefault(_reactNativeSwiper);var _Dimensions$get=
 
 _reactNative.Dimensions.get('window');var width=_Dimensions$get.width;
-var loading=require(922 /* ./../../images/sample/loading.gif */);
+var loading=require(921 /* ./../../images/sample/loading.gif */);
 
 var styles={
 wrapper:{},
@@ -132791,10 +132872,10 @@ _react2.default.createElement(_reactNative.Text,null,'Current Loaded Images: ',t
 
 }}]);return PhotoLazySwiper;}(_react.Component);exports.default=PhotoLazySwiper;
 }, "ddpappstarter/App/components/photo/PhotoLazySwiper.js");
-__d(920 /* react-native-swiper/index.js */, function(global, require, module, exports) {var _src=require(921 /* ./src/ */);var _src2=babelHelpers.interopRequireDefault(_src);
+__d(919 /* react-native-swiper/index.js */, function(global, require, module, exports) {var _src=require(920 /* ./src/ */);var _src2=babelHelpers.interopRequireDefault(_src);
 module.exports=_src2.default;
 }, "react-native-swiper/index.js");
-__d(921 /* react-native-swiper/src/index.js */, function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
+__d(920 /* react-native-swiper/src/index.js */, function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
 
 
 
@@ -133389,9 +133470,9 @@ this.props.showsButtons&&this.renderButtons()));
 
 }}]);return _class;}(_react.Component);_class.propTypes={horizontal:_react.PropTypes.bool,children:_react.PropTypes.node.isRequired,style:_reactNative.View.propTypes.style,pagingEnabled:_react.PropTypes.bool,showsHorizontalScrollIndicator:_react.PropTypes.bool,showsVerticalScrollIndicator:_react.PropTypes.bool,bounces:_react.PropTypes.bool,scrollsToTop:_react.PropTypes.bool,removeClippedSubviews:_react.PropTypes.bool,automaticallyAdjustContentInsets:_react.PropTypes.bool,showsPagination:_react.PropTypes.bool,showsButtons:_react.PropTypes.bool,loadMinimal:_react.PropTypes.bool,loadMinimalSize:_react.PropTypes.number,loop:_react.PropTypes.bool,autoplay:_react.PropTypes.bool,autoplayTimeout:_react.PropTypes.number,autoplayDirection:_react.PropTypes.bool,index:_react.PropTypes.number,renderPagination:_react.PropTypes.func};_class.defaultProps={horizontal:true,pagingEnabled:true,showsHorizontalScrollIndicator:false,showsVerticalScrollIndicator:false,bounces:false,scrollsToTop:false,removeClippedSubviews:true,automaticallyAdjustContentInsets:false,showsPagination:true,showsButtons:false,loop:true,loadMinimal:false,loadMinimalSize:1,autoplay:false,autoplayTimeout:2.5,autoplayDirection:true,index:0};exports.default=_class;
 }, "react-native-swiper/src/index.js");
-__d(922 /* ddpappstarter/App/images/sample/loading.gif */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/sample","width":28,"height":28,"scales":[1],"hash":"b5448d2ea361c29d7b5abd471fecc9bf","name":"loading","type":"gif"});
+__d(921 /* ddpappstarter/App/images/sample/loading.gif */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/sample","width":28,"height":28,"scales":[1],"hash":"b5448d2ea361c29d7b5abd471fecc9bf","name":"loading","type":"gif"});
 }, "ddpappstarter/App/images/sample/loading.gif");
-__d(923 /* ddpappstarter/App/components/photo/PhotoSwiper.js */, function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
+__d(922 /* ddpappstarter/App/components/photo/PhotoSwiper.js */, function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
 
 
 
@@ -133402,7 +133483,7 @@ var _reactNative=require(12 /* react-native */);
 
 
 
-var _reactNativeSwiper=require(920 /* react-native-swiper */);var _reactNativeSwiper2=babelHelpers.interopRequireDefault(_reactNativeSwiper);var _Dimensions$get=
+var _reactNativeSwiper=require(919 /* react-native-swiper */);var _reactNativeSwiper2=babelHelpers.interopRequireDefault(_reactNativeSwiper);var _Dimensions$get=
 
 _reactNative.Dimensions.get('window');var width=_Dimensions$get.width;
 
@@ -133473,10 +133554,10 @@ paginationStyle:{
 bottom:-23,left:null,right:10},
 loop:true},
 _react2.default.createElement(_reactNative.View,{style:styles.slide,title:_react2.default.createElement(_reactNative.Text,{numberOfLines:1},'Aussie tourist dies at Bali hotel')},
-_react2.default.createElement(_reactNative.Image,{resizeMode:'stretch',style:styles.image,source:require(924 /* ./../../images/sample/1_340.jpg */)})),
+_react2.default.createElement(_reactNative.Image,{resizeMode:'stretch',style:styles.image,source:require(923 /* ./../../images/sample/1_340.jpg */)})),
 
 _react2.default.createElement(_reactNative.View,{style:styles.slide,title:_react2.default.createElement(_reactNative.Text,{numberOfLines:1},'Big lie behind Nine\u2019s new show')},
-_react2.default.createElement(_reactNative.Image,{resizeMode:'stretch',style:styles.image,source:require(925 /* ./../../images/sample/2_340.jpg */)})),
+_react2.default.createElement(_reactNative.Image,{resizeMode:'stretch',style:styles.image,source:require(924 /* ./../../images/sample/2_340.jpg */)})),
 
 _react2.default.createElement(_reactNative.View,{style:styles.slide,title:_react2.default.createElement(_reactNative.Text,{numberOfLines:1},'\uC11C\uBC84\uC774\uBBF8\uC9C0 1')},
 _react2.default.createElement(_reactNative.Image,{resizeMode:'stretch',style:styles.image,source:{uri:'https://ddpimage01.s3.ap-northeast-2.amazonaws.com/image/H1pJcaQA_img.jpg'}})),
@@ -133488,30 +133569,30 @@ _react2.default.createElement(_reactNative.View,{style:styles.slide,title:_react
 _react2.default.createElement(_reactNative.Image,{resizeMode:'stretch',style:styles.image,source:{uri:'https://ddpimage01.s3.ap-northeast-2.amazonaws.com/image/By9lTIWL_img.jpg'}})),
 
 _react2.default.createElement(_reactNative.View,{style:styles.slide,title:_react2.default.createElement(_reactNative.Text,{numberOfLines:1},'local image 3')},
-_react2.default.createElement(_reactNative.Image,{resizeMode:'stretch',style:styles.image,source:require(929 /* ./../../images/sample/6_340.jpg */)})),
+_react2.default.createElement(_reactNative.Image,{resizeMode:'stretch',style:styles.image,source:require(925 /* ./../../images/sample/6_340.jpg */)})),
 
 _react2.default.createElement(_reactNative.View,{style:styles.slide,title:_react2.default.createElement(_reactNative.Text,{numberOfLines:1},'local image 4')},
-_react2.default.createElement(_reactNative.Image,{resizeMode:'stretch',style:styles.image,source:require(930 /* ./../../images/sample/7_340.jpg */)})),
+_react2.default.createElement(_reactNative.Image,{resizeMode:'stretch',style:styles.image,source:require(926 /* ./../../images/sample/7_340.jpg */)})),
 
 _react2.default.createElement(_reactNative.View,{style:styles.slide,title:_react2.default.createElement(_reactNative.Text,{numberOfLines:1},'local image 5')},
-_react2.default.createElement(_reactNative.Image,{resizeMode:'stretch',style:styles.image,source:require(931 /* ./../../images/sample/8_340.jpg */)})))));
+_react2.default.createElement(_reactNative.Image,{resizeMode:'stretch',style:styles.image,source:require(927 /* ./../../images/sample/8_340.jpg */)})))));
 
 
 
 
 }}]);return PhotoSwiper;}(_react.Component);exports.default=PhotoSwiper;
 }, "ddpappstarter/App/components/photo/PhotoSwiper.js");
-__d(924 /* ddpappstarter/App/images/sample/1_340.jpg */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/sample","width":310,"height":207,"scales":[1],"hash":"a16098cda802f98ecf83a795e8c2a3f8","name":"1_340","type":"jpg"});
+__d(923 /* ddpappstarter/App/images/sample/1_340.jpg */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/sample","width":310,"height":207,"scales":[1],"hash":"a16098cda802f98ecf83a795e8c2a3f8","name":"1_340","type":"jpg"});
 }, "ddpappstarter/App/images/sample/1_340.jpg");
-__d(925 /* ddpappstarter/App/images/sample/2_340.jpg */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/sample","width":517,"height":340,"scales":[1],"hash":"0eb111fe3c7082bd0f0890c00797c6af","name":"2_340","type":"jpg"});
+__d(924 /* ddpappstarter/App/images/sample/2_340.jpg */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/sample","width":517,"height":340,"scales":[1],"hash":"0eb111fe3c7082bd0f0890c00797c6af","name":"2_340","type":"jpg"});
 }, "ddpappstarter/App/images/sample/2_340.jpg");
-__d(929 /* ddpappstarter/App/images/sample/6_340.jpg */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/sample","width":511,"height":340,"scales":[1],"hash":"d430027819c27d54511e5ce70e0ec058","name":"6_340","type":"jpg"});
+__d(925 /* ddpappstarter/App/images/sample/6_340.jpg */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/sample","width":511,"height":340,"scales":[1],"hash":"d430027819c27d54511e5ce70e0ec058","name":"6_340","type":"jpg"});
 }, "ddpappstarter/App/images/sample/6_340.jpg");
-__d(930 /* ddpappstarter/App/images/sample/7_340.jpg */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/sample","width":535,"height":340,"scales":[1],"hash":"8e83d079f7fc6ef5d7c4282c0dc3211b","name":"7_340","type":"jpg"});
+__d(926 /* ddpappstarter/App/images/sample/7_340.jpg */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/sample","width":535,"height":340,"scales":[1],"hash":"8e83d079f7fc6ef5d7c4282c0dc3211b","name":"7_340","type":"jpg"});
 }, "ddpappstarter/App/images/sample/7_340.jpg");
-__d(931 /* ddpappstarter/App/images/sample/8_340.jpg */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/sample","width":442,"height":340,"scales":[1],"hash":"90dcd73e5e98bec9d661eb03ce88984a","name":"8_340","type":"jpg"});
+__d(927 /* ddpappstarter/App/images/sample/8_340.jpg */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/sample","width":442,"height":340,"scales":[1],"hash":"90dcd73e5e98bec9d661eb03ce88984a","name":"8_340","type":"jpg"});
 }, "ddpappstarter/App/images/sample/8_340.jpg");
-__d(932 /* ddpappstarter/App/components/photo/PhotoPinchZoom.js */, function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
+__d(928 /* ddpappstarter/App/components/photo/PhotoPinchZoom.js */, function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
 
 
 var _react=require(16 /* react */);var _react2=babelHelpers.interopRequireDefault(_react);
@@ -133523,8 +133604,8 @@ var _reactNative=require(12 /* react-native */);
 
 
 
-var _reactNativeSwiper=require(920 /* react-native-swiper */);var _reactNativeSwiper2=babelHelpers.interopRequireDefault(_reactNativeSwiper);
-var _reactNativePhotoView=require(933 /* react-native-photo-view */);var _reactNativePhotoView2=babelHelpers.interopRequireDefault(_reactNativePhotoView);var _Dimensions$get=
+var _reactNativeSwiper=require(919 /* react-native-swiper */);var _reactNativeSwiper2=babelHelpers.interopRequireDefault(_reactNativeSwiper);
+var _reactNativePhotoView=require(929 /* react-native-photo-view */);var _reactNativePhotoView2=babelHelpers.interopRequireDefault(_reactNativePhotoView);var _Dimensions$get=
 _reactNative.Dimensions.get('window');var width=_Dimensions$get.width;var height=_Dimensions$get.height;
 
 var styles={
@@ -133654,9 +133735,9 @@ _react2.default.createElement(_reactNative.Image,{style:styles.thumb,source:{uri
 
 }}]);return PhotoPinchZoom;}(_react.Component);exports.default=PhotoPinchZoom;
 }, "ddpappstarter/App/components/photo/PhotoPinchZoom.js");
-__d(933 /* react-native-photo-view/index.js */, function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _PhotoView=require(934 /* ./PhotoView */);var _PhotoView2=babelHelpers.interopRequireDefault(_PhotoView);exports.default=_PhotoView2.default;
+__d(929 /* react-native-photo-view/index.js */, function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _PhotoView=require(930 /* ./PhotoView */);var _PhotoView2=babelHelpers.interopRequireDefault(_PhotoView);exports.default=_PhotoView2.default;
 }, "react-native-photo-view/index.js");
-__d(934 /* react-native-photo-view/PhotoView.android.js */, function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(16 /* react */);var _react2=babelHelpers.interopRequireDefault(_react);
+__d(930 /* react-native-photo-view/PhotoView.android.js */, function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(16 /* react */);var _react2=babelHelpers.interopRequireDefault(_react);
 var _reactNative=require(12 /* react-native */);
 
 var resolveAssetSource=require(316 /* react-native/Libraries/Image/resolveAssetSource */);var
@@ -133729,7 +133810,7 @@ shouldNotifyLoadEvents:true}};
 
 var PhotoViewAndroid=(0,_reactNative.requireNativeComponent)('PhotoViewAndroid',PhotoView,cfg);
 }, "react-native-photo-view/PhotoView.android.js");
-__d(935 /* ddpappstarter/App/components/browser/WebBrowser.js */, function(global, require, module, exports) {'use strict';Object.defineProperty(exports,"__esModule",{value:true});
+__d(931 /* ddpappstarter/App/components/browser/WebBrowser.js */, function(global, require, module, exports) {'use strict';Object.defineProperty(exports,"__esModule",{value:true});
 
 var _react=require(16 /* react */);var _react2=babelHelpers.interopRequireDefault(_react);
 var _reactNative=require(12 /* react-native */);
@@ -133737,14 +133818,14 @@ var _reactNative=require(12 /* react-native */);
 
 
 
-var _BaseComponent2=require(936 /* ./BaseComponent */);var _BaseComponent3=babelHelpers.interopRequireDefault(_BaseComponent2);
-var _Utils=require(937 /* ./Utils */);var _Utils2=babelHelpers.interopRequireDefault(_Utils);
-var _reactNativeLoadingSpinnerOverlay=require(938 /* react-native-loading-spinner-overlay */);var _reactNativeLoadingSpinnerOverlay2=babelHelpers.interopRequireDefault(_reactNativeLoadingSpinnerOverlay);
-var _StatusBar=require(939 /* ./StatusBar */);var _StatusBar2=babelHelpers.interopRequireDefault(_StatusBar);
-var _AddressBar=require(941 /* ./AddressBar */);var _AddressBar2=babelHelpers.interopRequireDefault(_AddressBar);
-var _Toolbar=require(942 /* ./Toolbar */);var _Toolbar2=babelHelpers.interopRequireDefault(_Toolbar);
+var _BaseComponent2=require(932 /* ./BaseComponent */);var _BaseComponent3=babelHelpers.interopRequireDefault(_BaseComponent2);
+var _Utils=require(933 /* ./Utils */);var _Utils2=babelHelpers.interopRequireDefault(_Utils);
+var _reactNativeLoadingSpinnerOverlay=require(934 /* react-native-loading-spinner-overlay */);var _reactNativeLoadingSpinnerOverlay2=babelHelpers.interopRequireDefault(_reactNativeLoadingSpinnerOverlay);
+var _StatusBar=require(935 /* ./StatusBar */);var _StatusBar2=babelHelpers.interopRequireDefault(_StatusBar);
+var _AddressBar=require(937 /* ./AddressBar */);var _AddressBar2=babelHelpers.interopRequireDefault(_AddressBar);
+var _Toolbar=require(938 /* ./Toolbar */);var _Toolbar2=babelHelpers.interopRequireDefault(_Toolbar);
 
-var _styles=require(940 /* ./styles */);var _styles2=babelHelpers.interopRequireDefault(_styles);
+var _styles=require(936 /* ./styles */);var _styles2=babelHelpers.interopRequireDefault(_styles);
 
 var WEBVIEW_REF='webview';
 
@@ -133921,7 +134002,7 @@ WebBrowser.defaultProps=defaultProps;exports.default=
 
 WebBrowser;
 }, "ddpappstarter/App/components/browser/WebBrowser.js");
-__d(936 /* ddpappstarter/App/components/browser/BaseComponent.js */, function(global, require, module, exports) {'use strict';Object.defineProperty(exports,"__esModule",{value:true});
+__d(932 /* ddpappstarter/App/components/browser/BaseComponent.js */, function(global, require, module, exports) {'use strict';Object.defineProperty(exports,"__esModule",{value:true});
 
 var _react=require(16 /* react */);var _react2=babelHelpers.interopRequireDefault(_react);var
 
@@ -133930,7 +134011,7 @@ BaseComponent=function(_Component){babelHelpers.inherits(BaseComponent,_Componen
 methods.forEach(function(method){return _this2[method]=_this2[method].bind(_this2);});
 }}]);return BaseComponent;}(_react.Component);exports.default=BaseComponent;
 }, "ddpappstarter/App/components/browser/BaseComponent.js");
-__d(937 /* ddpappstarter/App/components/browser/Utils.js */, function(global, require, module, exports) {'use strict';Object.defineProperty(exports,"__esModule",{value:true});var
+__d(933 /* ddpappstarter/App/components/browser/Utils.js */, function(global, require, module, exports) {'use strict';Object.defineProperty(exports,"__esModule",{value:true});var
 
 Utils=function(){function Utils(){babelHelpers.classCallCheck(this,Utils);}babelHelpers.createClass(Utils,null,[{key:'sanitizeUrl',value:function sanitizeUrl(
 url){
@@ -133940,7 +134021,7 @@ url='http://'+url;
 return url.toLowerCase();
 }}]);return Utils;}();exports.default=Utils;
 }, "ddpappstarter/App/components/browser/Utils.js");
-__d(938 /* react-native-loading-spinner-overlay/src/index.js */, function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
+__d(934 /* react-native-loading-spinner-overlay/src/index.js */, function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
 
 
 
@@ -134054,7 +134135,7 @@ spinner));
 return this._renderSpinner();
 }}]);return Spinner;}(_react2.default.Component);Spinner.propTypes={visible:_react2.default.PropTypes.bool,color:_react2.default.PropTypes.string,size:_react2.default.PropTypes.oneOf(SIZES),overlayColor:_react2.default.PropTypes.string};Spinner.defaultProps={visible:false,color:'white',size:'large',overlayColor:'rgba(0, 0, 0, 0.25)'};exports.default=Spinner;
 }, "react-native-loading-spinner-overlay/src/index.js");
-__d(939 /* ddpappstarter/App/components/browser/StatusBar.js */, function(global, require, module, exports) {'use strict';
+__d(935 /* ddpappstarter/App/components/browser/StatusBar.js */, function(global, require, module, exports) {'use strict';
 
 var _react=require(16 /* react */);var _react2=babelHelpers.interopRequireDefault(_react);
 var _reactNative=require(12 /* react-native */);
@@ -134062,8 +134143,8 @@ var _reactNative=require(12 /* react-native */);
 
 
 
-var _BaseComponent2=require(936 /* ./BaseComponent */);var _BaseComponent3=babelHelpers.interopRequireDefault(_BaseComponent2);
-var _styles=require(940 /* ./styles */);var _styles2=babelHelpers.interopRequireDefault(_styles);var
+var _BaseComponent2=require(932 /* ./BaseComponent */);var _BaseComponent3=babelHelpers.interopRequireDefault(_BaseComponent2);
+var _styles=require(936 /* ./styles */);var _styles2=babelHelpers.interopRequireDefault(_styles);var
 
 StatusBar=function(_BaseComponent){babelHelpers.inherits(StatusBar,_BaseComponent);
 
@@ -134108,7 +134189,7 @@ status:''};
 
 module.exports=StatusBar;
 }, "ddpappstarter/App/components/browser/StatusBar.js");
-__d(940 /* ddpappstarter/App/components/browser/styles.js */, function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _reactNative=require(12 /* react-native */);
+__d(936 /* ddpappstarter/App/components/browser/styles.js */, function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _reactNative=require(12 /* react-native */);
 
 var HEADER='#3b5998';
 var BGWASH='rgba(255,255,255,0.8)';
@@ -134193,7 +134274,7 @@ width:20,
 height:20,
 opacity:0.9}});
 }, "ddpappstarter/App/components/browser/styles.js");
-__d(941 /* ddpappstarter/App/components/browser/AddressBar.js */, function(global, require, module, exports) {'use strict';
+__d(937 /* ddpappstarter/App/components/browser/AddressBar.js */, function(global, require, module, exports) {'use strict';
 
 var _react=require(16 /* react */);var _react2=babelHelpers.interopRequireDefault(_react);
 var _reactNative=require(12 /* react-native */);
@@ -134201,9 +134282,9 @@ var _reactNative=require(12 /* react-native */);
 
 
 
-var _BaseComponent2=require(936 /* ./BaseComponent */);var _BaseComponent3=babelHelpers.interopRequireDefault(_BaseComponent2);
-var _Utils=require(937 /* ./Utils */);var _Utils2=babelHelpers.interopRequireDefault(_Utils);
-var _styles=require(940 /* ./styles */);var _styles2=babelHelpers.interopRequireDefault(_styles);
+var _BaseComponent2=require(932 /* ./BaseComponent */);var _BaseComponent3=babelHelpers.interopRequireDefault(_BaseComponent2);
+var _Utils=require(933 /* ./Utils */);var _Utils2=babelHelpers.interopRequireDefault(_Utils);
+var _styles=require(936 /* ./styles */);var _styles2=babelHelpers.interopRequireDefault(_styles);
 
 var TEXT_INPUT_REF='urlInput';var
 
@@ -134282,7 +134363,7 @@ onReload:function onReload(){}};
 
 module.exports=AddressBar;
 }, "ddpappstarter/App/components/browser/AddressBar.js");
-__d(942 /* ddpappstarter/App/components/browser/Toolbar.js */, function(global, require, module, exports) {'use strict';
+__d(938 /* ddpappstarter/App/components/browser/Toolbar.js */, function(global, require, module, exports) {'use strict';
 
 var _react=require(16 /* react */);var _react2=babelHelpers.interopRequireDefault(_react);
 var _reactNative=require(12 /* react-native */);
@@ -134290,9 +134371,9 @@ var _reactNative=require(12 /* react-native */);
 
 
 
-var _BaseComponent2=require(936 /* ./BaseComponent */);var _BaseComponent3=babelHelpers.interopRequireDefault(_BaseComponent2);
-var _Button=require(943 /* ./Button */);var _Button2=babelHelpers.interopRequireDefault(_Button);
-var _styles=require(940 /* ./styles */);var _styles2=babelHelpers.interopRequireDefault(_styles);var
+var _BaseComponent2=require(932 /* ./BaseComponent */);var _BaseComponent3=babelHelpers.interopRequireDefault(_BaseComponent2);
+var _Button=require(939 /* ./Button */);var _Button2=babelHelpers.interopRequireDefault(_Button);
+var _styles=require(936 /* ./styles */);var _styles2=babelHelpers.interopRequireDefault(_styles);var
 
 Toolbar=function(_BaseComponent){babelHelpers.inherits(Toolbar,_BaseComponent);
 
@@ -134330,7 +134411,7 @@ disabled:!this.state.homeButtonEnabled,
 onPress:this.state.onHome},
 _react2.default.createElement(_reactNative.Image,{
 style:this.buttonStyle(),
-source:require(944 /* ./assets/images/home-outline.png */)})));
+source:require(940 /* ./assets/images/home-outline.png */)})));
 
 
 
@@ -134349,7 +134430,7 @@ disabled:!this.state.backButtonEnabled,
 onPress:this.state.onBack},
 _react2.default.createElement(_reactNative.Image,{
 style:this.buttonStyle(),
-source:require(945 /* ./assets/images/arrow-left.png */)})),
+source:require(941 /* ./assets/images/arrow-left.png */)})),
 
 
 
@@ -134360,7 +134441,7 @@ disabled:!this.state.forwardButtonEnabled,
 onPress:this.state.onForward},
 _react2.default.createElement(_reactNative.Image,{
 style:this.buttonStyle(),
-source:require(946 /* ./assets/images/arrow-right.png */)}))));
+source:require(942 /* ./assets/images/arrow-right.png */)}))));
 
 
 
@@ -134391,7 +134472,7 @@ onForward:function onForward(){}};
 
 module.exports=Toolbar;
 }, "ddpappstarter/App/components/browser/Toolbar.js");
-__d(943 /* ddpappstarter/App/components/browser/Button.js */, function(global, require, module, exports) {'use strict';
+__d(939 /* ddpappstarter/App/components/browser/Button.js */, function(global, require, module, exports) {'use strict';
 
 var _react=require(16 /* react */);var _react2=babelHelpers.interopRequireDefault(_react);
 var _reactNative=require(12 /* react-native */);
@@ -134511,13 +134592,13 @@ opacity:0.5}});
 
 module.exports=Button;
 }, "ddpappstarter/App/components/browser/Button.js");
-__d(944 /* ddpappstarter/App/components/browser/assets/images/home-outline.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/components/browser/assets/images","width":256,"height":256,"scales":[1],"hash":"cfaf581a0c279eea76653ca6bddac928","name":"home-outline","type":"png"});
+__d(940 /* ddpappstarter/App/components/browser/assets/images/home-outline.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/components/browser/assets/images","width":256,"height":256,"scales":[1],"hash":"cfaf581a0c279eea76653ca6bddac928","name":"home-outline","type":"png"});
 }, "ddpappstarter/App/components/browser/assets/images/home-outline.png");
-__d(945 /* ddpappstarter/App/components/browser/assets/images/arrow-left.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/components/browser/assets/images","width":256,"height":256,"scales":[1],"hash":"84bcd03afb4b052292b0f60d4d4eb7b3","name":"arrow-left","type":"png"});
+__d(941 /* ddpappstarter/App/components/browser/assets/images/arrow-left.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/components/browser/assets/images","width":256,"height":256,"scales":[1],"hash":"84bcd03afb4b052292b0f60d4d4eb7b3","name":"arrow-left","type":"png"});
 }, "ddpappstarter/App/components/browser/assets/images/arrow-left.png");
-__d(946 /* ddpappstarter/App/components/browser/assets/images/arrow-right.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/components/browser/assets/images","width":256,"height":256,"scales":[1],"hash":"80d98c63964491b81fa6df213dfb892b","name":"arrow-right","type":"png"});
+__d(942 /* ddpappstarter/App/components/browser/assets/images/arrow-right.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/components/browser/assets/images","width":256,"height":256,"scales":[1],"hash":"80d98c63964491b81fa6df213dfb892b","name":"arrow-right","type":"png"});
 }, "ddpappstarter/App/components/browser/assets/images/arrow-right.png");
-__d(947 /* ddpappstarter/App/images/icon/icon-nav.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/icon","width":39,"height":26,"scales":[1],"hash":"1d8204bf6f1f5a91a647ac4217d69ae2","name":"icon-nav","type":"png"});
+__d(943 /* ddpappstarter/App/images/icon/icon-nav.png */, function(global, require, module, exports) {module.exports = require(317 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/App/images/icon","width":39,"height":26,"scales":[1],"hash":"1d8204bf6f1f5a91a647ac4217d69ae2","name":"icon-nav","type":"png"});
 }, "ddpappstarter/App/images/icon/icon-nav.png");
 ;require(340);
 ;require(0);

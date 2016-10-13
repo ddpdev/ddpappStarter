@@ -32,24 +32,6 @@ var MOCKED_IMAGE_DATA = [
 const API_SERVER = 'http://app.ddpstyle.com';
 const API_LASTEST = API_SERVER + '/json/get/itemlist?page={page}';
 
-function getFormattedDate(createdTimestamp) {
-  const created = Date.parse(createdTimestamp);
-  const elapsed = (Date.now() - created)/1000; // seconds
-
-  if (elapsed < 10) return '방금 전';
-  if (elapsed < 60) return (elapsed%60)+'초 전';
-  if (elapsed < 3600) return Math.round(elapsed/60)+'분 전';
-  if (elapsed < 86400) return Math.round(elapsed/3600)+'시간 전';
-  if (elapsed < 525600) return Math.round(elapsed/86400)+'일 전';
-
-  const createdDate = new Date(created);
-
-  console.log("getFormattedDate:",createdTimestamp,created,elapsed,createdDate);
-
-  return createdDate.getFullYear()+'-'+(createdDate.getMonth()+1)+'-'+createdDate.getDate();
-}
-
-
 class Product extends Component {
 
     constructor(props) {
@@ -73,6 +55,7 @@ class Product extends Component {
         this.handleScroll = this.handleScroll.bind(this);
         this.renderFooter = this.renderFooter.bind(this);
         this.renderHeader = this.renderHeader.bind(this);
+        this.getFormattedDate = this.getFormattedDate.bind(this);
 
         console.log("Product List:",this.props,this.state);
     }
@@ -92,75 +75,59 @@ class Product extends Component {
 
     }
 
-    // async 미적용 버전 9/20
-    loadPage_Prev(page?:number) {
-        var url = (page ===undefined)? API_LASTEST.replace('{page}',0) : API_LASTEST.replace('{page}',page);
+  getFormattedDate(createdTimestamp) {
+    const created = Date.parse(createdTimestamp);
+    const elapsed = (Date.now() - created)/1000; // seconds
 
-        console.log("loadPage url:"+url);
-        //var tmpArray = this.itemList;
-        //var newArray = [];
+    if (elapsed < 10) return `방금 전`;
+    if (elapsed < 60) return `${(elapsed%60)} 초 전`;
+    if (elapsed < 3600) return `${Math.round(elapsed/60)} 분 전`;
+    if (elapsed < 86400) return `${Math.round(elapsed/3600)} 시간 전`;
+    if (elapsed < 525600) return `${Math.round(elapsed/86400)} 일 전`;
 
-        console.log("prev itemList count:"+this.itemList.length);
+    const createdDate = new Date(created);
 
-        fetch(url)
-            .then((response) => response.json())
-            .then((responseData) => {
+    console.log("getFormattedDate:",createdTimestamp,created,elapsed,createdDate);
 
-                this.itemList = this.itemList.concat(responseData.itemlist);
-                //console.log("FETCH_DATA");
-                //this.itemList = newArray;
-
-                //console.log("FETCH_DATA:",newArray.length,",itemList:",this.itemList.length);
-                //itemList : newArray,
-
-                this.setState({
-                    //dataSource: this.state.dataSource.cloneWithRows(responseData.itemlist),
-                    // 추가된 item 배열을 전달한다.
-                    dataSource: this.state.dataSource.cloneWithRows(this.itemList),
-                    loaded:true,
-                    currentPage:page,
-                    loadingNextPage:false,
-                });
-                console.log("item count:"+this.itemList.length);
-            })
-            .done(console.log("FETCH_DONE"));
-    }
+    return `${createdDate.getFullYear()+'-'+(createdDate.getMonth()+1)+'-'+createdDate.getDate()}`;
+  }
 
     // async 적용 since 9/21
     async loadPage(page?:number) {
-    var url = (page ===undefined)? API_LASTEST.replace('{page}',0) : API_LASTEST.replace('{page}',page);
 
-    console.log("loadPage url:"+url);
-    //var tmpArray = this.itemList;
-    //var newArray = [];
+      const url = (page ===undefined)? API_LASTEST.replace('{page}',0) : API_LASTEST.replace('{page}',page);
 
-    console.log("prev itemList count:"+this.itemList.length);
+      console.log("loadPage url:"+url);
+      //var tmpArray = this.itemList;
+      //var newArray = [];
 
-    try {
-        console.log("await Start:"+Date.now());
-        const response = await fetch(url);
-        console.log("await fetch success:"+Date.now());
-        const responseData = await response.json();
-        console.log("await End:"+Date.now());
+      console.log("prev itemList count:"+this.itemList.length);
 
-        this.itemList = this.itemList.concat(responseData.itemlist);
+      try {
+          console.log("await Start:"+Date.now());
+          const response = await fetch(url);
+          console.log("await fetch success:"+Date.now());
+          const responseData = await response.json();
+          console.log("await End:"+Date.now());
 
-        //console.log("FETCH_DATA:",newArray.length,",itemList:",this.itemList.length);
+          this.itemList = this.itemList.concat(responseData.itemlist);
 
-        this.setState({
-            //dataSource: this.state.dataSource.cloneWithRows(responseData.itemlist),
-            // 추가된 item 배열을 전달한다.
-            dataSource: this.state.dataSource.cloneWithRows(this.itemList),
-            loaded:true,
-            currentPage:page,
-            loadingNextPage:false,
-        });
+          //console.log("FETCH_DATA:",newArray.length,",itemList:",this.itemList.length);
 
-    } catch (e) {
-      console.log("error:"+e);
-    }
-    console.log("item count:"+this.itemList.length);
-}
+          this.setState({
+              //dataSource: this.state.dataSource.cloneWithRows(responseData.itemlist),
+              // 추가된 item 배열을 전달한다.
+              dataSource: this.state.dataSource.cloneWithRows(this.itemList),
+              loaded:true,
+              currentPage:page,
+              loadingNextPage:false,
+          });
+
+      } catch (e) {
+        console.log("error:"+e);
+      }
+      console.log("item count:"+this.itemList.length);
+  }
 
     renderHeader() {
       if (!this.state.reloading) return null;
@@ -222,8 +189,7 @@ class Product extends Component {
     }
 
   reloadItems() {
-
-  console.log("reloadItems:",this.state.reloading);
+    console.log("reloadItems:",this.state.reloading);
 
     if (this.state.reloading) return;
 
@@ -236,8 +202,7 @@ class Product extends Component {
     }
 
     handleEndReached() {
-
-    console.log("handleEndReached:",this.state.loadingNextPage);
+      console.log("handleEndReached:",this.state.loadingNextPage);
 
       if(this.state.loadingNextPage) return ;
 
@@ -287,20 +252,14 @@ class Product extends Component {
               onPress={gotoDetail}
             >
             <View style={styles.container} >
-
-                {/*<Image*/}
-                    {/*source={{uri: imageUri}}*/}
-                    {/*style={styles.thumbnail}*/}
-                {/*/>*/}
                 <ProgressImage
                     source={{uri: imageUri}}
                     indicator={Progress.Pie}
                     style={styles.thumbnail}
                 />
-
                 <View style={styles.rightContainer}>
                     <Text style={styles.title}>[{image.item_id}] {itemInfo.uploadfilename}</Text>
-                    <Text style={styles.text}>{getFormattedDate(image.last_date)}</Text><Text style={styles.date}>등록일시:{image.last_date}</Text>
+                    <Text style={styles.text}>{this.getFormattedDate(image.last_date)}</Text><Text style={styles.date}>등록일시:{image.last_date}</Text>
                     <Text style={styles.date}>size:{itemInfo.filesize}byte</Text>
                 </View>
             </View>

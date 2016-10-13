@@ -78,7 +78,7 @@ class RootContainer extends Component {
     const scenes = Actions.create(
       <Scene key="scene">
         <Scene key="navigationDrawer" component={NavigationDrawer} open={false}>
-          <Scene key="root" hideNavBar={false} tabs={true}>
+          <Scene key="root" hideNavBar={false} tabs={false}>
               <Scene key="pageTestHome"
                      component={PageTestHome}
                      title='HOME'
