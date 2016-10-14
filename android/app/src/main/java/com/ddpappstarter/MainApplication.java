@@ -6,6 +6,7 @@ import android.util.Log;
 
 // react-native
 import com.facebook.react.ReactApplication;
+
 // add modules
 import io.realm.react.RealmReactPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -15,6 +16,8 @@ import com.RNFetchBlob.RNFetchBlobPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.burlap.filetransfer.FileTransferPackage;
 import com.reactnative.photoview.PhotoViewPackage;
+import com.react.rnspinkit.RNSpinkitPackage;
+
 // facebook
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
@@ -43,7 +46,7 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
+           new MainReactPackage(),
             new FileTransferPackage(),
             new RealmReactPackage(),
             new VectorIconsPackage(),
@@ -51,7 +54,8 @@ public class MainApplication extends Application implements ReactApplication {
             new ImagePickerPackage(),
             new RNFetchBlobPackage(),
             new RNDeviceInfo(),
-            new PhotoViewPackage()
+            new PhotoViewPackage(),
+            new RNSpinkitPackage()
       );
     }
   };

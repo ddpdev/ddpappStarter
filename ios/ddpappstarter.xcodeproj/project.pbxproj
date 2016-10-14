@@ -32,6 +32,7 @@
 		5AFF8CD4C02B453FA561B3BD /* libRNLocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A3DED7E1664DC3B4B00EF1 /* libRNLocation.a */; };
 		00F03E666B3D491A9DD6944F /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CE00CFFBE19419EA205CFF1 /* libAirMaps.a */; };
 		B2F03CFAE12E4320B0C702FE /* libRNUploader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E04D852AC3D4377A15367A8 /* libRNUploader.a */; };
+		BEF4EFE9F8834BB8B7580C4F /* libRNSpinkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E30456BA86A47CC9A0E32F2 /* libRNSpinkit.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,6 +155,8 @@
 		3CE00CFFBE19419EA205CFF1 /* libAirMaps.a */ = {isa = PBXFileReference; name = "libAirMaps.a"; path = "libAirMaps.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		9F0A9447ABF141D69039060B /* RNUploader.xcodeproj */ = {isa = PBXFileReference; name = "RNUploader.xcodeproj"; path = "../node_modules/react-native-uploader/ios/RNUploader.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		2E04D852AC3D4377A15367A8 /* libRNUploader.a */ = {isa = PBXFileReference; name = "libRNUploader.a"; path = "libRNUploader.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		D373004FD6BD4113966718B2 /* RNSpinkit.xcodeproj */ = {isa = PBXFileReference; name = "RNSpinkit.xcodeproj"; path = "../node_modules/react-native-spinkit/ios/RNSpinkit.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		7E30456BA86A47CC9A0E32F2 /* libRNSpinkit.a */ = {isa = PBXFileReference; name = "libRNSpinkit.a"; path = "libRNSpinkit.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +192,7 @@
 				5AFF8CD4C02B453FA561B3BD /* libRNLocation.a in Frameworks */,
 				00F03E666B3D491A9DD6944F /* libAirMaps.a in Frameworks */,
 				B2F03CFAE12E4320B0C702FE /* libRNUploader.a in Frameworks */,
+				BEF4EFE9F8834BB8B7580C4F /* libRNSpinkit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +323,7 @@
 				A61BE3D2A9FA493586595B10 /* RNLocation.xcodeproj */,
 				30A81A4561504D0BAD55ED49 /* AirMaps.xcodeproj */,
 				9F0A9447ABF141D69039060B /* RNUploader.xcodeproj */,
+				D373004FD6BD4113966718B2 /* RNSpinkit.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -652,6 +657,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -668,6 +674,7 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ddpappstarter.app/ddpappstarter";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -697,6 +704,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-gps",
 					"$(SRCROOT)\..\node_modules\react-native-maps\ios\AirMaps/**",
+					"$(SRCROOT)\..\node_modules\react-native-spinkit\ios/**",
 				);
 				INFOPLIST_FILE = "ddpappstarter/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -726,6 +734,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-gps",
 					"$(SRCROOT)\..\node_modules\react-native-maps\ios\AirMaps/**",
+					"$(SRCROOT)\..\node_modules\react-native-spinkit\ios/**",
 				);
 				INFOPLIST_FILE = "ddpappstarter/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -784,6 +793,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-gps",
 					"$(SRCROOT)\..\node_modules\react-native-maps\ios\AirMaps/**",
+					"$(SRCROOT)\..\node_modules\react-native-spinkit\ios/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -831,6 +841,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-gps",
 					"$(SRCROOT)\..\node_modules\react-native-maps\ios\AirMaps/**",
+					"$(SRCROOT)\..\node_modules\react-native-spinkit\ios/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;

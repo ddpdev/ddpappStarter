@@ -168,7 +168,7 @@ export default class ScrollTabView extends Component{
     render() {
         return(
             <View>
-                <View style={styles.navBg}></View>
+                {/*<View style={styles.navBg}></View>*/}
                 <View style={styles.nav}>
                     <Text style={styles.title}>{this.state.title}</Text>
                     <View style={styles.iconContainer}>
@@ -192,12 +192,12 @@ export default class ScrollTabView extends Component{
 //ion-android-more-vertical
 const styles = StyleSheet.create({
     navBg:{
-        backgroundColor:"#c11f1e",
+        backgroundColor: 'black' , //"#c11f1e",
         width:Util.size.width,
         height:20,
     },
     nav:{
-        backgroundColor:"#e32524",
+        backgroundColor: 'skyblue',  //"#e37594",
         width:Util.size.width,
         height:55,
         flexDirection:"row",
@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
         borderLeftWidth: 0,
         borderRightWidth: 0,
         borderBottomColor: 'rgba(0,0,0,0.05)',
-        backgroundColor:"#e32524"
+        backgroundColor: 'darkblue'       //"#e32524"
     },
     icon: {
         position: 'absolute',

@@ -18,7 +18,8 @@ import { Router, Scene, Actions, ActionConst } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import ProgressImage from 'react-native-image-progress';
 import * as Progress from 'react-native-progress'; // INDICATORS => Progress.Bar, Progress.Circle, Progress.Pie
-
+import Util from '../../util/utils';
+import Spinner from "react-native-spinkit";
 
 //https://ddpimage01.s3.ap-northeast-2.amazonaws.com/thumb/BJYGFdiU_thm.png
 var MOCKED_IMAGE_DATA = [
@@ -222,12 +223,17 @@ class Product extends Component {
       ;
 
     }
-
+// <View style={styles.container}>
+//     <Text>Loading Items...</Text>
+// </View>
     renderLoadingView() {
         return (
-            <View style={styles.container}>
-                <Text>Loading Items...</Text>
-            </View>
+            <View style={styles.spinner}>
+            <Spinner isVisible={!this.state.loaded}
+                size={40}
+                type="Circle"
+                color="#1CAADE"/>
+             </View>
         );
     }
 
@@ -318,7 +324,13 @@ var styles = StyleSheet.create({
       alignItems: 'center',
       marginTop: 15,
       marginBottom: 15,
-    }
+    },
+    spinner: {
+        width: Util.size.width,
+        alignItems: 'center',
+        marginTop: 30,
+        marginBottom: 30
+    },
 });
 
 export default connect()(Product);

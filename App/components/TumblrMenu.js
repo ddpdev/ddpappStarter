@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
         marginTop:15
     },
     menu:{
-        height: Util.size.height,
+        height: Util.size.height ,
         width: Util.size.width,
         resizeMode:"cover",
         position:"absolute",
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
         position:"absolute",
         width:Util.size.width,
         left:0,
-        bottom:50,
+        bottom:150,
     },
     dismiss:{
         textAlign:"center",
