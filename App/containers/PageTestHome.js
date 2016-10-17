@@ -72,7 +72,7 @@ class PageTestHome extends Component {
                 icon={{name: 'tab'}}
                 title='Scrollable TabView'
                 backgroundColor='#b93c58'
-                onPress={Actions.pageScrollTabView}
+                onPress={() => Actions.pagePageHeader({title:'카테고리'})}
             />
             <View style={style.viewMarginTop} />
             <Button

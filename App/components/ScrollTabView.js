@@ -11,6 +11,7 @@ import { Image,StyleSheet,Text,TouchableHighlight,TouchableOpacity,StatusBar,Ani
 import Util from '../util/utils';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
+import FacebookTabBar from './FacebookTabBar';
 
 class HomePage extends Component{
     render() {
@@ -56,142 +57,52 @@ class MinePage extends Component{
     }
 }
 
-class FacebookTabBar  extends Component {
-    selectedTabIcons: [];
-    unselectedTabIcons: [];
-
-    propTypes: {
-        goToPage: React.PropTypes.func,
-        activeTab: React.PropTypes.number,
-        tabs: React.PropTypes.array
-    };
-
-    renderTabOption(name, page) {
-        var isTabActive = this.props.activeTab === page;
-
-        console.log("renderTabOption:",isTabActive,page);
-        return (
-            <TouchableOpacity key={name} onPress={() => this.props.goToPage(page)} style={styles.tab}>
-                <Icon name={name} size={30} color='#fff' style={styles.icon}
-                      ref={(icon) => { this.selectedTabIcons[page] = icon }}/>
-                <Icon name={name} size={30} color='#5b0e0d' style={styles.icon}
-                      ref={(icon) => { this.unselectedTabIcons[page] = icon }}/>
-            </TouchableOpacity>
-        );
-    }
-
-    componentDidMount() {
-        this.setAnimationValue({value: this.props.activeTab});
-        this._listener = this.props.scrollValue.addListener(this.setAnimationValue);
-    }
-
-    setAnimationValue({value}) {
-        var currentPage = this.props.activeTab;
-
-        this.unselectedTabIcons.forEach((icon, i) => {
-            var iconRef = icon;
-
-            if (!icon.setNativeProps && icon !== null) {
-                iconRef = icon.refs.icon_image
-            }
-
-            if (value - i >= 0 && value - i <= 1) {
-                iconRef.setNativeProps({ style: {opacity: value - i} });
-            }
-            if (i - value >= 0 &&  i - value <= 1) {
-                iconRef.setNativeProps({ style: {opacity: i - value} });
-            }
-        });
-    }
-
-    render() {
-        var containerWidth = this.props.containerWidth;
-        var numberOfTabs = this.props.tabs.length;
-        var tabUnderlineStyle = {
-            position: 'absolute',
-            width: containerWidth / numberOfTabs,
-            height: 3,
-            backgroundColor: '#fff',
-            bottom: 0,
-        };
-
-        var left = this.props.scrollValue.interpolate({
-            inputRange: [0, 1], outputRange: [0, containerWidth / numberOfTabs]
-        });
-
-        return (
-            <View>
-                <View style={[styles.tabs, this.props.style, ]}>
-                    {this.props.tabs.map((tab, i) => this.renderTabOption(tab, i))}
-                </View>
-                <Animated.View style={[tabUnderlineStyle, {left}]} />
-            </View>
-        );
-    }
-}
-
 export default class ScrollTabView extends Component{
     constructor(props) {
         super(props);
         this.state = {
             title: "카테고리",
-            initTab: this.props.initTab | 1,
+            initTab: this.props.initTab | 0,
         };
         console.log("ScrollTabView:", props, this.state);
     }
 
-    componentDidMount() {
-        if(Platform.OS === 'ios') {
-            StatusBar.setBarStyle(1); // only ios
-        } else {
-            StatusBar.translucent = true;
-        }
-    }
-
-    _updateTitle(obj) {
-        const {i} = obj;
-        let title = "";
-        switch(i) {
-            case 0:
-                title = "카테고리1";
-                break;
-            case 1:
-                title = "카테고리2";
-                break;
-            case 2:
-                title = "카테고리3";
-                break;
-            case 3:
-                title = "카테고리4";
-                break;
-        }
-        this.setState({
-            title
-        });
-    }
-
     render() {
         return(
-            <View>
-                {/*<View style={styles.navBg}></View>*/}
-                <View style={styles.nav}>
-                    <Text style={styles.title}>{this.state.title}</Text>
-                    <View style={styles.iconContainer}>
-                        <Icon name="ios-search" color="#fff" size={25}/>
-                        <Icon name="md-more" color="#fff" size={25}/>
-                    </View>
-                </View>
                 <ScrollableTabView
-                    onChangeTab={(obj) => this._updateTitle(obj)}
                     renderTabBar={() => <FacebookTabBar />}
-                    initialPage={this.state.initTab}
                 >
-                    <HomePage tabLabel="ios-home" tabTitle={"content_1"} />
-                    <PopularPage tabLabel="ios-bonfire" tabTitle={"content_1"} />
-                    <SubscribePage tabLabel="ios-albums-outline" tabTitle={"content_1"} />
-                    <MinePage tabLabel="ios-person" tabTitle={"content_1"} />
+                    <ScrollView tabLabel="ios-paper" style={styles.tabView}>
+                        <View style={styles.card}>
+                            <Text>News</Text>
+                        </View>
+                    </ScrollView>
+                    <ScrollView tabLabel="ios-people" style={styles.tabView}>
+                        <View style={styles.card}>
+                            <Text>Friends</Text>
+                        </View>
+                    </ScrollView>
+                    <ScrollView tabLabel="ios-chatboxes" style={styles.tabView}>
+                        <View style={styles.card}>
+                            <Text>Messenger</Text>
+                        </View>
+                    </ScrollView>
+                    <ScrollView tabLabel="ios-notifications" style={styles.tabView}>
+                        <View style={styles.card}>
+                            <Text>Notifications</Text>
+                        </View>
+                    </ScrollView>
+                    <ScrollView tabLabel="ios-list" style={styles.tabView}>
+                        <View style={styles.card}>
+                            <Text>Other nav</Text>
+                        </View>
+                    </ScrollView>
+                    {/*<HomePage tabLabel="ios-home" tabTitle={"content_1"} />*/}
+                    {/*<PopularPage tabLabel="ios-bonfire" tabTitle={"content_1"} />*/}
+                    {/*<SubscribePage tabLabel="ios-albums-outline" tabTitle={"content_1"} />*/}
+                    {/*<MinePage tabLabel="ios-person" tabTitle={"content_1"} />*/}
                 </ScrollableTabView>
-            </View>
+            // </View>
         )
     }
 }
@@ -219,17 +130,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingBottom: 10,
     },
-    tabs: {
-        height: 45,
-        flexDirection: 'row',
-        paddingTop: 5,
-        borderWidth: 1,
-        borderTopWidth: 0,
-        borderLeftWidth: 0,
-        borderRightWidth: 0,
-        borderBottomColor: 'rgba(0,0,0,0.05)',
-        backgroundColor: 'darkblue'       //"#e32524"
-    },
     icon: {
         position: 'absolute',
         top: 0,
@@ -238,6 +138,7 @@ const styles = StyleSheet.create({
     img: {
         width:375,
         height: 550,
+        backgroundColor: '#7ff93d',
     },
     title:{
         color:"#fff",
@@ -247,6 +148,23 @@ const styles = StyleSheet.create({
         flexDirection:"row",
         justifyContent:"space-between",
         width:60,
-    }
+    },
+    tabView: {
+        flex: 1,
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.01)',
+    },
+    card: {
+        borderWidth: 1,
+        backgroundColor: '#f2f64c',
+        borderColor: 'rgba(0,0,0,0.1)',
+        margin: 5,
+        height: 300,
+        padding: 15,
+        shadowColor: '#ccc',
+        shadowOffset: { width: 2, height: 2, },
+        shadowOpacity: 0.5,
+        shadowRadius: 3,
+    },
 });
 

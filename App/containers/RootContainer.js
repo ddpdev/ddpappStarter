@@ -32,7 +32,8 @@ import NavigationDrawer from './sidemenu/NavigationDrawer';
 //components
 import PageTwitterEditor from '../components/TwitterEditor';
 import PageTumblrMenu from '../components/TumblrMenu';
-import PageScrollTabView from '../components/ScrollTabView';
+//import PageScrollTabView from '../components/ScrollTabView';
+import PageHeader from '../components/Header';
 import PagePhotoLazySwiper from '../components/photo/PhotoLazySwiper';
 import PagePhotoSwiper from '../components/photo/PhotoSwiper';
 import PagePhotoPinchZoom from '../components/photo/PhotoPinchZoom';
@@ -91,7 +92,7 @@ class RootContainer extends Component {
               <Scene key="pageActionButton" component={PageActionButton} title="Action Button"  />
               <Scene key="pageTwitterEditor" component={PageTwitterEditor} title="Twitter Editor"   />
               <Scene key="pageTumblrMenu" component={PageTumblrMenu} title="Tumblr Menu"   />
-              <Scene key="pageScrollTabView" component={PageScrollTabView} title="Scrollable TabView" hideNavBar={true}  />
+              <Scene key="pagePageHeader" component={PageHeader} title="Scrollable TabView" hideNavBar={true}  />
 
               <Scene key="pagePhotoPinchZoom" component={PagePhotoPinchZoom} title="Photo Pinch Zoom"   />
               <Scene key="pagePhotoLazySwiper" component={PagePhotoLazySwiper} title="Photo Lazy Swiper"   />
