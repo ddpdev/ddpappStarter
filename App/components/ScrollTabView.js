@@ -16,6 +16,7 @@ class HomePage extends Component{
     render() {
         return(
             <ScrollView>
+                <Text>내용 : {this.props.tabTitle}</Text>
                 <Image style={styles.img} source={require('../images/app/yt1.png')} />
             </ScrollView>
         )
@@ -26,7 +27,8 @@ class PopularPage extends Component{
     render() {
         return(
             <ScrollView>
-                <Image style={styles.img} source={require('../images/app/yt2.png')}/>
+                <Text>내용 : {this.props.tabTitle}</Text>
+                <Image style={styles.img} source={require('../images/app/yt2.png')} />
             </ScrollView>
         )
     }
@@ -36,7 +38,8 @@ class SubscribePage extends Component{
     render() {
         return(
             <ScrollView>
-                <Image style={styles.img} source={require('../images/app/yt3.png')}/>
+                <Text>내용 : {this.props.tabTitle}</Text>
+                <Image style={styles.img} source={require('../images/app/yt3.png')} />
             </ScrollView>
         )
     }
@@ -46,21 +49,22 @@ class MinePage extends Component{
     render() {
         return(
             <ScrollView>
-                <Image style={styles.img} source={require('../images/app/yt4.png')}/>
+                <Text>내용 : {this.props.tabTitle}</Text>
+                <Image style={styles.img} source={require('../images/app/yt4.png')} />
             </ScrollView>
         )
     }
 }
 
-var FacebookTabBar = React.createClass({
-    selectedTabIcons: [],
-    unselectedTabIcons: [],
+class FacebookTabBar  extends Component {
+    selectedTabIcons: [];
+    unselectedTabIcons: [];
 
     propTypes: {
         goToPage: React.PropTypes.func,
         activeTab: React.PropTypes.number,
         tabs: React.PropTypes.array
-    },
+    };
 
     renderTabOption(name, page) {
         var isTabActive = this.props.activeTab === page;
@@ -74,12 +78,12 @@ var FacebookTabBar = React.createClass({
                       ref={(icon) => { this.unselectedTabIcons[page] = icon }}/>
             </TouchableOpacity>
         );
-    },
+    }
 
     componentDidMount() {
         this.setAnimationValue({value: this.props.activeTab});
         this._listener = this.props.scrollValue.addListener(this.setAnimationValue);
-    },
+    }
 
     setAnimationValue({value}) {
         var currentPage = this.props.activeTab;
@@ -98,7 +102,7 @@ var FacebookTabBar = React.createClass({
                 iconRef.setNativeProps({ style: {opacity: i - value} });
             }
         });
-    },
+    }
 
     render() {
         var containerWidth = this.props.containerWidth;
@@ -123,8 +127,8 @@ var FacebookTabBar = React.createClass({
                 <Animated.View style={[tabUnderlineStyle, {left}]} />
             </View>
         );
-    },
-});
+    }
+}
 
 export default class ScrollTabView extends Component{
     constructor(props) {
@@ -179,12 +183,13 @@ export default class ScrollTabView extends Component{
                 </View>
                 <ScrollableTabView
                     onChangeTab={(obj) => this._updateTitle(obj)}
-                    renderTabBar={() => <FacebookTabBar />}>
+                    renderTabBar={() => <FacebookTabBar />}
                     initialPage={this.state.initTab}
-                    <HomePage tabLabel="ios-home" />
-                    <PopularPage tabLabel="ios-bonfire" />
-                    <SubscribePage tabLabel="ios-albums-outline" />
-                    <MinePage tabLabel="ios-person" />
+                >
+                    <HomePage tabLabel="ios-home" tabTitle={"content_1"} />
+                    <PopularPage tabLabel="ios-bonfire" tabTitle={"content_1"} />
+                    <SubscribePage tabLabel="ios-albums-outline" tabTitle={"content_1"} />
+                    <MinePage tabLabel="ios-person" tabTitle={"content_1"} />
                 </ScrollableTabView>
             </View>
         )
