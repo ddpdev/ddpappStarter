@@ -16,7 +16,7 @@ class HomePage extends Component{
     render() {
         return(
             <ScrollView>
-                <Image style={styles.img} source={require('./../images/app/yt1.png')} />
+                <Image style={styles.img} source={require('../images/app/yt1.png')} />
             </ScrollView>
         )
     }
@@ -26,7 +26,7 @@ class PopularPage extends Component{
     render() {
         return(
             <ScrollView>
-                <Image style={styles.img} source={require('./../images/app/yt2.png')}/>
+                <Image style={styles.img} source={require('../images/app/yt2.png')}/>
             </ScrollView>
         )
     }
@@ -36,7 +36,7 @@ class SubscribePage extends Component{
     render() {
         return(
             <ScrollView>
-                <Image style={styles.img} source={require('./../images/app/yt3.png')}/>
+                <Image style={styles.img} source={require('../images/app/yt3.png')}/>
             </ScrollView>
         )
     }
@@ -46,7 +46,7 @@ class MinePage extends Component{
     render() {
         return(
             <ScrollView>
-                <Image style={styles.img} source={require('./../images/app/yt4.png')}/>
+                <Image style={styles.img} source={require('../images/app/yt4.png')}/>
             </ScrollView>
         )
     }
@@ -127,12 +127,13 @@ var FacebookTabBar = React.createClass({
 });
 
 export default class ScrollTabView extends Component{
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            title: "리얼카테고리",
+            title: "카테고리",
+            initTab: this.props.initTab | 1,
         };
-        console.log("ScrollTabView:",this.state);
+        console.log("ScrollTabView:", props, this.state);
     }
 
     componentDidMount() {
@@ -179,6 +180,7 @@ export default class ScrollTabView extends Component{
                 <ScrollableTabView
                     onChangeTab={(obj) => this._updateTitle(obj)}
                     renderTabBar={() => <FacebookTabBar />}>
+                    initialPage={this.state.initTab}
                     <HomePage tabLabel="ios-home" />
                     <PopularPage tabLabel="ios-bonfire" />
                     <SubscribePage tabLabel="ios-albums-outline" />

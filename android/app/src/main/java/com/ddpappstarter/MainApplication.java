@@ -17,6 +17,7 @@ import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.burlap.filetransfer.FileTransferPackage;
 import com.reactnative.photoview.PhotoViewPackage;
 import com.react.rnspinkit.RNSpinkitPackage;
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 
 // facebook
 import com.facebook.react.ReactInstanceManager;
@@ -55,7 +56,8 @@ public class MainApplication extends Application implements ReactApplication {
             new RNFetchBlobPackage(),
             new RNDeviceInfo(),
             new PhotoViewPackage(),
-            new RNSpinkitPackage()
+            new RNSpinkitPackage(),
+            new ReactNativePushNotificationPackage()
       );
     }
   };
