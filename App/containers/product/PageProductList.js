@@ -20,13 +20,14 @@ import ProgressImage from 'react-native-image-progress';
 import * as Progress from 'react-native-progress'; // INDICATORS => Progress.Bar, Progress.Circle, Progress.Pie
 import Util from '../../util/utils';
 import Spinner from "react-native-spinkit";
+import Toast from 'react-native-simple-toast';
 
 //https://ddpimage01.s3.ap-northeast-2.amazonaws.com/thumb/BJYGFdiU_thm.png
-var MOCKED_IMAGE_DATA = [
-    {"itemlist":[
-        {"item_id":33,"item_type":"img","last_date":"2016-07-09T11:58:18.000Z","item_value":"{\"bucket\":\"ddpimage01\",\"uploadfilename\":\"Screenshot_20160709-205537.png\",\"filesize\":102275,\"imagefilename\":\"ByQ1wwRI_img.png\",\"imagekey\":\"image/ByQ1wwRI_img.png\",\"thumbfilename\":\"ByQ1wwRI_thm.png\",\"thumbkey\":\"thumb/ByQ1wwRI_thm.png\"}","item_status":"Y"}
-        ]
-    }
+const MOCKED_IMAGE_DATA = [
+      {"itemlist":[
+          {"item_id":33,"item_type":"img","last_date":"2016-07-09T11:58:18.000Z","item_value":"{\"bucket\":\"ddpimage01\",\"uploadfilename\":\"Screenshot_20160709-205537.png\",\"filesize\":102275,\"imagefilename\":\"ByQ1wwRI_img.png\",\"imagekey\":\"image/ByQ1wwRI_img.png\",\"thumbfilename\":\"ByQ1wwRI_thm.png\",\"thumbkey\":\"thumb/ByQ1wwRI_thm.png\"}","item_status":"Y"}
+          ]
+      }
     ];
 
 //var REQUEST_URL = 'http://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json';
@@ -66,7 +67,10 @@ class Product extends Component {
         console.log('First, is ' + (isConnected ? 'online' : 'offline'));
 
         if(isConnected) {
+          Toast.show('Network is connected...loading ',Toast.LONG,Toast.CENTER);
           this.loadPage(0);
+        } else {
+          Toast.show('Network is not connected',Toast.SHORT,Toast.CENTER);
         }
 
       })
@@ -80,17 +84,18 @@ class Product extends Component {
     const created = Date.parse(createdTimestamp);
     const elapsed = (Date.now() - created)/1000; // seconds
 
-    if (elapsed < 10) return `방금 전`;
+    if (elapsed < 10) return '방금 전';
     if (elapsed < 60) return `${(elapsed%60)} 초 전`;
     if (elapsed < 3600) return `${Math.round(elapsed/60)} 분 전`;
     if (elapsed < 86400) return `${Math.round(elapsed/3600)} 시간 전`;
     if (elapsed < 525600) return `${Math.round(elapsed/86400)} 일 전`;
 
     const createdDate = new Date(created);
+    const saveDate = createdDate.getFullYear()+'-'+ (createdDate.getMonth()+1)+'-'+ createdDate.getDate();
 
-    console.log("getFormattedDate:",createdTimestamp,created,elapsed,createdDate);
+    console.log("getFormattedDate:",createdTimestamp,created,elapsed,createdDate,"saveDate: "+saveDate);
 
-    return `${createdDate.getFullYear()+'-'+(createdDate.getMonth()+1)+'-'+createdDate.getDate()}`;
+    return saveDate;
   }
 
     // async 적용 since 9/21
@@ -105,6 +110,7 @@ class Product extends Component {
       console.log("prev itemList count:"+this.itemList.length);
 
       try {
+          Toast.show('Data Fetching....',Toast.SHORT,Toast.CENTER);
           console.log("await Start:"+Date.now());
           const response = await fetch(url);
           console.log("await fetch success:"+Date.now());
@@ -112,8 +118,6 @@ class Product extends Component {
           console.log("await End:"+Date.now());
 
           this.itemList = this.itemList.concat(responseData.itemlist);
-
-          //console.log("FETCH_DATA:",newArray.length,",itemList:",this.itemList.length);
 
           this.setState({
               //dataSource: this.state.dataSource.cloneWithRows(responseData.itemlist),
@@ -184,6 +188,7 @@ class Product extends Component {
       var posY = event.nativeEvent.contentOffset.y;
       if (posY < this._prevY && posY <= 0) {
         console.log("reload");
+        Toast.show('최신데이터 조회중~',Toast.SHORT,Toast.CENTER);
         this.reloadItems();
       }
       this._prevY = posY;
@@ -205,12 +210,17 @@ class Product extends Component {
     handleEndReached() {
       console.log("handleEndReached:",this.state.loadingNextPage);
 
-      if(this.state.loadingNextPage) return ;
+      if(this.state.loadingNextPage) {
+        Toast.show('마지막 페이지입니다.'+this.state.currentPage,Toast.SHORT,Toast.CENTER);
+        return ;
+      }
 
       //alert("handleEndReached");
 
       //this.loadPage(this.state.currentPage+1);
       //this.state.currentPage+1
+      Toast.show('다음 페이지 조회'+(this.state.currentPage+1),Toast.SHORT,Toast.CENTER);
+
       Promise.all([
                     this.loadPage(this.state.currentPage+1),
                     new Promise( resolve => this.setState({loadingNextPage:true}, resolve)),
@@ -274,7 +284,7 @@ class Product extends Component {
     }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container:{
         flex:1,
         flexDirection:'row',
