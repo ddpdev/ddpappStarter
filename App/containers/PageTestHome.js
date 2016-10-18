@@ -79,6 +79,15 @@ class PageTestHome extends Component {
                 small
                 iconRight
                 icon={{name: 'tab'}}
+                title=' TabView 테스트'
+                backgroundColor='#663d38'
+                onPress={() => Actions.pageMainTabView({title:'메인'})}
+            />
+            <View style={style.viewMarginTop} />
+            <Button
+                small
+                iconRight
+                icon={{name: 'tab'}}
                 title='Thumblr Menu '
                 backgroundColor='#c3ac5f'
                 onPress={Actions.pageTumblrMenu}

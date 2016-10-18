@@ -10,7 +10,7 @@ import React,{ Component } from 'react';
 import { Image,StyleSheet,Text,TouchableHighlight,TouchableOpacity,StatusBar,Animated,ScrollView,View, Platform } from 'react-native';
 import Util from '../util/utils';
 import Icon from 'react-native-vector-icons/Ionicons';
-import ScrollableTabView from 'react-native-scrollable-tab-view';
+import ScrollableTabView , { ScrollableTabBar, } from 'react-native-scrollable-tab-view';
 import FacebookTabBar from './FacebookTabBar';
 
 class HomePage extends Component{
@@ -71,6 +71,7 @@ export default class ScrollTabView extends Component{
         return(
                 <ScrollableTabView
                     renderTabBar={() => <FacebookTabBar />}
+                    tabBarPosition={'top'}
                 >
                     <ScrollView tabLabel="ios-paper" style={styles.tabView}>
                         <View style={styles.card}>

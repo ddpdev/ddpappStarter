@@ -33,6 +33,7 @@
 		00F03E666B3D491A9DD6944F /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CE00CFFBE19419EA205CFF1 /* libAirMaps.a */; };
 		B2F03CFAE12E4320B0C702FE /* libRNUploader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E04D852AC3D4377A15367A8 /* libRNUploader.a */; };
 		BEF4EFE9F8834BB8B7580C4F /* libRNSpinkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E30456BA86A47CC9A0E32F2 /* libRNSpinkit.a */; };
+		00C36937690D42C1AD6D0633 /* libLRDRCTSimpleToast.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C3820392F64111BE17A6A2 /* libLRDRCTSimpleToast.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +158,8 @@
 		2E04D852AC3D4377A15367A8 /* libRNUploader.a */ = {isa = PBXFileReference; name = "libRNUploader.a"; path = "libRNUploader.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		D373004FD6BD4113966718B2 /* RNSpinkit.xcodeproj */ = {isa = PBXFileReference; name = "RNSpinkit.xcodeproj"; path = "../node_modules/react-native-spinkit/ios/RNSpinkit.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		7E30456BA86A47CC9A0E32F2 /* libRNSpinkit.a */ = {isa = PBXFileReference; name = "libRNSpinkit.a"; path = "libRNSpinkit.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		3F4217A46D7F4C8290EDF5AB /* LRDRCTSimpleToast.xcodeproj */ = {isa = PBXFileReference; name = "LRDRCTSimpleToast.xcodeproj"; path = "../node_modules/react-native-simple-toast/ios/LRDRCTSimpleToast.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		B3C3820392F64111BE17A6A2 /* libLRDRCTSimpleToast.a */ = {isa = PBXFileReference; name = "libLRDRCTSimpleToast.a"; path = "libLRDRCTSimpleToast.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +196,7 @@
 				00F03E666B3D491A9DD6944F /* libAirMaps.a in Frameworks */,
 				B2F03CFAE12E4320B0C702FE /* libRNUploader.a in Frameworks */,
 				BEF4EFE9F8834BB8B7580C4F /* libRNSpinkit.a in Frameworks */,
+				00C36937690D42C1AD6D0633 /* libLRDRCTSimpleToast.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +328,7 @@
 				30A81A4561504D0BAD55ED49 /* AirMaps.xcodeproj */,
 				9F0A9447ABF141D69039060B /* RNUploader.xcodeproj */,
 				D373004FD6BD4113966718B2 /* RNSpinkit.xcodeproj */,
+				3F4217A46D7F4C8290EDF5AB /* LRDRCTSimpleToast.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -658,6 +663,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -674,6 +680,7 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ddpappstarter.app/ddpappstarter";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -705,6 +712,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-gps",
 					"$(SRCROOT)\..\node_modules\react-native-maps\ios\AirMaps/**",
 					"$(SRCROOT)\..\node_modules\react-native-spinkit\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
 				);
 				INFOPLIST_FILE = "ddpappstarter/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -735,6 +743,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-gps",
 					"$(SRCROOT)\..\node_modules\react-native-maps\ios\AirMaps/**",
 					"$(SRCROOT)\..\node_modules\react-native-spinkit\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
 				);
 				INFOPLIST_FILE = "ddpappstarter/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -794,6 +803,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-gps",
 					"$(SRCROOT)\..\node_modules\react-native-maps\ios\AirMaps/**",
 					"$(SRCROOT)\..\node_modules\react-native-spinkit\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -842,6 +852,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-gps",
 					"$(SRCROOT)\..\node_modules\react-native-maps\ios\AirMaps/**",
 					"$(SRCROOT)\..\node_modules\react-native-spinkit\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
