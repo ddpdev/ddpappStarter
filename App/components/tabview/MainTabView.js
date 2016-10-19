@@ -11,6 +11,7 @@ import {
     ScrollView,
     StyleSheet,
     TouchableOpacity,
+    Dimensions,
 } from 'react-native';;
 import ScrollableTabView, { ScrollableTabBar } from 'react-native-scrollable-tab-view';
 import Ionicon from 'react-native-vector-icons/Ionicons';
@@ -32,6 +33,7 @@ import PageBottomTab2 from './PageTabView';
 import PageBottomTab3 from './PageTabView';
 import PageBottomTab4 from './PageTabView';
 
+//const height = Dimensions.get('window').height;
 
 export default class MainTabView extends Component {
     constructor(props){
@@ -40,6 +42,8 @@ export default class MainTabView extends Component {
             headerTitle : this.props.title | '카테고리',
             topTabBarVisible : true,
             bottomTabBarVisible : true,
+            topTabBarHiddenStyles : {},
+            bottomTabBarHiddenStyles : {},
         };
         this._prevY = 0;
         console.log("MainTabView:",props, this.state);
@@ -68,10 +72,13 @@ export default class MainTabView extends Component {
             Toast.show('스크롤 다운' + posY, Toast.SHORT, Toast.CENTER);
             console.log('스크롤 다운' + posY);
             //this.setState({topTabBarVisible : true,bottomTabBarVisible : false});
+            this.setState({topTabBarVisible : true,topTabBarHiddenStyle : {}});
+            this.setState(bottomTabBarVisible : false,bottomTabBarVisible : {marginTop: 0, top: Dimensions.get('window').height+120,});
         } else {
             Toast.show('스크롤 업' + posY, Toast.SHORT, Toast.CENTER);
             console.log('스크롤 업' + posY);
-            //this.setState({topTabBarVisible : false,bottomTabBarVisible : true});
+            this.setState({topTabBarVisible : false,topTabBarHiddenStyle : {marginTop: 0, top:-120,}});
+            this.setState({bottomTabBarVisible : true,topTabBarHiddenStyle : {}});
         }
         this._prevY = posY;
     }
@@ -88,7 +95,7 @@ export default class MainTabView extends Component {
                   <HeaderNavBar title={this.state.headerTitle} />
                   { this.state.topTabBarVisible &&
                       <ScrollableTabView
-                        style={styles.container}
+                        style={[styles.container,this.state.topTabBarHiddenStyles]}
                         initialPage={0}
                         renderTabBar={() => <ScrollableTabBar backgroundColor='rgba(255, 255, 255, 0.7)'/>}
                         tabBarPosition="top"
@@ -106,6 +113,7 @@ export default class MainTabView extends Component {
                               <TouchableOpacity
                                 style={styles.button}
                                 onPress={() => {
+                                    this._prevY = 0;
                                     this.refs.iosScrollView.scrollTo({y: 0});
                                 }}>
                                   <Text>Scroll to top</Text>
@@ -132,7 +140,7 @@ export default class MainTabView extends Component {
                   <View style={{height:40,borderWidth:1,borderColor:'green',backgroundColor:'#ffffff'}}>
                       { this.state.bottomTabBarVisible &&
                           <ScrollableTabView
-                              style={{flex:1}}
+                              style={{flex:1, ...this.state.bottomTabBarHiddenStyles}}
                               initialPage={0}
                               renderTabBar={() => <ScrollableTabBar />}
                               tabBarPosition='overlayBottom'
