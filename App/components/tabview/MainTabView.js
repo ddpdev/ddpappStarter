@@ -33,7 +33,7 @@ import PageBottomTab2 from './PageTabView';
 import PageBottomTab3 from './PageTabView';
 import PageBottomTab4 from './PageTabView';
 
-//const height = Dimensions.get('window').height;
+
 
 export default class MainTabView extends Component {
     constructor(props){
@@ -46,6 +46,8 @@ export default class MainTabView extends Component {
             bottomTabBarHiddenStyles : {},
         };
         this._prevY = 0;
+        this.height = Dimensions.get('window').height;
+
         console.log("MainTabView:",props, this.state);
 
         this._headerTitleChange = this._headerTitleChange.bind(this);
@@ -68,17 +70,21 @@ export default class MainTabView extends Component {
         console.log("handleScroll:"+ event.nativeEvent.contentOffset.y+",_prevY:"+this._prevY);
 
         let posY = event.nativeEvent.contentOffset.y;
-        if (posY < this._prevY && posY <= 0) {
+        if (posY > this._prevY && posY >= 0) {
             Toast.show('스크롤 다운' + posY, Toast.SHORT, Toast.CENTER);
             console.log('스크롤 다운' + posY);
             //this.setState({topTabBarVisible : true,bottomTabBarVisible : false});
-            this.setState({topTabBarVisible : true,topTabBarHiddenStyle : {}});
-            this.setState(bottomTabBarVisible : false,bottomTabBarVisible : {marginTop: 0, top: Dimensions.get('window').height+120,});
+            //스크롤 다운시 -> 상단바 숨김
+            this.setState({topTabBarVisible : true, topTabBarHiddenStyle : {marginTop: 0, top: -120, bottom: -120}});
+            this.setState({bottomTabBarVisible : true, bottomTabBarHiddenStyles : {}});
+
         } else {
+            // 스크롤업 -> 하단바 숨김
             Toast.show('스크롤 업' + posY, Toast.SHORT, Toast.CENTER);
             console.log('스크롤 업' + posY);
-            this.setState({topTabBarVisible : false,topTabBarHiddenStyle : {marginTop: 0, top:-120,}});
-            this.setState({bottomTabBarVisible : true,topTabBarHiddenStyle : {}});
+            this.setState({topTabBarVisible : true, topTabBarHiddenStyle : {}});
+            this.setState({bottomTabBarVisible : true, bottomTabBarHiddenStyles : {marginTop: 0, top: -120}});
+
         }
         this._prevY = posY;
     }
@@ -95,15 +101,15 @@ export default class MainTabView extends Component {
                   <HeaderNavBar title={this.state.headerTitle} />
                   { this.state.topTabBarVisible &&
                       <ScrollableTabView
-                        style={[styles.container,this.state.topTabBarHiddenStyles]}
+                        style={[styles.container,...this.state.topTabBarHiddenStyles]}
                         initialPage={0}
                         renderTabBar={() => <ScrollableTabBar backgroundColor='rgba(255, 255, 255, 0.7)'/>}
-                        tabBarPosition="top"
+                        tabBarPosition="overlayTop"
                         onChangeTab={(obj) => this._headerTitleChange(obj)}
                       >
                           <ScrollView tabLabel='iOS'
                                       onScroll={this.handleScroll}
-                                      scrollEventThrottle={16}
+                                      scrollEventThrottle={50}
                                       ref="iosScrollView"
                           >
                               <Ionicon name='logo-apple' color='black' size={300} style={styles.icon}/>
@@ -114,6 +120,7 @@ export default class MainTabView extends Component {
                                 style={styles.button}
                                 onPress={() => {
                                     this._prevY = 0;
+                                    this.setState({topTabBarVisible : true, topTabBarHiddenStyle : {},bottomTabBarVisible : true, bottomTabBarHiddenStyles : {}});
                                     this.refs.iosScrollView.scrollTo({y: 0});
                                 }}>
                                   <Text>Scroll to top</Text>

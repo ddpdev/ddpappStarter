@@ -50,12 +50,12 @@ class NavigationDrawer extends React.Component {
         open={state.open}
         onOpen={() => Actions.refresh({ key: state.key, open: true })}
         onClose={() => Actions.refresh({ key: state.key, open: false })}
-        type="displace"
+        type="overlay"
         content={<SideMenuContents
                   textColor={{color: '#fff', backgroundColor: 'transparent'}}
                   rowStyle={styles.menuRowWide}
                   iconStyle={styles.iconWide}
-                  menuBody={styles.menuColorWide}
+                  menuBody={styles.menuOverlay}
                   {...this.props}
                  />}
         tapToClose={true}

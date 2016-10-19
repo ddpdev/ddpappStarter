@@ -55,7 +55,7 @@ class PageReactMaps extends React.Component {
     updataPostion() {
 
         const geo_options = {
-            enableHighAccuracy: false,
+            enableHighAccuracy: true,
             maximumAge        : 30000,
             timeout           : 27000
         };
