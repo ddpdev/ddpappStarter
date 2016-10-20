@@ -182,6 +182,7 @@ class RootContainer extends Component {
     );
 
     return (<Router
+                createReducer={reducerCreate}
                 hideNavBar={false}
                 hideTabBar={true}
                 drawerImage={require('../images/icon/icon-nav.png')}

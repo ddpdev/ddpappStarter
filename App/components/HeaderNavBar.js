@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
     title:{
         color:"#fff",
         fontSize:20,
+        justifyContent:"center",
     },
     iconContainer:{
         flexDirection:"row",

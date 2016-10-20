@@ -6,9 +6,9 @@ import React from 'react';
 import { GeoLocation } from 'react-native';
 
 const geo = {
-    getLocation : function () {
+    getLocation () {
         /// Successful geolocation
-        const success = function (position) {
+        const success (position) {
             let lat = position.coords.latitude;
             let lon = position.coords.longitude;
             let date =  position.timestamp;
@@ -21,7 +21,7 @@ const geo = {
             return position;
         };
         /// Error'd geolocation
-        const error = function (error) {
+        const error (error) {
             if (error.message == 'User denied Geolocation') {
                 console.log('Please enable location services : ', error);
             }

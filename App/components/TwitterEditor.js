@@ -127,7 +127,7 @@ export default class TwitterEditor extends Component{
 const styles = StyleSheet.create({
     container:{
         paddingTop:5,
-        height:Util.size.height,
+        height:Util.size.height - 64,
         backgroundColor: "#ffffff"
     },
     icon:{
@@ -142,13 +142,13 @@ const styles = StyleSheet.create({
         justifyContent:"space-between",
     },
     textArea:{
-        height:335,
+        height:235,
         padding:15,
         fontSize:20
     },
     functionContainer:{
         height:275,
-        width:375,
+        width:Util.size.width, //375,
         position:"absolute",
         bottom:0,
         left:0,

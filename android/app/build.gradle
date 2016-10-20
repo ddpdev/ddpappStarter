@@ -136,6 +136,8 @@ dependencies {
     compile project(':react-native-uploader')
     compile project(':react-native-photo-view')
     compile project(':react-native-spinkit')
+    compile project(':react-native-background-timer')
+    compile project(':RNLocation')
 
     // notification + gcm
     compile project(':react-native-push-notification')

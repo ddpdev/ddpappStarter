@@ -18,6 +18,8 @@ import com.burlap.filetransfer.FileTransferPackage;
 import com.reactnative.photoview.PhotoViewPackage;
 import com.react.rnspinkit.RNSpinkitPackage;
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
+import com.ocetnik.timer.BackgroundTimerPackage;
+import com.syarul.rnlocation.RNLocation;
 
 // facebook
 import com.facebook.react.ReactInstanceManager;
@@ -48,6 +50,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
            new MainReactPackage(),
+            new BackgroundTimerPackage(),
             new FileTransferPackage(),
             new RealmReactPackage(),
             new VectorIconsPackage(),
@@ -57,7 +60,8 @@ public class MainApplication extends Application implements ReactApplication {
             new RNDeviceInfo(),
             new PhotoViewPackage(),
             new RNSpinkitPackage(),
-            new ReactNativePushNotificationPackage()
+            new ReactNativePushNotificationPackage(),
+            new RNLocation()
       );
     }
   };

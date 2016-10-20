@@ -34,6 +34,7 @@
 		B2F03CFAE12E4320B0C702FE /* libRNUploader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E04D852AC3D4377A15367A8 /* libRNUploader.a */; };
 		BEF4EFE9F8834BB8B7580C4F /* libRNSpinkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E30456BA86A47CC9A0E32F2 /* libRNSpinkit.a */; };
 		00C36937690D42C1AD6D0633 /* libLRDRCTSimpleToast.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C3820392F64111BE17A6A2 /* libLRDRCTSimpleToast.a */; };
+		1063A9273C5A4B80A2FA64AF /* libRNBackgroundTimer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD66E69B9C9B4E6BA162B209 /* libRNBackgroundTimer.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +161,8 @@
 		7E30456BA86A47CC9A0E32F2 /* libRNSpinkit.a */ = {isa = PBXFileReference; name = "libRNSpinkit.a"; path = "libRNSpinkit.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		3F4217A46D7F4C8290EDF5AB /* LRDRCTSimpleToast.xcodeproj */ = {isa = PBXFileReference; name = "LRDRCTSimpleToast.xcodeproj"; path = "../node_modules/react-native-simple-toast/ios/LRDRCTSimpleToast.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		B3C3820392F64111BE17A6A2 /* libLRDRCTSimpleToast.a */ = {isa = PBXFileReference; name = "libLRDRCTSimpleToast.a"; path = "libLRDRCTSimpleToast.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		5A22511E1A9E4882A1873D79 /* RNBackgroundTimer.xcodeproj */ = {isa = PBXFileReference; name = "RNBackgroundTimer.xcodeproj"; path = "../node_modules/react-native-background-timer/ios/RNBackgroundTimer.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		BD66E69B9C9B4E6BA162B209 /* libRNBackgroundTimer.a */ = {isa = PBXFileReference; name = "libRNBackgroundTimer.a"; path = "libRNBackgroundTimer.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +200,7 @@
 				B2F03CFAE12E4320B0C702FE /* libRNUploader.a in Frameworks */,
 				BEF4EFE9F8834BB8B7580C4F /* libRNSpinkit.a in Frameworks */,
 				00C36937690D42C1AD6D0633 /* libLRDRCTSimpleToast.a in Frameworks */,
+				1063A9273C5A4B80A2FA64AF /* libRNBackgroundTimer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +333,7 @@
 				9F0A9447ABF141D69039060B /* RNUploader.xcodeproj */,
 				D373004FD6BD4113966718B2 /* RNSpinkit.xcodeproj */,
 				3F4217A46D7F4C8290EDF5AB /* LRDRCTSimpleToast.xcodeproj */,
+				5A22511E1A9E4882A1873D79 /* RNBackgroundTimer.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -664,6 +669,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -680,6 +686,7 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ddpappstarter.app/ddpappstarter";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -713,6 +720,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-maps\ios\AirMaps/**",
 					"$(SRCROOT)\..\node_modules\react-native-spinkit\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
+					"$(SRCROOT)\..\node_modules\react-native-background-timer\ios",
 				);
 				INFOPLIST_FILE = "ddpappstarter/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -744,6 +752,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-maps\ios\AirMaps/**",
 					"$(SRCROOT)\..\node_modules\react-native-spinkit\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
+					"$(SRCROOT)\..\node_modules\react-native-background-timer\ios",
 				);
 				INFOPLIST_FILE = "ddpappstarter/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -804,6 +813,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-maps\ios\AirMaps/**",
 					"$(SRCROOT)\..\node_modules\react-native-spinkit\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
+					"$(SRCROOT)\..\node_modules\react-native-background-timer\ios",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -853,6 +863,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-maps\ios\AirMaps/**",
 					"$(SRCROOT)\..\node_modules\react-native-spinkit\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
+					"$(SRCROOT)\..\node_modules\react-native-background-timer\ios",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;

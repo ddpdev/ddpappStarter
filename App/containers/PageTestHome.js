@@ -8,14 +8,24 @@ import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { SocialIcon, Button  } from 'react-native-elements';
+import Toast from 'react-native-simple-toast';
+import Util from '../util/utils';
+import BackgroundTimer from 'react-native-background-timer';
 
 class PageTestHome extends Component {
+    const intervalId = 0;
+
     constructor(props){
         super(props);
 
         this.state = {
             isLoggedIn : false,
+            gpsLocation : [],
+            bgCount : 0,
+
         };
+
+
 
         this.pageCameraRollPickerUploader = this.pageCameraRollPickerUploader.bind(this);
         this.pageCameraRollPickerUpload = this.pageCameraRollPickerUpload.bind(this);
@@ -28,7 +38,27 @@ class PageTestHome extends Component {
         console.log("PageTestHome:",props,this.state);
     }
 
-  //Uploader
+    showToast(message) {
+        Toast.show('Message:' + message, Toast.SHORT, Toast.CENTER);
+    }
+
+    componentDidMount() {
+        //const currentLocation = Util.getGpsLocation();
+        //showToast(currentLocation);
+        //Util.BgTimer(10, 3000, 'abc');
+        intervalId = BackgroundTimer.setInterval(() => {
+            console.log('반복수행:',intervalCount, intervalTime);
+            this.setState({bgCount: this.state.bgCount+1});
+            Toast.show('백그라운드작업 : ' + this.state.bgCount, Toast.SHORT, Toast.CENTER);
+        }, 3000);
+    }
+
+    componentWillUnmount() {
+        BackgroundTimer.clearInterval(intervalId);
+    }
+
+
+        //Uploader
   pageCameraRollPickerUploader () {
       return Actions.pageCameraRollPickerUploader();
   }
@@ -55,7 +85,6 @@ class PageTestHome extends Component {
 
   render() {
     return (
-      <View style={style.viewMarginHeader}>
         <ScrollView scrollEnabled={true}>
             <Button
                 small
@@ -260,7 +289,6 @@ class PageTestHome extends Component {
                 {/*onPress={() => {console.log("Main Tab 클릭");Actions.mainTab();}}*/}
             {/*/>*/}
             </ScrollView>
-      </View>
     )
   }
 }
