@@ -13,18 +13,15 @@ import Util from '../util/utils';
 import BackgroundTimer from 'react-native-background-timer';
 
 class PageTestHome extends Component {
-    const intervalId = 0;
-
     constructor(props){
         super(props);
-
         this.state = {
             isLoggedIn : false,
             gpsLocation : [],
             bgCount : 0,
 
         };
-
+        const intervalId = 0;
 
 
         this.pageCameraRollPickerUploader = this.pageCameraRollPickerUploader.bind(this);
@@ -47,10 +44,10 @@ class PageTestHome extends Component {
         //showToast(currentLocation);
         //Util.BgTimer(10, 3000, 'abc');
         intervalId = BackgroundTimer.setInterval(() => {
-            console.log('반복수행:',intervalCount, intervalTime);
+            //console.log('반복수행:',0, intervalTime);
             this.setState({bgCount: this.state.bgCount+1});
             Toast.show('백그라운드작업 : ' + this.state.bgCount, Toast.SHORT, Toast.CENTER);
-        }, 3000);
+        }, 10000);
     }
 
     componentWillUnmount() {
