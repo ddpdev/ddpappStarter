@@ -10,6 +10,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { SocialIcon, Button  } from 'react-native-elements';
 import Toast from 'react-native-simple-toast';
 import Util from '../util/utils';
+import GeoPosition from '../util/geo';
 import BackgroundTimer from 'react-native-background-timer';
 
 class PageTestHome extends Component {
@@ -45,8 +46,14 @@ class PageTestHome extends Component {
         //Util.BgTimer(10, 3000, 'abc');
         intervalId = BackgroundTimer.setInterval(() => {
             //console.log('반복수행:',0, intervalTime);
-            this.setState({bgCount: this.state.bgCount+1});
-            Toast.show('백그라운드작업 : ' + this.state.bgCount, Toast.SHORT, Toast.CENTER);
+            //if(GeoPosition.getLocation() === null)  Toast.show('null', Toast.SHORT, Toast.CENTER);
+
+            //const userLocation = GeoPosition.getLocation(this.state.bgCount);
+            const userLocation = GeoPosition.getGeoLocation();
+
+            this.setState({bgCount: this.state.bgCount+1, gpsLocation: userLocation});
+            console.log("userLocation:", userLocation);
+            Toast.show('백그라운드작업 : ' + this.state.bgCount + '\nPosition:' +JSON.stringify(userLocation), Toast.SHORT, Toast.CENTER);
         }, 10000);
     }
 
